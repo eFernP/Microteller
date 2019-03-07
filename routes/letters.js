@@ -7,8 +7,13 @@ const { requireAnon, requireUser, requireFields } = require('../middlewares/auth
 
 /* GET home page. */
 
-router.get('/list', (req, res, next) => {
-  res.render('letters/list');
+router.get('/list', async (req, res, next) => {
+  try {
+    const letters = await Letter.find();
+    res.render('letters/list', { letters });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get('/new', requireUser, function (req, res, next) {
@@ -30,6 +35,21 @@ router.post('/list', requireUser, async (req, res, next) => {
       await Letter.create(letter);
     }
     res.redirect('/letters/list');
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.get('/:id', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  try {
+    const letter = await Letter.findById(id).populate('creator');
+    let isCreator = false;
+    if (letter.creator.equals(_id)) {
+      isCreator = true;
+    }
+    res.render('letters/details', { letter, isCreator });
   } catch (error) {
     next(error);
   };
