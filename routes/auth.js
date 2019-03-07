@@ -48,7 +48,7 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
 
     req.session.currentUser = createdUser;
 
-    res.redirect('/');
+    res.redirect('/letters/list');
   } catch (error) {
     next(error);
   }
@@ -83,7 +83,7 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
   function comparePassword (user) {
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
-      res.redirect('/');
+      res.redirect('/letters/list');
     } else {
       req.flash('validation', 'User name/email or password is incorrect');
       res.redirect('/auth/login');
