@@ -1,0 +1,23 @@
+<form action="/letters/list" method="POST">
+  </div>
+  <label for="">To:</label>
+  <input type="text" name="receiver" value="{{receiver}}">
+  </div>
+  
+  <div>
+  <label for="">Text</label>
+  <input type="text" name="text" value="{{text}}">
+  </div>
+
+  <div>
+  <label for="">Do you want to send your letter to your receiver?</label>
+  <input type="text" name="email" value="{{email}}">
+  </div>
+
+  {{#if text}}
+  <input type="hidden" name="_id" value="{{_id}}">
+  <button type="submit">Edit letter</button>
+  {{else}}
+  <button type="submit">Create letter</button>
+  {{/if}}
+</form>

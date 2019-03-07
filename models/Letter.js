@@ -10,8 +10,10 @@ const letterSchema = new Schema({
     required: true
   },
   receiver: {
-    type: String,
-    required: true
+    type: String
+  },
+  receiverEmail: {
+    type: String
   },
   creator: {
     type: ObjectId,
