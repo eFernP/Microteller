@@ -5,13 +5,29 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-// const session = require('express-session');
-// const MongoStore = require('connect-mongo')(session);
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
+const flash = require('connect-flash');
 const hbs = require('hbs');
 
 const app = express();
+
+app.use(session({
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  secret: 'some-string',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+
+app.use(flash());
 
 mongoose.connect('mongodb://localhost/project2', {
   keepAlive: true,
@@ -30,7 +46,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
   res.status(404);
