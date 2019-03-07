@@ -1,7 +1,7 @@
 module.exports = {
   requireAnon (req, res, next) {
     if (req.session.currentUser) {
-      res.redirect('/');
+      res.redirect('/letters/list');
       return;
     }
     next();
@@ -19,6 +19,16 @@ module.exports = {
     if (!password || !username) {
       req.flash('validation', 'Fill all the fields');
       res.redirect(`/auth${req.path}`);
+      return;
+    }
+    next();
+  },
+
+  requireFieldsLetter (req, res, next) {
+    const {text} = req.body;
+    if (!text) {
+      req.flash('validation', 'You have to write a letter');
+      res.redirect(`/letters${req.path}`);
       return;
     }
     next();

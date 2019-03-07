@@ -3,7 +3,7 @@ const router = express.Router();
 
 const User = require('../models/User');
 const Letter = require('../models/Letter');
-const { requireAnon, requireUser, requireFields } = require('../middlewares/auth');
+const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require('../middlewares/auth');
 
 /* GET home page. */
 
@@ -50,6 +50,37 @@ router.get('/:id', requireUser, async (req, res, next) => {
       isCreator = true;
     }
     res.render('letters/details', { letter, isCreator });
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.get('/:id/edit', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  try {
+    const letter = await Letter.findById(id);
+    if (!letter.creator.equals(_id)) {
+      res.redirect('/letters/list');
+      return;
+    }
+    res.render('letters/create-edit', letter);
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.post('/:id/delete', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  try {
+    const letter = await Letter.findById(id);
+    if (!letter.creator.equals(_id)) {
+      res.redirect('/letters/list');
+      return;
+    }
+    await Letter.findByIdAndDelete(id);
+    res.redirect('/letters/list');
   } catch (error) {
     next(error);
   };
