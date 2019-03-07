@@ -15,8 +15,8 @@ module.exports = {
   },
 
   requireFields (req, res, next) {
-    const { username, email, password } = req.body;
-    if (!password || !username || !email) {
+    const { username, password } = req.body;
+    if (!password || !username) {
       req.flash('validation', 'Fill all the fields');
       res.redirect(`/auth${req.path}`);
       return;

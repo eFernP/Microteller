@@ -61,31 +61,39 @@ router.get('/login', requireAnon, (req, res, next) => {
   res.render('auth/login', data);
 });
 
-// router.post('/login', requireAnon, requireFields, async (req, res, next) => {
-//   const { username, password } = req.body;
+router.post('/login', requireAnon, requireFields, async (req, res, next) => {
+  const { username, password } = req.body;
 
-//   try {
-//     const user = await User.findOne({ username });
-//     if (!user) {
-//       req.flash('validation', 'User name or password is incorrect');
-//       res.redirect('/auth/login');
-//       return;
-//     }
-//     if (bcrypt.compareSync(password, user.password)) {
-//       req.session.currentUser = user;
-//       res.redirect('/');
-//     } else {
-//       req.flash('validation', 'User name or password is incorrect');
-//       res.redirect('/auth/login');
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+  try {
+    let user = await User.findOne({ username });
+    let userEmail = await User.findOne({ email: username });
+    if (!user && !userEmail) {
+      req.flash('validation', 'User name/email or password is incorrect');
+      res.redirect('/auth/login');
+      return;
+    }
+    if (!user) {
+      comparePassword(userEmail);
+    } else {
+      comparePassword(user);
+    }
+  } catch (error) {
+    next(error);
+  }
+  function comparePassword (user) {
+    if (bcrypt.compareSync(password, user.password)) {
+      req.session.currentUser = user;
+      res.redirect('/');
+    } else {
+      req.flash('validation', 'User name/email or password is incorrect');
+      res.redirect('/auth/login');
+    }
+  }
+});
 
-// router.post('/logout', requireUser, (req, res, next) => {
-//   delete req.session.currentUser;
-//   res.redirect('/');
-// });
+router.post('/logout', requireUser, (req, res, next) => {
+  delete req.session.currentUser;
+  res.redirect('/');
+});
 
 module.exports = router;
