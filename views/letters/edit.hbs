@@ -1,0 +1,21 @@
+<form action="/letters/{{letter._id}}/edit" method="POST">
+  </div>
+  <label for="">For:</label>
+  <input type="text" name="receiver" value="{{letter.receiver}}">
+  </div>
+  
+  <div>
+  <label for="">Text</label>
+  <input type="text" name="text" value="{{letter.text}}">
+  </div>
+
+<input type="hidden" name="receiverEmail" value="{{letter.receiverEmail}}">
+  <input type="hidden" name="_id" value="{{letter._id}}">
+  <button type="submit">Edit letter</button>
+</form>
+
+{{#if data.messages.length}}
+<ul class="validation">
+  {{#each data.messages}}<li>{{this}}</li>{{/each}}
+</ul>
+{{/if}}
