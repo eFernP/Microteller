@@ -37,10 +37,21 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
       letter.creator = req.session.currentUser._id;
       await Letter.create(letter);
     }
-    res.redirect('/letters/list');
+    res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
+});
+
+router.get('/my-letters', async (req, res, next) => {
+  const { _id } = req.session.currentUser;
+  try {
+    //const tortilla = await Tortilla.findById(id).populate('creator');
+    const letters = await Letter.find({creator:_id});
+    res.render('letters/my-letters', { letters });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get('/:id', requireUser, async (req, res, next) => {
@@ -85,7 +96,7 @@ router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next
   };
   try {
     await Letter.findByIdAndUpdate(_id, letter);
-    res.redirect('/letters/list');
+    res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
@@ -101,7 +112,7 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
       return;
     }
     await Letter.findByIdAndDelete(id);
-    res.redirect('/letters/list');
+    res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
