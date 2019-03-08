@@ -1,0 +1,22 @@
+<h2>A letter for: {{leter.receiver}}</h2>
+<form action="/letters/{{letter._id}}/continue" method="POST">
+  <div>
+  <label for="">Text</label>
+  <input type="text" name="text">
+  </div>
+
+<input type="text" name="receiver" value="{{letter.receiver}}" hidden>
+
+  <div>
+  <label for="">Do you want to send your letter to your receiver?</label>
+  <input type="text" name="email">
+  </div>
+
+  <button type="submit">Create letter</button>
+</form>
+
+{{#if data.messages.length}}
+<ul class="validation">
+  {{#each data.messages}}<li>{{this}}</li>{{/each}}
+</ul>
+{{/if}}

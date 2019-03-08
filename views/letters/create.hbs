@@ -1,0 +1,20 @@
+<form action="/letters/new" method="POST">
+  </div>
+  <label for="">For:</label>
+  <input type="text" name="receiver" >
+  </div>
+  
+  <div>
+  <label for="">Text</label>
+  <input type="text" name="text">
+  </div>
+
+  <div>
+  <label for="">Do you want to send your letter to your receiver?</label>
+  <input type="text" name="email">
+  </div>
+
+  <button type="submit">Create letter</button>
+</form>
+
+{{> flash}}
