@@ -12,22 +12,23 @@
 <body>
   {{#if currentUser}}
   <nav role="navigation">
-        <div id="menu-toggle">
-          <input type="checkbox" />
-          <span></span>
-          <span></span>
-          <span></span>
-          <ul id="menu">
-            <li id="div-menu">
-              <li><a href="/letters/list">Inicio</a></li>
-              <li><a href="/account/edit">My account</a></li>
-              <li><a href="/letters/new">Add letter</a></li>
-              <li><a href="/letter/my-letters">My letters</a></li>
-              <li><form action="/auth/logout" method="POST"><button type="submit">Log out</button></form></li>
-            </li>
-          </ul>
-      </nav>
+    <div id="menu-toggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menu">
+        <li><a href="/letters/list">Inicio</a></li>
+        <li><a href="/account/edit">My account</a></li>
+        <li><a href="/letters/new">Add letter</a></li>
+        <li><a href="/letters/my-letters">My letters</a></li>
+        <li>
+          <form action="/auth/logout" method="POST"><button type="submit">Log out</button></form>
+        </li>
+      </ul>
+  </nav>
   {{/if}}
   {{{body}}}
 </body>
+
 </html>

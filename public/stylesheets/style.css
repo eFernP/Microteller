@@ -50,8 +50,8 @@ body
 {
   margin: 0;
   padding: 0;
-  background: #232323;
-  color: #cdcdcd;
+  background: #e7e7e7;
+  color: #0c0c0c;
   font-family: "Avenir Next", "Avenir", sans-serif;
 }
 
@@ -206,11 +206,23 @@ nav #menu-toggle {
   justify-content: space-between;
 } */
 
-#menu li
-{
+
+
+#menu{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu li{
+  display: flex;
+  justify-content: center;
+  justify-self: center;
   font-size: 22px;
 }
 
-#menu a {
-align-self: center;
+#menu button{
+  font-size: 22px;
+  background: none;
+  border: none;
 }
