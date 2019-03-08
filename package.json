@@ -12,14 +12,18 @@
     "connect-mongo": "^2.0.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
     "hbs": "^4.0.3",
+    "heroku": "^7.22.4",
     "http-errors": "~1.6.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.4.17",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "nodemailer": "^5.1.1",
+    "nor-mailer": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^5.15.1",

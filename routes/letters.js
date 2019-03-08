@@ -41,13 +41,15 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
   } catch (error) {
     next(error);
   };
+
+  
 });
 
 router.get('/my-letters', async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
-    //const tortilla = await Tortilla.findById(id).populate('creator');
-    const letters = await Letter.find({creator:_id});
+    // const tortilla = await Tortilla.findById(id).populate('creator');
+    const letters = await Letter.find({ creator: _id });
     res.render('letters/my-letters', { letters });
   } catch (error) {
     next(error);
