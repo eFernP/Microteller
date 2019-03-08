@@ -17,7 +17,7 @@ router.get('/signup', requireAnon, (req, res, next) => {
 });
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, confirmedPassword } = req.body;
 
   try {
     const resultName = await User.findOne({ username });
@@ -33,7 +33,11 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
       res.redirect('/auth/signup');
       return;
     }
-
+    if (password !== confirmedPassword){
+      req.flash('validation', `The password fields doesn't match`);
+      res.redirect('/auth/signup');
+      return;
+    }
     // Encriptar password
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
