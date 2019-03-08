@@ -20,7 +20,7 @@ const letterSchema = new Schema({
     ref: 'User',
     required: true
   },
-  nextLetter: {
+  lastLetter: {
     type: ObjectId,
     ref: 'Letter'
   }

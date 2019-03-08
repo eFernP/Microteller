@@ -1,10 +1,9 @@
 <p>For: {{letter.receiver}}</p>
 
 <p>{{letter.text}}</p>
-
-{{#if isCreator}}
+<a href="/letters/{{letter._id}}/continue">Add another letter for this person</a>
 <a href="/letters/{{letter._id}}/edit">Edit</a>
 <form action="/letters/{{letter._id}}/delete" method="POST">
 <button type="submit">Delete letter</button>
 </form>
-{{/if}}
+

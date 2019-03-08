@@ -9,7 +9,7 @@ const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require
 
 router.get('/list', async (req, res, next) => {
   try {
-    const letters = await Letter.find();
+    const letters = await Letter.find({lastLetter: null});
     res.render('letters/list', { letters });
   } catch (error) {
     next(error);
@@ -20,7 +20,7 @@ router.get('/new', requireUser, function (req, res, next) {
   const data = {
     messages: req.flash('validation')
   };
-  res.render('letters/create-edit', data);
+  res.render('letters/create', data);
 });
 
 router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
@@ -96,6 +96,43 @@ router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next
   };
   try {
     await Letter.findByIdAndUpdate(_id, letter);
+    res.redirect('/letters/my-letters');
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.get('/:id/continue', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  const data = {
+    messages: req.flash('validation')
+  };
+  try {
+    const letter = await Letter.findById(id);
+    if (!letter.creator.equals(_id)) {
+      res.redirect('/letters/list');
+      return;
+    }
+    res.render('letters/continue', { letter, data });
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, next) => {
+  const { text, receiver, receiverEmail } = req.body;
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  let letter = {
+    text,
+    receiver,
+    receiverEmail,
+    lastLetter: id
+  };
+  try {
+      letter.creator = req.session.currentUser._id;
+      await Letter.create(letter);
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
