@@ -1,3 +1,4 @@
+<h2>A letter for: {{leter.receiver}}</h2>
 <form action="/letters/{{letter._id}}/continue" method="POST">
   <div>
   <label for="">Text</label>
@@ -14,4 +15,8 @@
   <button type="submit">Create letter</button>
 </form>
 
-{{> flash}}
+{{#if data.messages.length}}
+<ul class="validation">
+  {{#each data.messages}}<li>{{this}}</li>{{/each}}
+</ul>
+{{/if}}
