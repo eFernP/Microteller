@@ -142,7 +142,7 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
 
 router.get('/:id/delete', requireUser, async (req, res, next) => {
   const { id } = req.params;
-  res.render('letters/delete', id);
+  res.render('letters/delete', {id});
 });
 
 router.post('/:id/delete', requireUser, async (req, res, next) => {
