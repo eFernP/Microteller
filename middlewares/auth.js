@@ -32,5 +32,15 @@ module.exports = {
       return;
     }
     next();
-  }
+  },
+
+  requireUserEditFields (req, res, next) {
+    const { username, email } = req.body;
+    if (!email || !username) {
+      req.flash('validation', 'Fill the user name and email fields');
+      res.redirect(`${req.path}`);
+      return;
+    }
+    next();
+  },
 };

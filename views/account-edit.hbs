@@ -1,0 +1,25 @@
+<h1>Edit account</h1>
+
+<form method="POST" action="/account/edit">
+
+  <div class="field" >
+    <label>Username</label>
+    <input type="text" name="username" value="{{user.username}}"/>
+  </div>
+
+  <div class="field" >
+    <label>Email</label>
+    <input type="text" name="email" value="{{user.email}}"/>
+  </div>
+
+  <div class="field" >
+    <label>New password (Don't fill the field if you don't want to change your password)</label>
+    <input type="password" name="password"/>
+  </div>
+
+  <div class="field submit">
+    <button type="submit">Edit</button>
+  </div>
+</form>
+
+{{> flash}}
