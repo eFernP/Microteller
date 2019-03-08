@@ -70,14 +70,14 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
       res.redirect('/letters/list');
       return;
     }
-    res.render('letters/edit', {letter, data});
+    res.render('letters/edit', { letter, data });
   } catch (error) {
     next(error);
   };
 });
 
 router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { _id, text, receiver, receiverEmail} = req.body;
+  const { _id, text, receiver, receiverEmail } = req.body;
   const letter = {
     text,
     receiver,
