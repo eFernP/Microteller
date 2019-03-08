@@ -24,19 +24,19 @@ router.get('/new', requireUser, function (req, res, next) {
 });
 
 router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { _id, text, receiver, receiverEmail } = req.body;
+  const {text, ambit, receiver, receiverEmail } = req.body;
   const letter = {
     text,
+    ambit,
     receiver,
     receiverEmail
   };
   try {
-    if (_id) {
-      await Letter.findByIdAndUpdate(_id, letter);
-    } else {
-      letter.creator = req.session.currentUser._id;
-      await Letter.create(letter);
+    if (!receiver){
+      letter.receiver = "Unknown";
     }
+    letter.creator = req.session.currentUser._id;
+    await Letter.create(letter);
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);

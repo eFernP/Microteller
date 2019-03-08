@@ -9,6 +9,10 @@ const letterSchema = new Schema({
     type: String,
     required: true
   },
+  ambit: {
+    type: String,
+    enum: ['Experiences', 'Family', 'Friends', 'Lovers', 'Me', 'Objects', 'Places', 'Others']
+  },
   receiver: {
     type: String
   },
