@@ -132,7 +132,9 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
   };
   try {
       letter.creator = req.session.currentUser._id;
-      await Letter.create(letter);
+      const newLetter = await Letter.create(letter);
+      await Letter.findOneAndUpdate({creator:_id, receiver, nextLetter: null}, {nextLetter: newLetter.id});
+      //await Letter.findByIdAndUpdate(id, {nextLetter: newLetter.id});
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);

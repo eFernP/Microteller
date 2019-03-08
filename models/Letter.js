@@ -23,6 +23,10 @@ const letterSchema = new Schema({
   lastLetter: {
     type: ObjectId,
     ref: 'Letter'
+  },
+  nextLetter: {
+    type: ObjectId,
+    ref: 'Letter'
   }
 });
 
