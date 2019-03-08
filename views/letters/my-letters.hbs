@@ -1,0 +1,16 @@
+<h1>My Letters</h1>
+
+
+{{#if letters}}
+<ul>
+  {{#each letters}}
+
+  <li>
+    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a>
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p>You don't have any letter yet</p>
+<a href="/letters/new"> Create a letter</a>
+{{/if}}
