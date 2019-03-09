@@ -14,12 +14,13 @@
 <a href="/letters/{{letter._id}}/delete">Delete</a>
 {{/if}}
 
+<h2>Comments</h2>
 {{#each comments}}
-<p>{{this.creator}} : {{this.text}}</p>
+<p>{{this.creator.username}} : {{this.text}}</p>
 {{/each}}
 <form action="/letters/{{letter._id}}/comment" method="POST">
 <input type="text" name="text">
-<button type="submit">Comment</button>
+<button type="submit">Add comment</button>
 </form>
 
 {{> flash}}

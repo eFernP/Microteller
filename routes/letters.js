@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../models/User');
 const Letter = require('../models/Letter');
+const Comment = require('../models/Comment');
 const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require('../middlewares/auth');
 
 /* GET home page. */
@@ -59,11 +60,12 @@ router.get('/:id', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     const letter = await Letter.findById(id).populate('creator');
+    const comments = await Comment.find({letter: id}).populate('creator');
     let isCreator = false;
     if (letter.creator.equals(_id)) {
       isCreator = true;
     }
-    res.render('letters/details', { letter, isCreator });
+    res.render('letters/details', { letter, isCreator, comments });
   } catch (error) {
     next(error);
   };
@@ -160,5 +162,25 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
     next(error);
   };
 });
+
+router.post('/:id/comment', requireUser, async (req, res, next) => {
+  const {text} = req.body;
+  const { id } = req.params;
+  const comment = {text};
+  try {
+    if(!text){
+      res.redirect(`/letters/${id}`);
+      return;
+    }
+
+    comment.creator = req.session.currentUser._id;
+    comment.letter = id
+    await Comment.create(comment);
+    res.redirect(`/letters/${id}`);
+  } catch (error) {
+    next(error);
+  };
+});
+
 
 module.exports = router;
