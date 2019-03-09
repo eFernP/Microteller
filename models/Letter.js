@@ -31,6 +31,10 @@ const letterSchema = new Schema({
   nextLetter: {
     type: ObjectId,
     ref: 'Letter'
+  },
+  challenge: {
+    type: ObjectId,
+    ref: 'Challenge'
   }
 });
 
