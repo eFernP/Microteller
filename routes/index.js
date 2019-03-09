@@ -64,6 +64,13 @@ router.get('/challenges/:id', requireUser, async (req, res, next) => {
   }
 });
 
+router.get('/challenges/:id/new', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const challenge = await Challenge.findById(id);
+  res.render('letters/create', {challenge});
+ 
+});
+
 router.get('/account/edit', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   const data = {

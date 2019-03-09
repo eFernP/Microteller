@@ -1,8 +1,8 @@
 <div class="margin-top-list"></div>
 
 {{#if challenge}}
-<h4>{{challenge.objective}}<h4>
-<a href="#">Create a note for this challenge</a>
+<h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
+<a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
 {{else}}
 <h1>Letters</h1>
 {{/if}}

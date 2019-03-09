@@ -4,6 +4,7 @@ const router = express.Router();
 const User = require('../models/User');
 const Letter = require('../models/Letter');
 const Comment = require('../models/Comment');
+const Challenge = require('../models/Challenge');
 const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require('../middlewares/auth');
 
 /* GET home page. */
@@ -25,16 +26,20 @@ router.get('/new', requireUser, function (req, res, next) {
 });
 
 router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const {text, ambit, receiver, receiverEmail } = req.body;
+  const {text, ambit, receiver, receiverEmail, challenge} = req.body;
   const letter = {
     text,
     ambit,
     receiver,
-    receiverEmail
+    receiverEmail,
   };
   try {
     if (!receiver){
       letter.receiver = "Unknown";
+    }
+    if(challenge){
+      letter.challenge = challenge;
+      letter.votes = 0;
     }
     letter.creator = req.session.currentUser._id;
     await Letter.create(letter);
@@ -61,11 +66,12 @@ router.get('/:id', requireUser, async (req, res, next) => {
   try {
     const letter = await Letter.findById(id).populate('creator');
     const comments = await Comment.find({letter: id}).populate('creator');
+    const challenge = await Challenge.findById(letter.challenge);
     let isCreator = false;
     if (letter.creator.equals(_id)) {
       isCreator = true;
     }
-    res.render('letters/details', { letter, isCreator, comments });
+    res.render('letters/details', { letter, isCreator, comments, challenge });
   } catch (error) {
     next(error);
   };

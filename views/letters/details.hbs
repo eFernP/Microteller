@@ -1,5 +1,8 @@
 <p>For: {{letter.receiver}} - {{letter.ambit}}</p>
-
+{{#if letter.challenge}}
+<a href="/challenges/{{challenge.id}}">Challenge</a>
+Votes: {{letter.votes}}
+{{/if}}
 <p>{{letter.text}}</p>
 {{#if letter.lastLetter}}
 <a href="/letters/{{letter.lastLetter}}">Last</a>

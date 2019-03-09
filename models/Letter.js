@@ -35,6 +35,9 @@ const letterSchema = new Schema({
   challenge: {
     type: ObjectId,
     ref: 'Challenge'
+  },
+  votes: {
+    type: Number,
   }
 });
 
