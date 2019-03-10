@@ -35,6 +35,12 @@ router.post('/challenges/new', requireUser, async (req, res, next) => {
     ambit,
     objective
   };
+  
+  if(objective.length > 50){
+    req.flash('validation', 'Challenge goal too long');
+    res.redirect('/challenges/new');
+    return;
+  }
   try {
     if (!objective){
       req.flash('validation', 'Fill the field');
@@ -93,6 +99,24 @@ router.get('/account/edit', requireUser, async (req, res, next) => {
 router.post('/account/edit', requireUser, requireUserEditFields, async (req, res, next) => {
   let { username, email, password, confirmedPassword} = req.body;
   const { _id } = req.session.currentUser;
+
+  if(username.length > 30){
+    req.flash('validation', 'User name too long.');
+    res.redirect(`/account/edit`);
+    return
+  }
+
+  if(email.length > 50){
+    req.flash('validation', 'Email too long.');
+    res.redirect(`/account/edit`);
+    return
+  }
+
+  if(password.length > 50){
+    req.flash('validation', 'Password too long.');
+    res.redirect(`/account/edit`);
+    return
+  }
   try {
     const resultName = await User.findOne({ username });
     if (resultName && (resultName.id !== _id)) {

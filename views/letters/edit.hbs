@@ -3,12 +3,11 @@
 <form action="/letters/{{letter._id}}/edit" method="POST">
 
   <div>
-  <label for="">Text</label>
-  <input type="text" name="text" value="{{letter.text}}">
+    <label for="">Text</label>
+    <input type="text" name="text" value="{{letter.text}}">
   </div>
 
-<input type="hidden" name="receiverEmail" value="{{letter.receiverEmail}}">
-  <input type="hidden" name="_id" value="{{letter._id}}">
+  <input type="hidden" name="receiverEmail" value="{{letter.receiverEmail}}">
   <button type="submit">Edit</button>
 </form>
 

@@ -25,4 +25,10 @@ Votes: {{letter.votes}}
 <input type="text" name="text">
 <button type="submit">Add comment</button>
 </form>
-{{> flash}}
+
+{{#if data.messages.length}}
+<ul class="validation">
+  {{#each data.messages}}<li>{{this}}</li>{{/each}}
+</ul>
+{{/if}}
+{{!-- {{> flash}} --}}

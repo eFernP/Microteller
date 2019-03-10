@@ -22,7 +22,7 @@ router.get('/new', requireUser, function (req, res, next) {
   const data = {
     messages: req.flash('validation')
   };
-  res.render('letters/create', data);
+  res.render('letters/create', {data});
 });
 
 router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
@@ -33,6 +33,24 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     receiver,
     receiverEmail,
   };
+
+  if(text.length > 150){
+    req.flash('validation', 'Note too long.');
+    res.redirect('/letters/new');
+    return
+  }
+
+  if(receiver.length > 50){
+    req.flash('validation', 'The subject/person field is too long');
+    res.redirect('/letters/new');
+    return
+  }
+  if(receiverEmail.length > 50){
+    req.flash('validation', 'Email too long.');
+    res.redirect('/letters/new');
+    return
+  }
+
   try {
     if (!receiver){
       letter.receiver = "Unknown";
@@ -64,6 +82,9 @@ router.get('/my-letters', async (req, res, next) => {
 router.get('/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
+  const data = {
+    messages: req.flash('validation')
+  };
   try {
     const letter = await Letter.findById(id).populate('creator');
     const comments = await Comment.find({letter: id}).populate('creator');
@@ -72,7 +93,7 @@ router.get('/:id', requireUser, async (req, res, next) => {
     if (letter.creator.equals(_id)) {
       isCreator = true;
     }
-    res.render('letters/details', { letter, isCreator, comments, challenge });
+    res.render('letters/details', { letter, isCreator, comments, challenge, data });
   } catch (error) {
     next(error);
   };
@@ -97,25 +118,26 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
 });
 
 router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const {_id, text} = req.body;
-    try {
-    await Letter.findByIdAndUpdate(_id, {text});
+  const {text} = req.body;
+  const {id} = req.params;
+  const { _id } = req.session.currentUser;
+  if(text.length > 150){
+    req.flash('validation', 'Note too long.');
+    res.redirect(`/letters/${id}/edit`);
+    return
+  }
+
+  try {
+    const letter = await Letter.findById(id);
+    if (!letter.creator.equals(_id)) {
+      res.redirect('/letters/list');
+      return;
+    }
+    await Letter.findByIdAndUpdate(id, {text});
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
-  // const { _id, text, receiver, receiverEmail } = req.body;
-  // const letter = {
-  //   text,
-  //   receiver,
-  //   receiverEmail
-  // };
-  // try {
-  //   await Letter.findByIdAndUpdate(_id, letter);
-  //   res.redirect('/letters/my-letters');
-  // } catch (error) {
-  //   next(error);
-  // };
 });
 
 router.get('/:id/continue', requireUser, async (req, res, next) => {
@@ -140,6 +162,23 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
   const { text, receiver, set, receiverEmail } = req.body;
   const { id } = req.params;
   const { _id } = req.session.currentUser;
+
+  if(text.length > 150){
+    req.flash('validation', 'Note too long.');
+    res.redirect(`/letters/${id}/continue`);
+    return
+  }
+
+  if(receiver.length > 50){
+    req.flash('validation', 'The subject/person field is too long');
+    res.redirect(`/letters/${id}/continue`);
+    return
+  }
+  if(receiverEmail.length > 50){
+    req.flash('validation', 'Email too long.');
+    res.redirect(`/letters/${id}/continue`);
+    return
+  }
   
   try {
       const letterParent = await Letter.findById(id); 
@@ -200,6 +239,13 @@ router.post('/:id/comment', requireUser, async (req, res, next) => {
   const {text} = req.body;
   const { id } = req.params;
   const comment = {text};
+
+  if(text.length > 100){
+    req.flash('validation', 'Comment too long');
+    res.redirect(`/letters/${id}`);
+    return
+  }
+
   try {
     if(!text){
       res.redirect(`/letters/${id}`);

@@ -18,7 +18,23 @@ router.get('/signup', requireAnon, (req, res, next) => {
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
   const { username, email, password, confirmedPassword } = req.body;
+  if(username.length > 30){
+    req.flash('validation', 'User name too long.');
+    res.redirect(`/auth/signup`);
+    return
+  }
 
+  if(email.length > 50){
+    req.flash('validation', 'Email too long.');
+    res.redirect(`/auth/signup`);
+    return
+  }
+
+  if(password.length > 50){
+    req.flash('validation', 'Password too long.');
+    res.redirect(`/auth/signup`);
+    return
+  }
   try {
     const resultName = await User.findOne({ username });
     if (resultName) {
