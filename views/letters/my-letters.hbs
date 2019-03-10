@@ -6,11 +6,11 @@
   {{#each letters}}
 
   <li>
-    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a> - {{this.ambit}}
+    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - {{this.ambit}}
   </li>
   {{/each}}
 </ul>
 {{else}}
-<p>You don't have any letter yet</p>
-<a href="/letters/new"> Create a letter</a>
+<p>You don't have any note yet</p>
+<a href="/letters/new"> Create a note</a>
 {{/if}}

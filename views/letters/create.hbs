@@ -1,7 +1,7 @@
 <h2>Create note</h2>
 <form action="/letters/new" method="POST">
   </div>
-  <label for="">For:</label>
+  <label for="">For whom is your note or what is the note about?</label>
   <input type="text" name="receiver" >
   </div>
 {{#if challenge}}
@@ -26,8 +26,8 @@ Ambit : {{challenge.ambit}}
   </div>
 
   <div>
-  <label for="">Do you want to send your note to your receiver?</label>
-  <input type="text" name="email">
+  <label for="">Do you want to send your note to somebody?</label>
+  <input type="text" name="email" placeholder="Email">
   </div>
 
   <input type="text" name="challenge" value="{{challenge.id}}" hidden>

@@ -1,13 +1,12 @@
 <h1>My Challenges</h1>
 
-
 {{#if letters}}
 <ul>
   {{#each letters}}
 
   <li>
     {{this.challenge.objective}} - {{this.ambit}}
-    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a> - Votes: {{this.votes}}
+    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - Votes: {{this.votes}}
   </li>
   {{/each}}
 </ul>

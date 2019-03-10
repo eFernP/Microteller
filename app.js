@@ -13,7 +13,7 @@ const authRouter = require('./routes/auth');
 const lettersRouter = require('./routes/letters');
 const flash = require('connect-flash');
 const hbs = require('hbs');
-const nodemailer = require('nodemailer');
+//const nodemailer = require('nodemailer');
 
 const app = express();
 

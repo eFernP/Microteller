@@ -1,6 +1,7 @@
 <a href="/letters/list">See all notes</a>
 <h1>Challenges</h1>
 
+{{#if challenges}}
 <ul>
   {{#each challenges}}
   <li>
@@ -8,3 +9,7 @@
   </li>
   {{/each}}
 </ul>
+{{else}}
+<p>No challenges yet</p>
+<a href="/challenges/new">Create challenge</a
+{{/if}}

@@ -7,13 +7,19 @@
 {{else}}
 <h1>Notes</h1>
 {{/if}}
+{{#if letters}}
 <ul>
   {{#each letters}}
   <li>
-    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a> - {{this.ambit}} - 
+    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - {{this.ambit}} - 
     {{#if challenge}}
     Votes : {{this.votes}}
     {{/if}}
   </li>
   {{/each}}
 </ul>
+
+{{else}}
+<p>No notes yet</p>
+<a href="/letters/new">Create note</a
+{{/if}}
