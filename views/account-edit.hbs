@@ -16,9 +16,19 @@
     <label>New password (Don't fill the field if you don't want to change your password)</label>
     <input type="password" name="password"/>
   </div>
+
+  <div class="field" >
+    <label>Confirm password</label>
+    <input type="password" name="confirmedPassword"/>
+  </div>
+
   <div class="field submit">
     <button type="submit">Edit</button>
   </div>
 </form>
 
-{{> flash}}
+{{#if data.messages.length}}
+<ul class="validation">
+  {{#each data.messages}}<li>{{this}}</li>{{/each}}
+</ul>
+{{/if}}

@@ -91,7 +91,7 @@ router.get('/account/edit', requireUser, async (req, res, next) => {
 });
 
 router.post('/account/edit', requireUser, requireUserEditFields, async (req, res, next) => {
-  let { username, email, password } = req.body;
+  let { username, email, password, confirmedPassword} = req.body;
   const { _id } = req.session.currentUser;
   try {
     const resultName = await User.findOne({ username });
@@ -112,8 +112,14 @@ router.post('/account/edit', requireUser, requireUserEditFields, async (req, res
       const passwordUser = await User.findOne({ _id });
       password = passwordUser.password;
     }else{
-      const salt = bcrypt.genSaltSync(saltRounds);
-      password = bcrypt.hashSync(password, salt);
+      if(password === confirmedPassword){
+        const salt = bcrypt.genSaltSync(saltRounds);
+        password = bcrypt.hashSync(password, salt);
+      }else{
+        req.flash('validation', 'The password fields do not match');
+        res.redirect('/account/edit');
+        return;
+      }
     }
   
     const newInfo = {
@@ -122,6 +128,7 @@ router.post('/account/edit', requireUser, requireUserEditFields, async (req, res
       password
     };
     await User.findByIdAndUpdate(_id, newInfo);
+    req.flash('validation', 'The changes have been done successfully');
     res.redirect('/account/edit');
   } catch (error) {
     next(error);
