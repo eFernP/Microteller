@@ -1,0 +1,23 @@
+<form action="/challenges/new" method="POST">
+
+<label for="">Ambit:</label>
+  <select id="size-select" name="ambit">
+    <option value="Experiences">Experiences</option>
+    <option value="Family">Family</option>
+    <option value="Friends">Friends</option>
+     <option value="Lovers">Lovers</option>
+    <option value="Me">Me</option>
+    <option value="Objects">Objects</option>
+    <option value="Places">Places</option>
+    <option value="Others">Others</option>
+  </select>
+
+  <div>
+  <label for="">Explain what has to be expressed in the notes:</label>
+  <input type="text" name="objective">
+  </div>
+
+  <button type="submit">Create challenge</button>
+</form>
+
+{{> flash}}

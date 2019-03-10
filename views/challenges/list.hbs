@@ -1,0 +1,10 @@
+<a href="/letters/list">See all notes</a>
+<h1>Challenges</h1>
+
+<ul>
+  {{#each challenges}}
+  <li>
+    <a href="/challenges/{{this.id}}">{{this.objective}}</a> - {{this.ambit}}
+  </li>
+  {{/each}}
+</ul>

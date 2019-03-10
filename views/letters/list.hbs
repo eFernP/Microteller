@@ -1,11 +1,15 @@
 <div class="margin-top-list"></div>
-
-<h1>Letters</h1>
-
+<a href="/challenges/list">See challenges</a>
+{{#if challenge}}
+<h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
+<a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
+{{else}}
+<h1>Notes</h1>
+{{/if}}
 <ul>
   {{#each letters}}
   <li>
-    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a>
+    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a> - {{this.ambit}}
   </li>
   {{/each}}
 </ul>

@@ -1,5 +1,8 @@
-<p>For: {{letter.receiver}}</p>
-
+<p>For: {{letter.receiver}} - {{letter.ambit}}</p>
+{{#if letter.challenge}}
+This note is for this <a href="/challenges/{{challenge.id}}">challenge</a>
+Votes: {{letter.votes}}
+{{/if}}
 <p>{{letter.text}}</p>
 {{#if letter.lastLetter}}
 <a href="/letters/{{letter.lastLetter}}">Last</a>
@@ -9,12 +12,17 @@
 {{/if}}
 
 {{#if isCreator}}
-<a href="/letters/{{letter._id}}/continue">Add another letter for {{letter.receiver}}</a>
+<a href="/letters/{{letter._id}}/continue">Add another note for the same person or topic</a>
 <a href="/letters/{{letter._id}}/edit">Edit</a>
-{{!-- <form action="/letters/{{letter._id}}/delete" method="POST">
-<button type="submit">Delete letter</button>
-</form> --}}
 <a href="/letters/{{letter._id}}/delete">Delete</a>
 {{/if}}
 
+<h2>Comments</h2>
+{{#each comments}}
+<p>{{this.creator.username}} : {{this.text}}</p>
+{{/each}}
+<form action="/letters/{{letter._id}}/comment" method="POST">
+<input type="text" name="text">
+<button type="submit">Add comment</button>
+</form>
 {{> flash}}

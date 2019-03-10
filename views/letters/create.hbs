@@ -1,20 +1,38 @@
+<h2>Create note</h2>
 <form action="/letters/new" method="POST">
   </div>
   <label for="">For:</label>
   <input type="text" name="receiver" >
   </div>
-  
+{{#if challenge}}
+Ambit : {{challenge.ambit}}
+<input type="text" name="ambit" value="{{challenge.ambit}}" hidden>
+{{else}}
+<label for="">Ambit:</label>
+  <select id="size-select" name="ambit">
+    <option value="Experiences">Experiences</option>
+    <option value="Family">Family</option>
+    <option value="Friends">Friends</option>
+     <option value="Lovers">Lovers</option>
+    <option value="Me">Me</option>
+    <option value="Objects">Objects</option>
+    <option value="Places">Places</option>
+    <option value="Others">Others</option>
+  </select>
+{{/if}}
   <div>
   <label for="">Text</label>
   <input type="text" name="text">
   </div>
 
   <div>
-  <label for="">Do you want to send your letter to your receiver?</label>
+  <label for="">Do you want to send your note to your receiver?</label>
   <input type="text" name="email">
   </div>
 
-  <button type="submit">Create letter</button>
+  <input type="text" name="challenge" value="{{challenge.id}}" hidden>
+
+  <button type="submit">Create note</button>
 </form>
 
 {{> flash}}

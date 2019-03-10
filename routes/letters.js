@@ -3,6 +3,8 @@ const router = express.Router();
 
 const User = require('../models/User');
 const Letter = require('../models/Letter');
+const Comment = require('../models/Comment');
+const Challenge = require('../models/Challenge');
 const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require('../middlewares/auth');
 
 /* GET home page. */
@@ -24,19 +26,23 @@ router.get('/new', requireUser, function (req, res, next) {
 });
 
 router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { _id, text, receiver, receiverEmail } = req.body;
+  const {text, ambit, receiver, receiverEmail, challenge} = req.body;
   const letter = {
     text,
+    ambit,
     receiver,
-    receiverEmail
+    receiverEmail,
   };
   try {
-    if (_id) {
-      await Letter.findByIdAndUpdate(_id, letter);
-    } else {
-      letter.creator = req.session.currentUser._id;
-      await Letter.create(letter);
+    if (!receiver){
+      letter.receiver = "Unknown";
     }
+    if(challenge){
+      letter.challenge = challenge;
+      letter.votes = 0;
+    }
+    letter.creator = req.session.currentUser._id;
+    await Letter.create(letter);
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
@@ -59,11 +65,13 @@ router.get('/:id', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     const letter = await Letter.findById(id).populate('creator');
+    const comments = await Comment.find({letter: id}).populate('creator');
+    const challenge = await Challenge.findById(letter.challenge);
     let isCreator = false;
     if (letter.creator.equals(_id)) {
       isCreator = true;
     }
-    res.render('letters/details', { letter, isCreator });
+    res.render('letters/details', { letter, isCreator, comments, challenge });
   } catch (error) {
     next(error);
   };
@@ -88,18 +96,25 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
 });
 
 router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { _id, text, receiver, receiverEmail } = req.body;
-  const letter = {
-    text,
-    receiver,
-    receiverEmail
-  };
-  try {
-    await Letter.findByIdAndUpdate(_id, letter);
+  const {_id, text} = req.body;
+    try {
+    await Letter.findByIdAndUpdate(_id, {text});
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
+  // const { _id, text, receiver, receiverEmail } = req.body;
+  // const letter = {
+  //   text,
+  //   receiver,
+  //   receiverEmail
+  // };
+  // try {
+  //   await Letter.findByIdAndUpdate(_id, letter);
+  //   res.redirect('/letters/my-letters');
+  // } catch (error) {
+  //   next(error);
+  // };
 });
 
 router.get('/:id/continue', requireUser, async (req, res, next) => {
@@ -154,11 +169,33 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
       res.redirect('/letters/list');
       return;
     }
+    // const nextLetter = await Letter.findById(id);
+    // const lastLetter = await Letter.findById(id);
     await Letter.findByIdAndDelete(id);
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
 });
+
+router.post('/:id/comment', requireUser, async (req, res, next) => {
+  const {text} = req.body;
+  const { id } = req.params;
+  const comment = {text};
+  try {
+    if(!text){
+      res.redirect(`/letters/${id}`);
+      return;
+    }
+
+    comment.creator = req.session.currentUser._id;
+    comment.letter = id
+    await Comment.create(comment);
+    res.redirect(`/letters/${id}`);
+  } catch (error) {
+    next(error);
+  };
+});
+
 
 module.exports = router;
