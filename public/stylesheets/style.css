@@ -64,6 +64,7 @@ nav {
 nav #menu-toggle {
   align-self: flex-end;
   margin-left: 20px;
+  padding-bottom: 12px;
 }
 
 #menu {
@@ -321,6 +322,7 @@ nav #menu-toggle {
       border-radius: 50px;
       color: #333;
       cursor: pointer;
+      margin-top: 1.5vh;
 }
 
 .button-login {
@@ -337,5 +339,26 @@ nav #menu-toggle {
   padding-bottom: 3vh;
 }
 
-/* signup */
+/* signup reutilizado de login*/
 
+/* layout */
+
+.nav {
+  background-color: #EDEDED;
+  height: 60px;
+}
+
+.h1-account-edit {
+  font-size: 6vh;
+  text-align: center;
+  padding-top: 3vh;
+}
+
+.text-size-label {
+  font-size: 3vh;
+}
+
+.div1-account-edit {
+  padding-top: 6vh; 
+  text-align: center;
+}

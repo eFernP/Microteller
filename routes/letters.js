@@ -246,9 +246,7 @@ router.post('/:id/vote', requireUser, async (req, res, next) => {
   const {id} = req.params;
   try {
     const letter = await Letter.findById(id);
-    console.log('NOTE:'+id);
-    let votes = letter.votes + 1;
-    await Letter.findByIdAndUpdate(id, votes);
+    await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
     res.redirect(`/letters/${id}`);
   } catch (error) {
     next(error);
