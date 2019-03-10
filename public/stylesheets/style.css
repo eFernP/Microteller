@@ -243,7 +243,13 @@ nav #menu-toggle {
   font-family: 'Francois One', sans-serif;
   color:black;
   text-decoration:none;
-  border: 1px black solid; 
+  padding: 15px;
+      width: 150px;
+      border: 1px solid #EDEDED;
+      background: transparent;
+      border-radius: 50px;
+      color: #333;
+      cursor: pointer;
 }
 
 .div2-index {
