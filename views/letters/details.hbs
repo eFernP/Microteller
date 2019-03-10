@@ -18,9 +18,12 @@ Votes: {{letter.votes}}
 {{/if}}
 
 {{#if letter.challenge}}
+{{#if hasVoted}}
+{{else}}
 <form action="/letters/{{letter._id}}/vote" method="POST">
 <button type="submit">Vote</button>
 </form>
+{{/if}}
 {{/if}}
 <h2>Comments</h2>
 {{#each comments}}

@@ -97,10 +97,22 @@ router.get('/:id', requireUser, async (req, res, next) => {
     const comments = await Comment.find({letter: id}).populate('creator');
     const challenge = await Challenge.findById(letter.challenge);
     let isCreator = false;
+    let hasVoted = false;
+    if(_id){
+      const user = await User.findById(_id);
+      user.voted.forEach(element => {
+        if (id === element){
+          hasVoted = true;
+        }
+      });
+    }else{
+      hasVoted = true;
+    }
+    
     if (letter.creator.equals(_id)) {
       isCreator = true;
     }
-    res.render('letters/details', { letter, isCreator, comments, challenge, data });
+    res.render('letters/details', { letter, isCreator, hasVoted, comments, challenge, data });
   } catch (error) {
     next(error);
   };
@@ -244,8 +256,10 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
 
 router.post('/:id/vote', requireUser, async (req, res, next) => {
   const {id} = req.params;
+  const {_id} = req.session.currentUser;
   try {
     const letter = await Letter.findById(id);
+    const user = await User.findByIdAndUpdate(_id, {$push:{voted:id}});
     await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
     res.redirect(`/letters/${id}`);
   } catch (error) {
