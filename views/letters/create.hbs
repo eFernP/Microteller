@@ -1,3 +1,4 @@
+<h2>Create note</h2>
 <form action="/letters/new" method="POST">
   </div>
   <label for="">For:</label>
@@ -25,13 +26,13 @@ Ambit : {{challenge.ambit}}
   </div>
 
   <div>
-  <label for="">Do you want to send your letter to your receiver?</label>
+  <label for="">Do you want to send your note to your receiver?</label>
   <input type="text" name="email">
   </div>
 
   <input type="text" name="challenge" value="{{challenge.id}}" hidden>
 
-  <button type="submit">Create letter</button>
+  <button type="submit">Create note</button>
 </form>
 
 {{> flash}}

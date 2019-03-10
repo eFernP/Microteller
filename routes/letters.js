@@ -96,18 +96,25 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
 });
 
 router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { _id, text, receiver, receiverEmail } = req.body;
-  const letter = {
-    text,
-    receiver,
-    receiverEmail
-  };
-  try {
-    await Letter.findByIdAndUpdate(_id, letter);
+  const {_id, text} = req.body;
+    try {
+    await Letter.findByIdAndUpdate(_id, {text});
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
   };
+  // const { _id, text, receiver, receiverEmail } = req.body;
+  // const letter = {
+  //   text,
+  //   receiver,
+  //   receiverEmail
+  // };
+  // try {
+  //   await Letter.findByIdAndUpdate(_id, letter);
+  //   res.redirect('/letters/my-letters');
+  // } catch (error) {
+  //   next(error);
+  // };
 });
 
 router.get('/:id/continue', requireUser, async (req, res, next) => {
@@ -162,6 +169,8 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
       res.redirect('/letters/list');
       return;
     }
+    // const nextLetter = await Letter.findById(id);
+    // const lastLetter = await Letter.findById(id);
     await Letter.findByIdAndDelete(id);
     res.redirect('/letters/my-letters');
   } catch (error) {
