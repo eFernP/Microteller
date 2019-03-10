@@ -11,7 +11,7 @@ const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require
 
 router.get('/list', async (req, res, next) => {
   try {
-    const letters = await Letter.find({lastLetter: null});
+    const letters = await Letter.find({ lastLetter: null });
     res.render('letters/list', { letters });
   } catch (error) {
     next(error);
@@ -53,8 +53,8 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
 router.get('/my-letters', async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
-    //const tortilla = await Tortilla.findById(id).populate('creator');
-    const letters = await Letter.find({creator:_id, lastLetter: null});
+    // const tortilla = await Tortilla.findById(id).populate('creator');
+    const letters = await Letter.find({ creator: _id, lastLetter: null });
     res.render('letters/my-letters', { letters });
   } catch (error) {
     next(error);
@@ -167,7 +167,7 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
 
 router.get('/:id/delete', requireUser, async (req, res, next) => {
   const { id } = req.params;
-  res.render('letters/delete', {id});
+  res.render('letters/delete', { id });
 });
 
 router.post('/:id/delete', requireUser, async (req, res, next) => {

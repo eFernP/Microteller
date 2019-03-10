@@ -6,8 +6,8 @@
     "start": "node ./bin/www",
     "start-dev": "nodemon -e js,json,hbs bin/www"
   },
-  "engines":{
-    "node":"v11.10.0",
+  "engines": {
+    "node": "v11.10.0",
     "npm": "6.8.0"
   },
   "dependencies": {
@@ -21,10 +21,13 @@
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
     "hbs": "^4.0.3",
+    "heroku": "^7.22.4",
     "http-errors": "~1.6.2",
     "mongo": "^0.1.0",
     "mongoose": "^5.4.17",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "nodemailer": "^5.1.1",
+    "nor-mailer": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
