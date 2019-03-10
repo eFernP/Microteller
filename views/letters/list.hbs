@@ -2,6 +2,7 @@
 <a href="/challenges/list">See challenges</a>
 {{#if challenge}}
 <h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
+<h5>Created by: {{challenge.creator.username}}<h5>
 <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
 {{else}}
 <h1>Notes</h1>
@@ -9,7 +10,10 @@
 <ul>
   {{#each letters}}
   <li>
-    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a> - {{this.ambit}}
+    <a href="/letters/{{this.id}}">For: {{this.receiver}}</a> - {{this.ambit}} - 
+    {{#if challenge}}
+    Votes : {{this.votes}}
+    {{/if}}
   </li>
   {{/each}}
 </ul>

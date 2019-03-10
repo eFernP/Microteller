@@ -49,15 +49,21 @@ router.post('/challenges/new', requireUser, async (req, res, next) => {
   };
 });
 
-router.get('/challenges/my-challenges', requireUser, function (req, res, next) {
-  res.render('challenges/my-challenges');
+router.get('/challenges/my-challenges', requireUser, async (req, res, next) =>{
+  const { _id } = req.session.currentUser;
+  try {
+    const letters = await Letter.find({creator:_id, challenge:{$ne: null}, lastLetter:null}).populate('challenge');
+    res.render('challenges/my-challenges', {letters});
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get('/challenges/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
   try {
-    const challenge = await Challenge.findById(id);
-    const letters = await Letter.find({challenge:id});
+    const challenge = await Challenge.findById(id).populate('creator');
+    const letters = await Letter.find({challenge:id, lastLetter:null});
     res.render('letters/list', { letters, challenge });
   } catch (error) {
     next(error);

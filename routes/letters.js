@@ -42,7 +42,8 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
       letter.votes = 0;
     }
     letter.creator = req.session.currentUser._id;
-    await Letter.create(letter);
+    const newLetter = await Letter.create(letter);
+    await Letter.findByIdAndUpdate(newLetter.id, {set: newLetter.id});
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
@@ -136,19 +137,28 @@ router.get('/:id/continue', requireUser, async (req, res, next) => {
 });
 
 router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { text, receiver, receiverEmail } = req.body;
+  const { text, receiver, set, receiverEmail } = req.body;
   const { id } = req.params;
   const { _id } = req.session.currentUser;
-  let letter = {
-    text,
-    receiver,
-    receiverEmail,
-    lastLetter: id
-  };
+  
   try {
+      const letterParent = await Letter.findById(id); 
+      const lastLetter = await Letter.findOne({set, nextLetter: null});
+      let letter = {
+        text,
+        ambit : letterParent.ambit,
+        receiver,
+        receiverEmail,
+        set : letterParent.set,
+        lastLetter: lastLetter.id, 
+      };
       letter.creator = req.session.currentUser._id;
+      if(letterParent.challenge){
+        letter.challenge = letterParent.challenge;
+        letter.votes = 0;
+      }
       const newLetter = await Letter.create(letter);
-      await Letter.findOneAndUpdate({creator:_id, receiver, nextLetter: null}, {nextLetter: newLetter.id});
+      await Letter.findByIdAndUpdate(lastLetter.id, {nextLetter: newLetter.id});
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
@@ -169,8 +179,16 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
       res.redirect('/letters/list');
       return;
     }
-    // const nextLetter = await Letter.findById(id);
-    // const lastLetter = await Letter.findById(id);
+    const nextLetter = await Letter.findById(letter.nextLetter);
+    const lastLetter = await Letter.findById(letter.lastLetter);
+    if(lastLetter && nextLetter){
+      await Letter.findByIdAndUpdate(letter.lastLetter, {nextLetter: nextLetter.id});
+      await Letter.findByIdAndUpdate(letter.nextLetter, {lastLetter: lastLetter.id});
+    } else if(nextLetter && !lastLetter){
+      await Letter.findByIdAndUpdate(letter.nextLetter, {lastLetter: null});
+    } else if(!nextLetter && lastLetter){
+      await Letter.findByIdAndUpdate(letter.lastLetter, {nextLetter: null});
+    }
     await Letter.findByIdAndDelete(id);
     res.redirect('/letters/my-letters');
   } catch (error) {

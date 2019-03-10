@@ -24,6 +24,9 @@ const letterSchema = new Schema({
     ref: 'User',
     required: true
   },
+  set: {
+    type: String
+  },
   lastLetter: {
     type: ObjectId,
     ref: 'Letter'
