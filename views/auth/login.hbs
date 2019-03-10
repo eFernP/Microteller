@@ -1,22 +1,23 @@
-<h1>Log in</h1>
+<div class="global-div-login">
+  <h1 class="h1-login">Log in</h1>
+  <div class="div1-login">
+    <form method="POST" action="/auth/login">
 
-<form method="POST" action="/auth/login">
+      <div class="field">
+        <input class="input-size" type="text" name="username" placeholder="Username or E-mail" />
+      </div>
 
-  <div class="field" >
-    <label>Username</label>
-    <input type="text" name="username"/>
+      <div class="field">
+        <input class="input-size" type="password" name="password" placeholder="Password" />
+      </div>
+
+      <div class="field submit">
+        <button class="button-login" type="submit">Log in</button>
+      </div>
+    </form>
   </div>
-
-  <div class="field" >
-    <label>Password</label>
-    <input type="password" name="password"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Log in</button>
-  </div>
-</form>
-
-<a href="/">Back</a>
-
-{{> flash}}
+  {{> flash}}
+  <footer class="footer-login">
+    <a class="none-decoration" href="/">Back</a>
+  </footer>
+</div>

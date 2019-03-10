@@ -1,31 +1,31 @@
-<h1>Sign up</h1>
+<div class="global-div-login">
+  <h1 class="h1-login">Sign up</h1>
+<div class="div1-login">
+  <form method="POST" action="/auth/signup">
 
-<form method="POST" action="/auth/signup">
+    <div class="field">
+      <input class="input-size" type="text" name="username" placeholder="Username" />
+    </div>
 
-  <div class="field" >
-    <label>Username</label>
-    <input type="text" name="username"/>
+    <div class="field">
+      <input class="input-size" type="text" name="email" placeholder="Email" />
+    </div>
+
+    <div class="field">
+      <input class="input-size" type="password" name="password" placeholder="Password" />
+    </div>
+
+    <div class="field">
+      <input class="input-size" type="password" name="confirmedPassword" placeholder="Confirm password" />
+    </div>
+
+    <div class="field submit">
+      <button class="button-login" type="submit">Sign up</button>
+    </div>
+  </form>
   </div>
-
-  <div class="field" >
-    <label>Email</label>
-    <input type="text" name="email"/>
-  </div>
-
-  <div class="field" >
-    <label>Password</label>
-    <input type="password" name="password"/>
-  </div>
-
-  <div class="field" >
-    <label>Confirm password</label>
-    <input type="password" name="confirmedPassword"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Sign up</button>
-  </div>
-</form>
-
-<a href="/">Back</a>
-{{> flash}}
+  {{> flash}}
+  <footer class="footer-login">
+    <a class="none-decoration" href="/">Back</a>
+  </footer>
+</div>
