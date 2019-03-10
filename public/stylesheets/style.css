@@ -1,4 +1,5 @@
-/*Reset CSS */
+@import url('https://fonts.googleapis.com/css?family=Thasadith');
+@import url('https://fonts.googleapis.com/css?family=Francois+One');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -50,9 +51,7 @@ body
 {
   margin: 0;
   padding: 0;
-  background: #e7e7e7;
-  color: #0c0c0c;
-  font-family: "Avenir Next", "Avenir", sans-serif;
+  font-family: 'Thasadith', sans-serif;
 }
 
 /* Navbar */
@@ -225,4 +224,50 @@ nav #menu-toggle {
   font-size: 22px;
   background: none;
   border: none;
+}
+
+/*Index*/
+
+.div1-index {
+  text-align: center;
+  margin-top: 9vh;
+}
+
+.global-div-index {
+  background-color: rgb(190, 255, 230);
+  height: 100vh;
+}
+
+.div1-index > a {
+  font-size: 3.8vh;
+  font-family: 'Francois One', sans-serif;
+  color:white;
+  text-decoration:none;
+  border: 1px black solid; 
+}
+
+.div2-index {
+  text-align: center;
+  font-size: 4vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+}
+
+.div2-index h1{
+  font-size: 10vh;
+  padding-top: 9%;
+}
+
+.div2-index p{
+  padding-top: 12%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 7vh;
+  color: black;
+  font-size: 3.2vh;
+  text-align: center;
 }
