@@ -60,7 +60,8 @@ router.get('/challenges/my-challenges', requireUser, async (req, res, next) =>{
   const { _id } = req.session.currentUser;
   try {
     const letters = await Letter.find({creator:_id, challenge:{$ne: null}, lastLetter:null}).populate('challenge');
-    res.render('challenges/my-challenges', {letters});
+    const challenges = await Challenge.find({creator:_id});
+    res.render('challenges/my-challenges', {letters, challenges});
   } catch (error) {
     next(error);
   }

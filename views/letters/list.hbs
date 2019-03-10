@@ -11,9 +11,9 @@
 <ul>
   {{#each letters}}
   <li>
-    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - {{this.ambit}} - 
+    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - {{this.ambit}} 
     {{#if challenge}}
-    Votes : {{this.votes}}
+    - Votes : {{this.votes}}
     {{/if}}
   </li>
   {{/each}}
