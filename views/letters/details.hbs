@@ -17,6 +17,11 @@ Votes: {{letter.votes}}
 <a href="/letters/{{letter._id}}/delete">Delete</a>
 {{/if}}
 
+{{#if letter.challenge}}
+<form action="/letters/{{letter._id}}/vote" method="POST">
+<button type="submit">Vote</button>
+</form>
+{{/if}}
 <h2>Comments</h2>
 {{#each comments}}
 <p>{{this.creator.username}} : {{this.text}}</p>
