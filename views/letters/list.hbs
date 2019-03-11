@@ -1,4 +1,4 @@
-<div class="padding-global text-align-center">
+<div class="padding-global-list text-align-center">
   <div class="margin-top-list"></div>
   <div class="align-right">
     <a class="text-size-label" href="/challenges/list">See challenges</a>
@@ -10,7 +10,7 @@
           {{else}}
           <h1>Notes {{#if filter}} - {{filter}} {{/if}}</h1>
           <form action="/letters/list" method="POST">
-            <select id="filter-select" name="filter">
+            <select class="size-form letter-form" id="filter-select" name="filter">
               <option value="All">All</option>
               <option value="Experiences">Experiences</option>
               <option value="Family">Family</option>
@@ -21,7 +21,7 @@
               <option value="Places">Places</option>
               <option value="Others">Others</option>
             </select>
-            <button id="filter-button" type="submit">Filter</button>
+            <button class="size-form letter-form" id="filter-button" type="submit">Filter</button>
           </form>
           {{#if letters}}
           <ul class="center-ul">

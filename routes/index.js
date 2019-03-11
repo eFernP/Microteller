@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
-const { requireAnon, requireUser, requireFields, requireUserEditFields} = require('../middlewares/auth');
+const { requireAnon, requireUser, requireFields, requireUserEditFields } = require('../middlewares/auth');
 const User = require('../models/User');
 const Letter = require('../models/Letter');
 const Challenge = require('../models/Challenge');
@@ -23,8 +23,8 @@ router.get('/challenges/list', async (req, res, next) => {
 });
 
 router.post('/challenges/list', (req, res, next) => {
-  const {filter} = req.body;
-  if(filter === 'All'){
+  const { filter } = req.body;
+  if (filter === 'All') {
     res.redirect(`/challenges/list`);
     return;
   }
@@ -32,15 +32,14 @@ router.post('/challenges/list', (req, res, next) => {
 });
 
 router.get('/challenges/list/:filter', async (req, res, next) => {
-  const{filter} = req.params;
+  const { filter } = req.params;
   try {
-    const challenges = await Challenge.find({ambit: filter});
+    const challenges = await Challenge.find({ ambit: filter });
     res.render('challenges/list', { challenges, filter });
   } catch (error) {
     next(error);
   }
 });
-
 
 router.get('/challenges/new', requireUser, function (req, res, next) {
   const data = {
@@ -50,20 +49,20 @@ router.get('/challenges/new', requireUser, function (req, res, next) {
 });
 
 router.post('/challenges/new', requireUser, async (req, res, next) => {
-  const {ambit, objective} = req.body;
+  const { ambit, objective } = req.body;
   const challenge = {
     ambit,
     objective
   };
-  if(objective){
-    if(objective.length > 50){
+  if (objective) {
+    if (objective.length > 50) {
       req.flash('validation', 'Challenge goal too long');
       res.redirect('/challenges/new');
       return;
     }
   }
   try {
-    if (!objective){
+    if (!objective) {
       req.flash('validation', 'Fill the field');
       res.redirect('/challenges/new');
       return;
@@ -76,12 +75,12 @@ router.post('/challenges/new', requireUser, async (req, res, next) => {
   };
 });
 
-router.get('/challenges/my-challenges', requireUser, async (req, res, next) =>{
+router.get('/challenges/my-challenges', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
-    const letters = await Letter.find({creator:_id, challenge:{$ne: null}, lastLetter:null}).populate('challenge');
-    const challenges = await Challenge.find({creator:_id});
-    res.render('challenges/my-challenges', {letters, challenges});
+    const letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null }).populate('challenge');
+    const challenges = await Challenge.find({ creator: _id });
+    res.render('challenges/my-challenges', { letters, challenges });
   } catch (error) {
     next(error);
   }
@@ -91,7 +90,7 @@ router.get('/challenges/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
   try {
     const challenge = await Challenge.findById(id).populate('creator');
-    const letters = await Letter.find({challenge:id, lastLetter:null});
+    const letters = await Letter.find({ challenge: id, lastLetter: null });
     res.render('letters/list', { letters, challenge });
   } catch (error) {
     next(error);
@@ -101,8 +100,7 @@ router.get('/challenges/:id', requireUser, async (req, res, next) => {
 router.get('/challenges/:id/new', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const challenge = await Challenge.findById(id);
-  res.render('letters/create', {challenge});
- 
+  res.render('letters/create', { challenge });
 });
 
 router.get('/account/edit', requireUser, async (req, res, next) => {
@@ -112,35 +110,35 @@ router.get('/account/edit', requireUser, async (req, res, next) => {
   };
   try {
     const user = await User.findById(_id);
-    res.render('account-edit', {user, data});
+    res.render('account-edit', { user, data });
   } catch (error) {
     next(error);
   };
 });
 
 router.post('/account/edit', requireUser, requireUserEditFields, async (req, res, next) => {
-  let { username, email, password, confirmedPassword} = req.body;
+  let { username, email, password, confirmedPassword } = req.body;
   const { _id } = req.session.currentUser;
-  if(username){
-    if(username.length > 30){
+  if (username) {
+    if (username.length > 30) {
       req.flash('validation', 'User name too long.');
       res.redirect(`/account/edit`);
-      return
+      return;
     }
   }
-  if(email){
-    if(email.length > 50){
+  if (email) {
+    if (email.length > 50) {
       req.flash('validation', 'Email too long.');
       res.redirect(`/account/edit`);
-      return
+      return;
     }
   }
 
-  if(password){
-    if(password.length > 50){
+  if (password) {
+    if (password.length > 50) {
       req.flash('validation', 'Password too long.');
       res.redirect(`/account/edit`);
-      return
+      return;
     }
   }
   try {
@@ -158,20 +156,20 @@ router.post('/account/edit', requireUser, requireUserEditFields, async (req, res
       return;
     }
 
-    if(!password){
+    if (!password) {
       const passwordUser = await User.findOne({ _id });
       password = passwordUser.password;
-    }else{
-      if(password === confirmedPassword){
+    } else {
+      if (password === confirmedPassword) {
         const salt = bcrypt.genSaltSync(saltRounds);
         password = bcrypt.hashSync(password, salt);
-      }else{
+      } else {
         req.flash('validation', 'The password fields do not match');
         res.redirect('/account/edit');
         return;
       }
     }
-  
+
     const newInfo = {
       username,
       email,

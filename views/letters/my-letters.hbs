@@ -1,18 +1,17 @@
-<div class="padding-global">
-<h1>My Letters</h1>
-
-
-{{#if letters}}
-<ul>
-  {{#each letters}}
-
-  <li>
-    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - {{this.ambit}}
-  </li>
-  {{/each}}
-</ul>
-{{else}}
-<p>You don't have any note yet</p>
-<a href="/letters/new"> Create a note</a>
-{{/if}}
+<div class="text-align-center padding-global-myletters">
+  <div>
+    <h1>My Letters</h1>
+    {{#if letters}}
+    <ul class="center-ul">
+      {{#each letters}}
+      <li class="letters-list-myletters">
+        <a href="/letters/{{this.id}}">{{this.receiver}}</a> <br> {{this.ambit}}
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p>You don't have any note yet</p>
+    <a href="/letters/new"> Create a note</a>
+    {{/if}}
+  </div>
 </div>
