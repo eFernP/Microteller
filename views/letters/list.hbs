@@ -1,7 +1,8 @@
-<div class="padding-global">
+<div class="padding-global text-align-center">
   <div class="margin-top-list"></div>
-  <a href="/challenges/list">See challenges</a>
-
+  <div class="align-right">
+    <a class="text-size-label" href="/challenges/list">See challenges</a>
+  </div>
   {{#if challenge}}
   <h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
       <h5>Created by: {{challenge.creator.username}}<h5>
@@ -23,13 +24,13 @@
             <button id="filter-button" type="submit">Filter</button>
           </form>
           {{#if letters}}
-          <ul>
+          <ul class="center-ul">
             {{#each letters}}
-            <li>
+            <li class="letters-list">
               <a href="/letters/{{this.id}}">{{this.receiver}}</a>
               {{#if ../filter}}
               {{else}}
-              - {{this.ambit}}
+              <br> {{this.ambit}}
               {{/if}}
               {{#if challenge}}
               - Votes : {{this.votes}}
