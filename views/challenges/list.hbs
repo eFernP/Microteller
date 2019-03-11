@@ -14,12 +14,16 @@
     </select>
     <button id="filter-button" type="submit">Filter</button>
   </form>
-  <h1>Challenges</h1>
+  <h1>Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
   {{#if challenges}}
   <ul>
     {{#each challenges}}
     <li>
-      <a href="/challenges/{{this.id}}">{{this.objective}}</a> - {{this.ambit}}
+      <a href="/challenges/{{this.id}}">{{this.objective}}</a>
+      {{#if ../filter}}            
+      {{else}}
+      - {{this.ambit}}
+      {{/if}}
     </li>
     {{/each}}
   </ul>
