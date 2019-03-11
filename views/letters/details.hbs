@@ -1,5 +1,8 @@
 <div class="padding-global">
   <p>{{letter.receiver}} - {{letter.ambit}}</p>
+  {{#if letter.publicCreator}}
+  <p>Created by {{letter.creator.username}}</p>
+  {{/if}}
   {{#if letter.challenge}}
   This note is for this <a href="/challenges/{{challenge.id}}">challenge</a>
   Votes: {{letter.votes}}

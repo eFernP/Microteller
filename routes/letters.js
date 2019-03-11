@@ -45,7 +45,7 @@ router.get('/new', requireUser, function (req, res, next) {
 });
 
 router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const {text, ambit, receiver, receiverEmail, challenge} = req.body;
+  const {text, ambit, receiver, receiverEmail, challenge, publicUser} = req.body;
   const letter = {
     text,
     ambit,
@@ -86,6 +86,11 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
       letter.votes = 0;
     }
     letter.creator = req.session.currentUser._id;
+    if(publicUser === 'true'){
+      letter.publicCreator = true;
+    }else{
+      letter.publicCreator = false;
+    }
     const newLetter = await Letter.create(letter);
     await Letter.findByIdAndUpdate(newLetter.id, {set: newLetter.id});
     res.redirect('/letters/my-letters');
