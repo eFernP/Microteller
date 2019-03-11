@@ -9,6 +9,10 @@
           <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
           {{else}}
           <h1>Notes {{#if filter}} - {{filter}} {{/if}}</h1>
+          <form action="/letters/list/search" method="GET">
+            <input type="text" name="search" placeholder="Note title or user name">
+            <button class="size-form letter-form" id="search-button" type="submit">Search</button>
+          </form>
           <form action="/letters/list" method="POST">
             <select class="size-form letter-form" id="filter-select" name="filter">
               <option value="All">All</option>

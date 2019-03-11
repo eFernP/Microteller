@@ -28,6 +28,33 @@ router.post('/list', (req, res, next) => {
   res.redirect(`/letters/list/${filter}`);
 });
 
+router.post('/list/search', (req, res, next) => {
+  const {search} = req.body;
+  if(!search){
+    res.redirect(`/letters/list`);
+    return;
+  }
+  res.redirect(`/letters/list/search/${search}`);
+});
+
+router.get('/list/search', async (req, res, next) => {
+  const{search} = req.query;
+  let letters = [];
+  try {
+    const user = await User.find({username: {"$regex": search, "$options": 'i'}});
+    letters = await Letter.find({receiver: {"$regex": search, "$options": 'i'}});
+    if(user){
+      user.forEach(async e=>{
+        let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true'});
+        lettersUserFound.forEach(e=>letters.push(e));
+      })
+    }
+    res.render('letters/list', { letters});
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/list/:filter', async (req, res, next) => {
   const{filter} = req.params;
   try {
@@ -103,7 +130,6 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     const newLetter = await Letter.create(letter);
     await Letter.findByIdAndUpdate(newLetter.id, {set: newLetter.id});
     if(email){
-      console.log('EMAIL', email);
       await transporter.sendMail({
         from: '"Ester" <esterfern95@gmail.com>',
         to: email, 
