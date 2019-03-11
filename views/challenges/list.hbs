@@ -1,5 +1,10 @@
 <div class="padding-global">
   <a href="/letters/list">See all notes</a>
+  <h1>Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
+  <form action="/challenges/list/search" method="GET">
+    <input type="text" name="search" placeholder="Challenge title or user name">
+    <button class="size-form letter-form" id="search-button" type="submit">Search</button>
+  </form>
   <form action="/challenges/list" method="POST">
     <select id="filter-select" name="filter">
       <option value="All">All</option>
@@ -14,13 +19,12 @@
     </select>
     <button id="filter-button" type="submit">Filter</button>
   </form>
-  <h1>Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
   {{#if challenges}}
   <ul>
     {{#each challenges}}
     <li>
       <a href="/challenges/{{this.id}}">{{this.objective}}</a>
-      {{#if ../filter}}            
+      {{#if ../filter}}
       {{else}}
       - {{this.ambit}}
       {{/if}}

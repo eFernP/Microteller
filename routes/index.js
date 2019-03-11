@@ -22,6 +22,25 @@ router.get('/challenges/list', async (req, res, next) => {
   }
 });
 
+router.get('/challenges/list/search', async (req, res, next) => {
+  // const{search} = req.query;
+  // let letters = [];
+  // try {
+  //   const user = await User.find({username: {"$regex": search, "$options": 'i'}});
+  //   challenges = await Letter.find({receiver: {"$regex": search, "$options": 'i'}});
+  //   if(user){
+  //     user.forEach(async e=>{
+  //       let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true'});
+  //       lettersUserFound.forEach(e=>letters.push(e));
+  //     })
+  //   }
+  //   res.render('letters/list', { letters});
+  // } catch (error) {
+  //   next(error);
+  // }
+});
+
+
 router.post('/challenges/list', (req, res, next) => {
   const { filter } = req.body;
   if (filter === 'All') {
