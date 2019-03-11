@@ -51,7 +51,17 @@ router.get('/challenges/list/search/:search', async (req, res, next) => {
     if(user){
       user.forEach(async e=>{
         let challengesUserFound =  await Challenge.find({creator:e.id});
-        challengesUserFound.forEach(e=>challenges.push(e));
+        challengesUserFound.forEach(e=>{
+          let inChallenges =false;
+          challenges.forEach(challenge=>{
+            if(e.id === challenge.id){
+              inChallenges = true;
+            }
+          });
+          if(!inChallenges){
+            challenges.push(e);
+          }
+        });
       })
     }
     res.render('challenges/list', {challenges});

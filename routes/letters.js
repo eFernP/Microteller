@@ -46,7 +46,17 @@ router.get('/list/search/:search', async (req, res, next) => {
     if(user){
       user.forEach(async e=>{
         let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true', lastLetter:null});
-        lettersUserFound.forEach(e=>letters.push(e));
+        lettersUserFound.forEach(e=>{
+          let inLetters =false;
+          letters.forEach(letter=>{
+            if(e.id === letter.id){
+              inLetters = true;
+            }
+          });
+          if(!inLetters){
+            letters.push(e);
+          }
+        });
       })
     }
     res.render('letters/list', { letters});
