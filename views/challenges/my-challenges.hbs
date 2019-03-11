@@ -1,30 +1,32 @@
-<h1>My Challenges</h1>
-<h2>Participated</h2>
-{{#if letters}}
-<ul>
-  {{#each letters}}
+<div class="padding-global">
+  <h1>My Challenges</h1>
+  <h2>Participated</h2>
+  {{#if letters}}
+  <ul>
+    {{#each letters}}
 
-  <li>
-    {{this.challenge.objective}} - {{this.ambit}}:
-    <a href="/letters/{{this.id}}">{{this.receiver}}</a> - Votes: {{this.votes}}
-  </li>
-  {{/each}}
-</ul>
-{{else}}
-<p>You don't have any note for a challenge yet</p>
-<a href="/challenges/list"> Search challenges</a>
-{{/if}}
+    <li>
+      {{this.challenge.objective}} - {{this.ambit}}:
+      <a href="/letters/{{this.id}}">{{this.receiver}}</a> - Votes: {{this.votes}}
+    </li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <p>You don't have any note for a challenge yet</p>
+  <a href="/challenges/list"> Search challenges</a>
+  {{/if}}
 
-<h2>Created</h2>
-{{#if challenges}}
-<ul>
-  {{#each challenges}}
-  <li>
-    <a href="/challenges/{{this.id}}">{{this.objective}}</a> - {{this.ambit}}
-  </li>
-  {{/each}}
-</ul>
-{{else}}
-<p>You don't have created any challenge</p>
-<a href="/challenges/new"> Create challenge</a>
-{{/if}}
+  <h2>Created</h2>
+  {{#if challenges}}
+  <ul>
+    {{#each challenges}}
+    <li>
+      <a href="/challenges/{{this.id}}">{{this.objective}}</a> - {{this.ambit}}
+    </li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <p>You don't have created any challenge</p>
+  <a href="/challenges/new"> Create challenge</a>
+  {{/if}}
+</div>
