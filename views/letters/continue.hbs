@@ -1,3 +1,4 @@
+<div class="padding-global">
 <h2>A note for: {{letter.receiver}} - {{letter.ambit}}</h2>
 <form action="/letters/{{letter._id}}/continue" method="POST">
   <div>
@@ -20,3 +21,4 @@
   {{#each data.messages}}<li>{{this}}</li>{{/each}}
 </ul>
 {{/if}}
+</div>
