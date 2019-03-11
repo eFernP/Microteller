@@ -24,6 +24,11 @@ const letterSchema = new Schema({
     ref: 'User',
     required: true
   },
+
+  publicCreator: {
+    type: Boolean,
+    required: true
+  },
   set: {
     type: String
   },
