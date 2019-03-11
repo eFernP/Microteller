@@ -10,17 +10,17 @@
     <input type="text" name="ambit" value="{{challenge.ambit}}" hidden>
     {{else}}
     <div class="padding-text2">
-    <label class="text-size-label" for="">Ambit:</label>
-    <select class="text-size-label" id="size-select" name="ambit">
-      <option value="Experiences">Experiences</option>
-      <option value="Family">Family</option>
-      <option value="Friends">Friends</option>
-      <option value="Lovers">Lovers</option>
-      <option value="Me">Me</option>
-      <option value="Objects">Objects</option>
-      <option value="Places">Places</option>
-      <option value="Others">Others</option>
-    </select>
+      <label class="text-size-label" for="">Ambit:</label>
+      <select class="text-size-label" id="size-select" name="ambit">
+        <option value="Others">Others</option>
+        <option value="Experiences">Experiences</option>
+        <option value="Family">Family</option>
+        <option value="Friends">Friends</option>
+        <option value="Lovers">Lovers</option>
+        <option value="Me">Me</option>
+        <option value="Objects">Objects</option>
+        <option value="Places">Places</option>
+      </select>
     </div>
     {{/if}}
     <div class="padding-text">
@@ -32,12 +32,13 @@
       <label class="text-size-label" for="">Do you want to send your note to somebody?</label><br>
       <input class="input-size" type="text" name="email" placeholder="Email">
     </div>
-
-    <label><input type="checkbox" value="showUser"> Publish the note showing my user name</label>
-
-
-    <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
-    <button class=" padding-text button-login text-size-label" type="submit">Create note</button>
+    <div class="padding-text">
+      <label><input type="checkbox" value="true" name="publicUser"> Publish the note showing my user name</label><br>
+    </div>
+    <div class="padding-bottom">
+      <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
+      <button class=" padding-text button-login text-size-label" type="submit">Create note</button>
+    </div>
   </form>
 
   {{#if data.messages.length}}
@@ -46,4 +47,4 @@
   </ul>
   {{/if}}
 
-</div>
+  </form>

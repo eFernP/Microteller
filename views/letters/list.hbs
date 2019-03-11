@@ -1,44 +1,45 @@
 <div class="padding-global">
-<div class="margin-top-list"></div>
-<a href="/challenges/list">See challenges</a>
-<form action="/letters/list" method="POST">
-  <select id="filter-select" name="filter">
-    <option value="All">All</option>
-    <option value="Experiences">Experiences</option>
-    <option value="Family">Family</option>
-    <option value="Friends">Friends</option>
-    <option value="Lovers">Lovers</option>
-    <option value="Me">Me</option>
-    <option value="Objects">Objects</option>
-    <option value="Places">Places</option>
-    <option value="Others">Others</option>
-  </select>
-  <button id="filter-button" type="submit">Filter</button>
-</form>
-{{#if challenge}}
-<h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
-    <h5>Created by: {{challenge.creator.username}}<h5>
-        <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
-        {{else}}
-        <h1>Notes {{#if filter}} - {{filter}} {{/if}}</h1>
-        {{#if letters}}
-        <ul>
-          {{#each letters}}
-          <li>
-            <a href="/letters/{{this.id}}">{{this.receiver}}</a>
-            {{#if ../filter}}
-            {{else}}
-            - {{this.ambit}}
-            {{/if}}
-            {{#if challenge}}
-            - Votes : {{this.votes}}
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-        {{else}}
-        <p>No notes yet</p>
-        <a href="/letters/new">Create note</a>
-        {{/if}}
-        {{/if}}
+  <div class="margin-top-list"></div>
+  <a href="/challenges/list">See challenges</a>
+
+  {{#if challenge}}
+  <h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
+      <h5>Created by: {{challenge.creator.username}}<h5>
+          <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
+          {{else}}
+          <h1>Notes {{#if filter}} - {{filter}} {{/if}}</h1>
+          <form action="/letters/list" method="POST">
+            <select id="filter-select" name="filter">
+              <option value="All">All</option>
+              <option value="Experiences">Experiences</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Lovers">Lovers</option>
+              <option value="Me">Me</option>
+              <option value="Objects">Objects</option>
+              <option value="Places">Places</option>
+              <option value="Others">Others</option>
+            </select>
+            <button id="filter-button" type="submit">Filter</button>
+          </form>
+          {{#if letters}}
+          <ul>
+            {{#each letters}}
+            <li>
+              <a href="/letters/{{this.id}}">{{this.receiver}}</a>
+              {{#if ../filter}}
+              {{else}}
+              - {{this.ambit}}
+              {{/if}}
+              {{#if challenge}}
+              - Votes : {{this.votes}}
+              {{/if}}
+            </li>
+            {{/each}}
+          </ul>
+          {{else}}
+          <p>No notes yet</p>
+          <a href="/letters/new">Create note</a>
+          {{/if}}
+          {{/if}}
 </div>
