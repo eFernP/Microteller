@@ -1,42 +1,44 @@
-<p>{{letter.receiver}} - {{letter.ambit}}</p>
-{{#if letter.challenge}}
-This note is for this <a href="/challenges/{{challenge.id}}">challenge</a>
-Votes: {{letter.votes}}
-{{/if}}
-<p>{{letter.text}}</p>
-{{#if letter.lastLetter}}
-<a href="/letters/{{letter.lastLetter}}">Last</a>
-{{/if}}
-{{#if letter.nextLetter}}
-<a href="/letters/{{letter.nextLetter}}">Next</a>
-{{/if}}
+<div class="padding-global">
+  <p>{{letter.receiver}} - {{letter.ambit}}</p>
+  {{#if letter.challenge}}
+  This note is for this <a href="/challenges/{{challenge.id}}">challenge</a>
+  Votes: {{letter.votes}}
+  {{/if}}
+  <p>{{letter.text}}</p>
+  {{#if letter.lastLetter}}
+  <a href="/letters/{{letter.lastLetter}}">Last</a>
+  {{/if}}
+  {{#if letter.nextLetter}}
+  <a href="/letters/{{letter.nextLetter}}">Next</a>
+  {{/if}}
 
-{{#if isCreator}}
-<a href="/letters/{{letter._id}}/continue">Add another note for the same person or topic</a>
-<a href="/letters/{{letter._id}}/edit">Edit</a>
-<a href="/letters/{{letter._id}}/delete">Delete</a>
-{{/if}}
+  {{#if isCreator}}
+  <a href="/letters/{{letter._id}}/continue">Add another note for the same person or topic</a>
+  <a href="/letters/{{letter._id}}/edit">Edit</a>
+  <a href="/letters/{{letter._id}}/delete">Delete</a>
+  {{/if}}
 
-{{#if letter.challenge}}
-{{#if hasVoted}}
-{{else}}
-<form action="/letters/{{letter._id}}/vote" method="POST">
-<button type="submit">Vote</button>
-</form>
-{{/if}}
-{{/if}}
-<h2>Comments</h2>
-{{#each comments}}
-<p>{{this.creator.username}} : {{this.text}}</p>
-{{/each}}
-<form action="/letters/{{letter._id}}/comment" method="POST">
-<input type="text" name="text">
-<button type="submit">Add comment</button>
-</form>
+  {{#if letter.challenge}}
+  {{#if hasVoted}}
+  {{else}}
+  <form action="/letters/{{letter._id}}/vote" method="POST">
+    <button type="submit">Vote</button>
+  </form>
+  {{/if}}
+  {{/if}}
+  <h2>Comments</h2>
+  {{#each comments}}
+  <p>{{this.creator.username}} : {{this.text}}</p>
+  {{/each}}
+  <form action="/letters/{{letter._id}}/comment" method="POST">
+    <input type="text" name="text">
+    <button type="submit">Add comment</button>
+  </form>
 
-{{#if data.messages.length}}
-<ul class="validation">
-  {{#each data.messages}}<li>{{this}}</li>{{/each}}
-</ul>
-{{/if}}
-{{!-- {{> flash}} --}}
+  {{#if data.messages.length}}
+  <ul class="validation">
+    {{#each data.messages}}<li>{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
+  {{!-- {{> flash}} --}}
+</div>
