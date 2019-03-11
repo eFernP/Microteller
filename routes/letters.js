@@ -18,6 +18,25 @@ router.get('/list', async (req, res, next) => {
   }
 });
 
+router.post('/list', (req, res, next) => {
+  const {filter} = req.body;
+  if(filter === 'All'){
+    res.redirect(`/letters/list`);
+    return;
+  }
+  res.redirect(`/letters/list/${filter}`);
+});
+
+router.get('/list/:filter', async (req, res, next) => {
+  const{filter} = req.params;
+  try {
+    const letters = await Letter.find({ lastLetter: null, ambit: filter});
+    res.render('letters/list', { letters, filter });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/new', requireUser, function (req, res, next) {
   const data = {
     messages: req.flash('validation')

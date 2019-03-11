@@ -1,6 +1,19 @@
 <a href="/letters/list">See all notes</a>
+<form action="/challenges/list" method="POST">
+  <select id="filter-select" name="filter">
+    <option value="All">All</option>
+    <option value="Experiences">Experiences</option>
+    <option value="Family">Family</option>
+    <option value="Friends">Friends</option>
+    <option value="Lovers">Lovers</option>
+    <option value="Me">Me</option>
+    <option value="Objects">Objects</option>
+    <option value="Places">Places</option>
+    <option value="Others">Others</option>
+  </select>
+  <button id="filter-button" type="submit">Filter</button>
+</form>
 <h1>Challenges</h1>
-
 {{#if challenges}}
 <ul>
   {{#each challenges}}

@@ -22,6 +22,26 @@ router.get('/challenges/list', async (req, res, next) => {
   }
 });
 
+router.post('/challenges/list', (req, res, next) => {
+  const {filter} = req.body;
+  if(filter === 'All'){
+    res.redirect(`/challenges/list`);
+    return;
+  }
+  res.redirect(`/challenges/list/${filter}`);
+});
+
+router.get('/challenges/list/:filter', async (req, res, next) => {
+  const{filter} = req.params;
+  try {
+    const challenges = await Challenge.find({ambit: filter});
+    res.render('challenges/list', { challenges, filter });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 router.get('/challenges/new', requireUser, function (req, res, next) {
   const data = {
     messages: req.flash('validation')
