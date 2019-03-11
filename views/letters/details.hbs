@@ -1,5 +1,5 @@
-<div class="padding-global">
-  <p>{{letter.receiver}} - {{letter.ambit}}</p>
+<div class="padding-global text-align-center">
+  <p class="titulo-p-details">{{letter.receiver}} - {{letter.ambit}}</p>
   {{#if letter.publicCreator}}
   <p>Created by {{letter.creator.username}}</p>
   {{/if}}
@@ -7,18 +7,14 @@
   This note is for this <a href="/challenges/{{challenge.id}}">challenge</a>
   Votes: {{letter.votes}}
   {{/if}}
-  <p>{{letter.text}}</p>
+  <div class="letter-detail">
+    <p class="p-limit">{{letter.text}}</p>
+  </div>
   {{#if letter.lastLetter}}
   <a href="/letters/{{letter.lastLetter}}">Last</a>
   {{/if}}
   {{#if letter.nextLetter}}
   <a href="/letters/{{letter.nextLetter}}">Next</a>
-  {{/if}}
-
-  {{#if isCreator}}
-  <a href="/letters/{{letter._id}}/continue">Add another note for the same person or topic</a>
-  <a href="/letters/{{letter._id}}/edit">Edit</a>
-  <a href="/letters/{{letter._id}}/delete">Delete</a>
   {{/if}}
 
   {{#if letter.challenge}}
@@ -29,15 +25,27 @@
   </form>
   {{/if}}
   {{/if}}
-  <h2>Comments</h2>
-  {{#each comments}}
-  <p>{{this.creator.username}} : {{this.text}}</p>
-  {{/each}}
+  <h2 class="font-size-5">Comments</h2>
+  <div class="cuadro-comments">
+    {{#each comments}}
+    <p class="font-size-4vh">{{this.creator.username}} : {{this.text}}</p>
+    {{/each}}
+  </div>
   <form action="/letters/{{letter._id}}/comment" method="POST">
-    <input type="text" name="text">
-    <button type="submit">Add comment</button>
+    <input class="input-size-details" type="text" name="text">
+    <button class="padding-top button-login" type="submit">Add comment</button>
   </form>
-
+  {{#if isCreator}}
+  <div class="padding-topandbottom">
+    <a class="font-size-4vh" href="/letters/{{letter._id}}/continue">Add another note for the same person or topic</a>
+  </div>
+  <div>
+    <a class="font-size-4vh" href="/letters/{{letter._id}}/edit">Edit</a>
+  </div>
+  <div>
+    <a class="font-size-4vh" href="/letters/{{letter._id}}/delete">Delete</a>
+  </div>
+  {{/if}}
   {{#if data.messages.length}}
   <ul class="validation">
     {{#each data.messages}}<li>{{this}}</li>{{/each}}

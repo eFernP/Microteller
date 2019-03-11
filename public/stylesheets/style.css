@@ -310,12 +310,13 @@ nav #menu-toggle {
 
 .button-login {
   padding: 15px;
-      width: 150px;
+      width: 200px;
       border: 1px solid #EDEDED;
-      background: transparent;
+      background: rgba(145, 221, 170, 0.63);
       border-radius: 50px;
       color: #333;
       cursor: pointer;
+      font-size: 3vh;
 }
 
 .field {
@@ -343,7 +344,7 @@ nav #menu-toggle {
 }
 
 .text-size-label {
-  font-size: 3vh;
+  font-size: 3.7vh;
 }
 
 .div1-account-edit {
@@ -381,7 +382,7 @@ nav #menu-toggle {
 }
 
 .padding-global {
-  padding-top: 12vh;
+  padding-top: 10vh;
 }
 
 .padding-bottom {
@@ -393,6 +394,7 @@ nav #menu-toggle {
 .align-right{
   text-align: right;
   padding-right: 3vh;
+  padding-top: 2vh;
 }
 
 .text-align-center {
@@ -459,4 +461,76 @@ padding-top: 9vh;
   text-align: center;
   padding-top: 3.6vh;
   font-size: 4vh;
+}
+
+/* Details Letters */
+
+.letter-detail {
+  text-align: left;
+  margin-top: 3.5vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../images/31537_preview.png");
+  height: 55vh;
+  width: 50vh;
+  max-width: 100%;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding-top: 10vh;
+  font-size: 4vh;
+}
+
+.titulo-p-details {
+  font-size: 5vh;
+  font-weight: bold;
+  margin-top: 2vh;
+}
+
+.p-limit {
+  word-wrap: break-word;
+    padding: 0 20px;
+}
+
+.padding-topandbottom {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.font-size-4vh{
+  font-size: 4vh;
+  text-align: left;
+  padding-bottom: 0.5vh;
+}
+
+.font-size-5 {
+  font-size: 5vh;
+  margin-top: 2vh;
+}
+
+.cuadro-comments {
+  border: 1px black solid;
+  height: 50vh;
+  word-wrap: break-word;
+  overflow: auto;
+  margin-left: 2vh;
+  margin-right: 2vh;
+}
+
+.input-size-details {
+  padding: 15px;
+      width: 93%;
+      margin-left: 2vh;
+      margin-right: 2vh;
+      border: 1px solid #E2EEF8;
+      background-color: #E2EEF8;
+      border-radius: 50px;
+      color: #333;
+      cursor: pointer;
+      margin-top: 1.5vh;
+      font-size: 3vh;
+}
+
+.padding-top{
+  margin-top: 1vh;
 }
