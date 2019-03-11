@@ -42,10 +42,10 @@ router.get('/list/search/:search', async (req, res, next) => {
   let letters = [];
   try {
     const user = await User.find({username: {"$regex": search, "$options": 'i'}});
-    letters = await Letter.find({receiver: {"$regex": search, "$options": 'i'}});
+    letters = await Letter.find({receiver: {"$regex": search, "$options": 'i'}, lastLetter:null});
     if(user){
       user.forEach(async e=>{
-        let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true'});
+        let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true', lastLetter:null});
         lettersUserFound.forEach(e=>letters.push(e));
       })
     }
