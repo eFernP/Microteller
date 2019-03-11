@@ -22,8 +22,28 @@ router.get('/challenges/list', async (req, res, next) => {
   }
 });
 
-router.get('/challenges/list/search', async (req, res, next) => {
-  const{search} = req.query;
+router.post('/challenges/list', (req, res, next) => {
+  const { filter } = req.body;
+  if (filter === 'All') {
+    res.redirect(`/challenges/list`);
+    return;
+  }
+  res.redirect(`/challenges/list/${filter}`);
+});
+
+
+router.post('/challenges/list/search', async (req, res, next) => {
+  const{search} = req.body;
+  if (search){
+    res.redirect(`/challenges/list/search/${search}`);
+    return;
+  }else{
+    res.redirect(`/challenges/list`);
+  }
+});
+
+router.get('/challenges/list/search/:search', async (req, res, next) => {
+  const{search} = req.params;
   let challenges = [];
   try {
     const user = await User.find({username: {"$regex": search, "$options": 'i'}});
@@ -38,16 +58,6 @@ router.get('/challenges/list/search', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
-
-
-router.post('/challenges/list', (req, res, next) => {
-  const { filter } = req.body;
-  if (filter === 'All') {
-    res.redirect(`/challenges/list`);
-    return;
-  }
-  res.redirect(`/challenges/list/${filter}`);
 });
 
 router.get('/challenges/list/:filter', async (req, res, next) => {

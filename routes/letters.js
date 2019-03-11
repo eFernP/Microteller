@@ -37,8 +37,8 @@ router.post('/list/search', (req, res, next) => {
   res.redirect(`/letters/list/search/${search}`);
 });
 
-router.get('/list/search', async (req, res, next) => {
-  const{search} = req.query;
+router.get('/list/search/:search', async (req, res, next) => {
+  const{search} = req.params;
   let letters = [];
   try {
     const user = await User.find({username: {"$regex": search, "$options": 'i'}});
