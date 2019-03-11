@@ -23,21 +23,21 @@ router.get('/challenges/list', async (req, res, next) => {
 });
 
 router.get('/challenges/list/search', async (req, res, next) => {
-  // const{search} = req.query;
-  // let letters = [];
-  // try {
-  //   const user = await User.find({username: {"$regex": search, "$options": 'i'}});
-  //   challenges = await Letter.find({receiver: {"$regex": search, "$options": 'i'}});
-  //   if(user){
-  //     user.forEach(async e=>{
-  //       let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true'});
-  //       lettersUserFound.forEach(e=>letters.push(e));
-  //     })
-  //   }
-  //   res.render('letters/list', { letters});
-  // } catch (error) {
-  //   next(error);
-  // }
+  const{search} = req.query;
+  let challenges = [];
+  try {
+    const user = await User.find({username: {"$regex": search, "$options": 'i'}});
+    challenges = await Challenge.find({objective: {"$regex": search, "$options": 'i'}});
+    if(user){
+      user.forEach(async e=>{
+        let challengesUserFound =  await Challenge.find({creator:e.id});
+        challengesUserFound.forEach(e=>challenges.push(e));
+      })
+    }
+    res.render('challenges/list', {challenges});
+  } catch (error) {
+    next(error);
+  }
 });
 
 
