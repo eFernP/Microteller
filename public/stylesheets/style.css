@@ -1,50 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Thasadith');
 @import url('https://fonts.googleapis.com/css?family=Francois+One');
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html {
+  box-sizing: border-box;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
 /*Body*/
 
 body
@@ -104,11 +88,11 @@ nav #menu-toggle {
 #menu-toggle input
 {
   display: block;
-  width: 40px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   position: absolute;
-  top: -7px;
-  left: -5px;
+  top: 0;
+  left: 0;
   
   cursor: pointer;
   
@@ -124,12 +108,12 @@ nav #menu-toggle {
   width: 33px;
   height: 4px;
   margin-bottom: 5px;
-  /* position: relative; */
+  position: relative;
   
   background: #cdcdcd;
   border-radius: 3px;
   
-  z-index: 1;
+  z-index: 12;
   
   transform-origin: 4px 0px;
   
@@ -168,10 +152,9 @@ nav #menu-toggle {
 
 #menu
 {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
-  margin: -100px 0 0 -50px;
   margin-top: 0;
   margin-left: 0;
   
@@ -183,7 +166,7 @@ nav #menu-toggle {
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
   
-  /* transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0); */
+  transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
 /*
@@ -191,7 +174,7 @@ nav #menu-toggle {
  */
 #menu-toggle input:checked ~ ul
 {
-  transform: none;
+  transform: translate(0, 0);
 }
 
 /* Menu */
@@ -236,7 +219,6 @@ nav #menu-toggle {
 
 .global-div-index {
   background-color: white;
-  height: 100vh;
 }
 
 .div1-index > a {
@@ -287,7 +269,6 @@ nav #menu-toggle {
 
 .global-div-login {
   background-color: white;
-  height: 100vh;
 }
 
 .h1-login {
@@ -323,6 +304,7 @@ nav #menu-toggle {
       color: #333;
       cursor: pointer;
       margin-top: 1.5vh;
+      font-size: 3vh;
 }
 
 .button-login {
@@ -346,6 +328,11 @@ nav #menu-toggle {
 .nav {
   background-color: #EDEDED;
   height: 60px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
 }
 
 .h1-account-edit {
@@ -361,4 +348,35 @@ nav #menu-toggle {
 .div1-account-edit {
   padding-top: 6vh; 
   text-align: center;
+}
+
+/* Create note */
+
+.tamanno-imput-create {
+  width: 42vh;
+  height: 20vh;
+  padding: 5px;
+      border: 1px solid #E2EEF8;
+      background-color: #E2EEF8;
+      border-radius: 20px;
+      color: #333;
+      margin-top: 1.5vh;
+      font-size: 3vh;
+}
+
+.div1-create {
+    padding-top: 5vh; 
+    text-align: center;
+}
+
+.padding-text {
+  margin-top: 3vh;
+}
+
+.padding-text2 {
+  margin-top: 2vh;
+}
+
+.padding-global {
+  padding-top: 12vh;
 }
