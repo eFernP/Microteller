@@ -1,19 +1,16 @@
 <div class="padding-global-list text-align-center">
   <div class="margin-top-list"></div>
-  <div class="align-right">
-    <a class="text-size-label" href="/challenges/list">See challenges</a>
-  </div>
   {{#if challenge}}
   <h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
       <h5>Created by: {{challenge.creator.username}}<h5>
           <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
           {{else}}
-          <h1>Notes {{#if filter}} - {{filter}} {{/if}}</h1>
-          <form action="/letters/list/search" method="POST">
-            <input type="text" name="search" placeholder="Note title or user name">
-            <button class="size-form letter-form" id="search-button" type="submit">Search</button>
+          <h1 class="h1-list">Notes {{#if filter}} - {{filter}} {{/if}}</h1>
+          <form class="form-top" action="/letters/list/search" method="POST">
+            <input class="size-form" type="text" name="search" placeholder="Title or user">
+            <button class="size-form-two letter-form" id="search-button" type="submit">Search</button>
           </form>
-          <form action="/letters/list" method="POST">
+          <form class="form-top" action="/letters/list" method="POST">
             <select class="size-form letter-form" id="filter-select" name="filter">
               <option value="All">All</option>
               <option value="Experiences">Experiences</option>
@@ -25,7 +22,7 @@
               <option value="Places">Places</option>
               <option value="Others">Others</option>
             </select>
-            <button class="size-form letter-form" id="filter-button" type="submit">Filter</button>
+            <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
           </form>
           {{#if letters}}
           <ul class="center-ul">
@@ -34,7 +31,7 @@
               <a href="/letters/{{this.id}}">{{this.receiver}}</a>
               {{#if ../filter}}
               {{else}}
-              <br> {{this.ambit}}
+              {{this.ambit}}
               {{/if}}
               {{#if challenge}}
               - Votes : {{this.votes}}
