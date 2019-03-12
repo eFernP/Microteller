@@ -1,7 +1,5 @@
 <div class="padding-global">
-  <h1>My Challenges</h1>
-  <h2>Participated</h2>
-  {{#if letters}}
+  <h1>My Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
   <form action="/challenges/my-challenges" method="POST">
     <select id="filter-select" name="filter">
       <option value="All">All</option>
@@ -16,6 +14,8 @@
     </select>
     <button id="filter-button" type="submit">Filter</button>
   </form>
+  <h2>Participated</h2>
+  {{#if letters}}
   <ul>
     {{#each letters}}
 
