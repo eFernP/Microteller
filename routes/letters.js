@@ -151,6 +151,16 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
   };
 });
 
+router.get('/ranking', async (req, res, next) => {
+  try {
+    let letters = await Letter.find({challenge: { $ne: null }}).sort({votes:1}).limit(5);
+    letters = reverseArray(letters);
+    res.render('letters/ranking', { letters });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/my-letters', async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {

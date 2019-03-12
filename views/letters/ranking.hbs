@@ -1,0 +1,22 @@
+<div class="padding-global">
+  <h1>Top 5 Best Notes</h1>
+  {{#if letters}}
+  <ul class="center-ul">
+    {{#each letters}}
+    <li class="letters-list">
+      <a href="/letters/{{this.id}}">{{this.receiver}}</a>
+      {{#if ../filter}}
+      {{else}}
+      {{this.ambit}}
+      {{/if}}
+      {{#if challenge}}
+      - Votes : {{this.votes}}
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <p>No notes yet</p>
+  <a href="/letters/new">Create note</a>
+  {{/if}}
+</div>
