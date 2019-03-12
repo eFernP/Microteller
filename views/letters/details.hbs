@@ -22,31 +22,36 @@
   </div>
   <div class="letter-detail">
     <p class="p-limit">{{letter.text}}</p>
+    {{#if isFavorite}}
+    {{else}}
+    <form action="/letters/{{letter._id}}/add-favorite" method="POST">
+      <button class="remove-background position-absolute-details" type="submit"><img class="button-size" src="/images/favorite-heart-button.png"
+          alt=""></button>
+    </form>
+    {{/if}}
   </div>
 
-  <div class="text-align-center padding-top-3">
+  <div class="text-align-center padding-top-3 container-flex">
     {{#if letter.lastLetter}}
-    <a class="sizeandcolor" href="/letters/{{letter.lastLetter}}">Last</a>
+    <a class="sizeandcolor x" href="/letters/{{letter.lastLetter}}"><img class="size-imagen"
+        src="/images/left-arrow.png" alt=""></a>
     {{/if}}
     {{#if letter.nextLetter}}
-    <a class="sizeandcolor padding-left " href="/letters/{{letter.nextLetter}}">Next</a>
+    <a class="sizeandcolor" href="/letters/{{letter.nextLetter}}"><img class="size-imagen" src="/images/right-arrow.png"
+        alt=""></a>
     {{/if}}
   </div>
 
-  {{#if letter.challenge}}
-  {{#if hasVoted}}
-  {{else}}
-  <form action="/letters/{{letter._id}}/vote" method="POST">
-    <button type="submit">Vote</button>
-  </form>
-  {{/if}}
-  {{#if isFavorite}}
-  {{else}}
-  <form action="/letters/{{letter._id}}/add-favorite" method="POST">
-    <button type="submit">Add to favorites</button>
-  </form>
-  {{/if}}
-  {{/if}}
+  <div class="container-flex-details">
+    {{#if letter.challenge}}
+    {{#if hasVoted}}
+    {{else}}
+    <form action="/letters/{{letter._id}}/vote" method="POST">
+      <button class="padding-top button-details" type="submit">Vote</button>
+    </form>
+    {{/if}}
+    {{/if}}
+  </div>
   <h2 class="font-size-5">Comments</h2>
   <div class="cuadro-comments">
     {{#each comments}}

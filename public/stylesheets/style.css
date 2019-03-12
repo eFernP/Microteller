@@ -340,6 +340,26 @@ nav #menu-toggle {
 
 }
 
+.button-details {
+  padding: 12px;
+      width: 180px;
+      border: none;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-image: url(/images/fondo-boton.png);
+      background-size: cover;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 3.5Vh;
+      font-family: 'Roboto', sans-serif;
+
+}
+
+.remove-background {
+  background: transparent;
+  border: none;
+}
+
 .field {
   padding-bottom: 4vh;
 }
@@ -362,6 +382,16 @@ nav #menu-toggle {
 .div1-signup {
   padding-top: 5vh; 
   text-align: center;
+}
+
+.button-size {
+  width: 40px;
+}
+
+.position-absolute-details {
+  position: absolute;
+  padding-top: 20vh;
+  padding-left: 17vh;
 }
 
 /* layout */
@@ -608,8 +638,22 @@ padding-top: 9vh;
   padding-top: 2vh;
 }
 
-.padding-left {
-  padding-left: 5vh;
+.container-flex {
+  display: flex;
+  justify-content:space-between;
+}
+
+.container-flex-details {
+  display: flex;
+  justify-content:center;
+}
+
+.size-imagen {
+  width: 8vh;
+}
+
+.x {
+  text-align: right;
 }
 
 .input-size-details {
