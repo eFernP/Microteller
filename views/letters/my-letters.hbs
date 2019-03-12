@@ -2,6 +2,20 @@
   <div>
     <h1>My Letters</h1>
     {{#if letters}}
+    <form action="/letters/my-letters" method="POST">
+            <select class="size-form letter-form" id="filter-select" name="filter">
+              <option value="All">All</option>
+              <option value="Experiences">Experiences</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Lovers">Lovers</option>
+              <option value="Me">Me</option>
+              <option value="Objects">Objects</option>
+              <option value="Places">Places</option>
+              <option value="Others">Others</option>
+            </select>
+            <button class="size-form letter-form" id="filter-button" type="submit">Filter</button>
+          </form>
     <ul class="center-ul">
       {{#each letters}}
       <li class="letters-list-myletters">

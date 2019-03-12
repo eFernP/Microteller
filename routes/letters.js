@@ -12,7 +12,8 @@ const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require
 
 router.get('/list', async (req, res, next) => {
   try {
-    const letters = await Letter.find({ lastLetter: null });
+    let letters = await Letter.find({ lastLetter: null });
+    letters = reverseArray(letters);
     res.render('letters/list', { letters });
   } catch (error) {
     next(error);
@@ -59,6 +60,7 @@ router.get('/list/search/:search', async (req, res, next) => {
         });
       })
     }
+    letters = reverseArray(letters);
     res.render('letters/list', { letters});
   } catch (error) {
     next(error);
@@ -68,7 +70,8 @@ router.get('/list/search/:search', async (req, res, next) => {
 router.get('/list/:filter', async (req, res, next) => {
   const{filter} = req.params;
   try {
-    const letters = await Letter.find({ lastLetter: null, ambit: filter});
+    let letters = await Letter.find({ lastLetter: null, ambit: filter});
+    letters = reverseArray(letters);
     res.render('letters/list', { letters, filter });
   } catch (error) {
     next(error);
@@ -115,13 +118,7 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     }
   }
 
-  let transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'esterfern95@gmail.com',
-      pass: 'proyecto2'
-    }
-  });
+  let transporter = emailTransporter();
   
   try {
     if (!receiver){
@@ -160,6 +157,26 @@ router.get('/my-letters', async (req, res, next) => {
     // const tortilla = await Tortilla.findById(id).populate('creator');
     const letters = await Letter.find({ creator: _id, lastLetter: null });
     res.render('letters/my-letters', { letters });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/my-letters', (req, res, next) => {
+  const {filter} = req.body;
+  if(filter === 'All'){
+    res.redirect(`/letters/my-letters`);
+    return;
+  }
+  res.redirect(`/letters/my-letters/${filter}`);
+});
+
+router.get('/my-letters/:filter', async (req, res, next) => {
+  const{filter} = req.params;
+  try {
+    let letters = await Letter.find({ lastLetter: null, ambit: filter});
+    letters = reverseArray(letters);
+    res.render('letters/my-letters', { letters, filter });
   } catch (error) {
     next(error);
   }
@@ -278,13 +295,7 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
     }
   }
 
-  let transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'esterfern95@gmail.com',
-      pass: 'proyecto2'
-    }
-  });
+  
 
   try {
       const letterParent = await Letter.findById(id); 
@@ -306,6 +317,7 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
       const newLetter = await Letter.create(letter);
       await Letter.findByIdAndUpdate(lastLetter.id, {nextLetter: newLetter.id});
       if(email){
+        let transporter = emailTransporter();
         await transporter.sendMail({
           from: '"Ester" <esterfern95@gmail.com>',
           to: email, 
@@ -392,5 +404,27 @@ router.post('/:id/comment', requireUser, async (req, res, next) => {
   };
 });
 
+
+function reverseArray(arr){
+  let newArr = [];
+  for(let i = arr.length-1; i>=0; i--){
+    newArr.push(arr[i]);
+  }
+
+  return newArr;
+}
+
+
+function emailTransporter(){
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'esterfern95@gmail.com',
+      pass: 'proyecto2'
+    }
+  });
+
+  return transporter;
+}
 
 module.exports = router;

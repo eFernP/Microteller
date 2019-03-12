@@ -15,7 +15,8 @@ router.get('/', requireAnon, (req, res, next) => {
 
 router.get('/challenges/list', async (req, res, next) => {
   try {
-    const challenges = await Challenge.find();
+    let challenges = await Challenge.find();
+    challenges = reverseArray(challenges);
     res.render('challenges/list', { challenges });
   } catch (error) {
     next(error);
@@ -64,6 +65,7 @@ router.get('/challenges/list/search/:search', async (req, res, next) => {
         });
       })
     }
+    challenges = reverseArray(challenges);
     res.render('challenges/list', {challenges});
   } catch (error) {
     next(error);
@@ -73,7 +75,8 @@ router.get('/challenges/list/search/:search', async (req, res, next) => {
 router.get('/challenges/list/:filter', async (req, res, next) => {
   const { filter } = req.params;
   try {
-    const challenges = await Challenge.find({ ambit: filter });
+    let challenges = await Challenge.find({ ambit: filter });
+    challenges = reverseArray(challenges);
     res.render('challenges/list', { challenges, filter });
   } catch (error) {
     next(error);
@@ -120,6 +123,27 @@ router.get('/challenges/my-challenges', requireUser, async (req, res, next) => {
     const letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null }).populate('challenge');
     const challenges = await Challenge.find({ creator: _id });
     res.render('challenges/my-challenges', { letters, challenges });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/challenges/my-challenges', (req, res, next) => {
+  const {filter} = req.body;
+  if(filter === 'All'){
+    res.redirect(`/challenges/my-challenges`);
+    return;
+  }
+  res.redirect(`/challenges/my-challenges/${filter}`);
+});
+
+router.get('/challenges/my-challenges/:filter', async (req, res, next) => {
+  const{filter} = req.params;
+  try {
+    let challenges = await Challenge.find({ambit: filter});
+    console.log(challenges);
+    challenges = reverseArray(challenges);
+    res.render('challenges/my-challenges', { challenges, filter });
   } catch (error) {
     next(error);
   }
@@ -221,5 +245,14 @@ router.post('/account/edit', requireUser, requireUserEditFields, async (req, res
     next(error);
   }
 });
+
+function reverseArray(arr){
+  let newArr = [];
+  for(let i = arr.length-1; i>=0; i--){
+    newArr.push(arr[i]);
+  }
+
+  return newArr;
+}
 
 module.exports = router;

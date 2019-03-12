@@ -2,6 +2,20 @@
   <h1>My Challenges</h1>
   <h2>Participated</h2>
   {{#if letters}}
+  <form action="/challenges/my-challenges" method="POST">
+    <select id="filter-select" name="filter">
+      <option value="All">All</option>
+      <option value="Experiences">Experiences</option>
+      <option value="Family">Family</option>
+      <option value="Friends">Friends</option>
+      <option value="Lovers">Lovers</option>
+      <option value="Me">Me</option>
+      <option value="Objects">Objects</option>
+      <option value="Places">Places</option>
+      <option value="Others">Others</option>
+    </select>
+    <button id="filter-button" type="submit">Filter</button>
+  </form>
   <ul>
     {{#each letters}}
 
@@ -12,7 +26,7 @@
     {{/each}}
   </ul>
   {{else}}
-  <p>You don't have any note for a challenge yet</p>
+  <p>You don't have any note</p>
   <a href="/challenges/list"> Search challenges</a>
   {{/if}}
 
