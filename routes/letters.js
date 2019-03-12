@@ -31,6 +31,7 @@ router.post('/list', (req, res, next) => {
 
 router.post('/list/search', (req, res, next) => {
   const {search} = req.body;
+  console.log(search);
   if(!search){
     res.redirect(`/letters/list`);
     return;
@@ -153,7 +154,7 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
 
 router.get('/ranking', async (req, res, next) => {
   try {
-    let letters = await Letter.find({challenge: { $ne: null }}).sort({votes:-1}).limit(5);
+    let letters = await Letter.find({challenge: { $ne: null }, votes:{$ne: 0}}).sort({votes:-1}).limit(5);
     console.log(letters);
     res.render('letters/ranking', { letters });
   } catch (error) {
