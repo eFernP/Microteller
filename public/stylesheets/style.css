@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Thasadith');
-@import url('https://fonts.googleapis.com/css?family=Francois+One');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 html {
   box-sizing: border-box;
@@ -35,8 +34,10 @@ body
 {
   margin: 0;
   padding: 0;
-  font-family: 'Thasadith', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 3vh;
+  background-image: url('/images/backgroundimage.png');
+  background-size: cover;
 }
 
 /* Navbar */
@@ -215,16 +216,16 @@ nav #menu-toggle {
   text-align: center;
   margin-top: 5vh;
   margin-bottom: 4vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 .global-div-index {
-  background-color: white;
   height: 100%;
 }
 
 .div1-index > a {
   font-size: 3.8vh;
-  font-family: 'Francois One', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color:black;
   text-decoration:none;
   padding: 15px;
@@ -268,14 +269,20 @@ nav #menu-toggle {
 
 /* Login */
 
-.global-div-login {
-  background-color: white;
-}
-
 .h1-login {
   font-size: 7.5vh;
   text-align: center;
-  padding-top: 4vh;
+  padding-top: 3vh;
+  font-weight: 200;
+  padding-bottom: 2vh;
+  color: white;
+}
+
+.border-white {
+  border-bottom: 1.5px white solid;
+  width: 50vh;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .footer-login {
@@ -285,6 +292,11 @@ nav #menu-toggle {
   height: 6vh;
   color: black;
   font-size: 3.2vh;
+}
+
+.size-a-login{
+  font-size: 4vh;
+  color: rgb(90, 65, 73);
 }
 
 .footer-login > a {
@@ -298,32 +310,55 @@ nav #menu-toggle {
 
 .input-size {
   padding: 15px;
-      width: 250px;
-      border: 1px solid #E2EEF8;
-      background-color: #E2EEF8;
-      border-radius: 50px;
-      color: #333;
+      width: 300px;
+      height: 60px;
+      border: 1px solid white;
+      background-color: white;
+      border-radius: 5px;
+      color: rgb(90, 65, 73);
       cursor: pointer;
       margin-top: 1.5vh;
       font-size: 3vh;
+      font-family: 'Roboto', sans-serif;
 }
 
 .button-login {
-  padding: 15px;
+  padding: 12px;
       width: 200px;
-      border: 1px solid #EDEDED;
-      background: rgba(145, 221, 170, 0.63);
-      border-radius: 50px;
-      color: #333;
+      border: none;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-image: url(/images/fondo-boton.png);
+      background-size: cover;
+      border-radius: 8px;
+      color: white;
       cursor: pointer;
-      font-size: 3vh;
+      font-size: 4Vh;
+      font-family: 'Roboto', sans-serif;
+
 }
 
 .field {
-  padding-bottom: 3vh;
+  padding-bottom: 5vh;
 }
 
 /* signup reutilizado de login*/
+
+.h1-signup {
+  font-size: 7.5vh;
+  text-align: center;
+  font-weight: 200;
+  padding-bottom: 2vh;
+  color: white;
+}
+
+.padding-global-signup {
+  padding-top: 5vh;
+}
+
+.div1-signup {
+  padding-top: 5vh; 
+  text-align: center;
+}
 
 /* layout */
 
@@ -350,6 +385,10 @@ nav #menu-toggle {
 .div1-account-edit {
   padding-top: 6vh; 
   text-align: center;
+}
+
+.submit {
+  padding-top: 3vh;
 }
 
 /* Create note */
@@ -483,7 +522,6 @@ padding-top: 9vh;
 
 .titulo-p-details {
   font-size: 5vh;
-  font-weight: bold;
   margin-top: 2vh;
 }
 
