@@ -36,8 +36,9 @@ body
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 3vh;
-  background-image: url('/images/backgroundimage.png');
+  background: url('/images/backgroundimage.png') no-repeat fixed;
   background-size: cover;
+  font-weight: 200;
 }
 
 /* Navbar */
@@ -349,6 +350,7 @@ nav #menu-toggle {
   font-weight: 200;
   padding-bottom: 2vh;
   color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 .padding-global-signup {
@@ -363,7 +365,7 @@ nav #menu-toggle {
 /* layout */
 
 .nav {
-  background-color: #EDEDED;
+  background-color: white;
   height: 60px;
   position: fixed;
   width: 100%;
@@ -380,6 +382,7 @@ nav #menu-toggle {
 
 .text-size-label {
   font-size: 3.7vh;
+  
 }
 
 .div1-account-edit {
@@ -434,6 +437,16 @@ nav #menu-toggle {
   text-align: right;
   padding-right: 3vh;
   padding-top: 2vh;
+  border: 1px white solid;
+  margin-left: 25vh;
+  background: white;
+  border-bottom-left-radius: 4px;
+}
+
+.h1-list {
+  font-weight: 200;
+  color:white;
+  margin-bottom: 3vh;
 }
 
 .text-align-center {
@@ -445,14 +458,17 @@ nav #menu-toggle {
   margin-top: 3.5vh;
   margin-left: auto;
   margin-right: auto;
-  background-image: url("../images/NotaCerradaSinFondo.png");
-  height: 23vh;
-  width: 50vh;
+  background-color: white;
+  height: 20vh;
+  width: 45vh;
   max-width: 100%;
   background-position: center;
   background-size: cover;
   text-align: center;
-  padding-top: 3.6vh;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .letters-list a{
@@ -464,42 +480,52 @@ nav #menu-toggle {
 }
 
 .padding-global-list{
-  padding-top: 8vh;
+  padding-top: 11vh;
 }
 
 .size-form{
-  padding-top: 0.6vh;
-  padding-bottom: 0.6vh;
+  width: 25vh;
+  height: 7vh;
+  margin-bottom: 2vh;
+  background: transparent;
+  border: 2px white solid;
+  border-radius: 5px;
+  color:white;
+  font-size: 3vh;
   padding-left: 1vh;
-  padding-right: 1vh;
-  margin-top: 2vh;
+  border-right: none;
+  text-decoration: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.size-form::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.size-form-two{
+  width: 15vh;
+  height: 7vh;
+  margin-bottom: 1vh;
+  background: transparent;
+  border: 2px white solid;
+  border-radius: 0 5px 5px 0;
+  color:white;
 }
 
 .letter-form{
   font-size: 3vh;
-  margin-left: 1vh;
+}
+
+.form-top {
+  display: flex;
+    justify-content: center;
 }
 
 /* My letters */
 
 .padding-global-myletters {
 padding-top: 9vh;
-}
-
-.letters-list-myletters {
-  text-align: left;
-  margin-top: 3.5vh;
-  margin-left: auto;
-  margin-right: auto;
-  background-image: url("../images/NotaCerradaSinFondo.png");
-  height: 23vh;
-  width: 50vh;
-  max-width: 100%;
-  background-position: center;
-  background-size: cover;
-  text-align: center;
-  padding-top: 3.6vh;
-  font-size: 4vh;
 }
 
 /* Details Letters */
