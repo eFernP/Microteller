@@ -119,14 +119,8 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     }
   }
 
-  let transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'esterfern95@gmail.com',
-      pass: 'proyecto2'
-    }
-  });
-  
+  let transporter = emailTransporter();
+
   try {
     if (!receiver){
       letter.receiver = "Unknown";
@@ -143,7 +137,8 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     }
     const newLetter = await Letter.create(letter);
     await Letter.findByIdAndUpdate(newLetter.id, {set: newLetter.id});
-    if(email){
+    let reg = /\S+@\S+\.\S+/;
+    if(email && reg.test(email)){
       await transporter.sendMail({
         from: '"Ester" <esterfern95@gmail.com>',
         to: email, 
@@ -181,7 +176,9 @@ router.get('/favorites', async (req, res, next) => {
     let letters = [];
     user.favorites.forEach(async(id)=>{
       const letter = await Letter.findById(id);
-      letters.push(letter);
+      if(letter){
+        letters.push(letter);
+      }
     });
     letters = reverseArray(letters);
     res.render('letters/favorites', { letters });
@@ -369,7 +366,8 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
       }
       const newLetter = await Letter.create(letter);
       await Letter.findByIdAndUpdate(lastLetter.id, {nextLetter: newLetter.id});
-      if(email){
+      let reg = /\S+@\S+\.\S+/;
+      if(email && reg.test(email)){
         let transporter = emailTransporter();
         await transporter.sendMail({
           from: '"Ester" <esterfern95@gmail.com>',
