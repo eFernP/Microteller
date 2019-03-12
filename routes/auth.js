@@ -68,7 +68,8 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
       username,
       email,
       password: hashedPassword,
-      voted :[]
+      voted :[],
+      favorites:[]
     };
     const createdUser = await User.create(newUser);
 

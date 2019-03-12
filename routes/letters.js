@@ -31,6 +31,7 @@ router.post('/list', (req, res, next) => {
 
 router.post('/list/search', (req, res, next) => {
   const {search} = req.body;
+  console.log(search);
   if(!search){
     res.redirect(`/letters/list`);
     return;
@@ -153,13 +154,29 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
 
 router.get('/ranking', async (req, res, next) => {
   try {
-    let letters = await Letter.find({challenge: { $ne: null }}).sort({votes:-1}).limit(5);
+    let letters = await Letter.find({challenge: { $ne: null }, votes:{$ne: 0}}).sort({votes:-1}).limit(5);
     console.log(letters);
     res.render('letters/ranking', { letters });
   } catch (error) {
     next(error);
   }
 });
+
+router.get('/favorites', async (req, res, next) => {
+  const { _id } = req.session.currentUser;
+  try {
+    const user = await User.findById(_id);
+    let letters = [];
+    user.favorites.forEach(async(id)=>{
+      const letter = await Letter.findById(id);
+      letters.push(letter);
+    });
+    res.render('letters/favorites', { letters });
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 router.get('/my-letters', async (req, res, next) => {
   const { _id } = req.session.currentUser;
@@ -204,6 +221,7 @@ router.get('/:id', requireUser, async (req, res, next) => {
     const challenge = await Challenge.findById(letter.challenge);
     let isCreator = false;
     let hasVoted = false;
+    let isFavorite = false;
     if(_id){
       const user = await User.findById(_id);
       user.voted.forEach(element => {
@@ -214,11 +232,20 @@ router.get('/:id', requireUser, async (req, res, next) => {
     }else{
       hasVoted = true;
     }
-    
+    if(_id){
+      const user = await User.findById(_id);
+      user.favorites.forEach(element => {
+        if (id === element){
+          isFavorite = true;
+        }
+      });
+    }else{
+      isFavorite = true;
+    }
     if (letter.creator.equals(_id)) {
       isCreator = true;
     }
-    res.render('letters/details', { letter, isCreator, hasVoted, comments, challenge, data });
+    res.render('letters/details', { letter, isCreator, hasVoted, isFavorite, comments, challenge, data });
   } catch (error) {
     next(error);
   };
@@ -305,11 +332,13 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
     }
   }
 
-  
-
   try {
       const letterParent = await Letter.findById(id); 
       const lastLetter = await Letter.findOne({set, nextLetter: null});
+      if (!(letterParent.creator.equals(_id))) {
+        res.redirect(`/letters/${id}`);
+        return;
+      }
       let letter = {
         text,
         ambit : letterParent.ambit,
@@ -380,6 +409,17 @@ router.post('/:id/vote', requireUser, async (req, res, next) => {
     const letter = await Letter.findById(id);
     const user = await User.findByIdAndUpdate(_id, {$push:{voted:id}});
     await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
+    res.redirect(`/letters/${id}`);
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.post('/:id/add-favorite', requireUser, async (req, res, next) => {
+  const {id} = req.params;
+  const {_id} = req.session.currentUser;
+  try {
+    await User.findByIdAndUpdate(_id, {$push:{favorites:id}});
     res.redirect(`/letters/${id}`);
   } catch (error) {
     next(error);
