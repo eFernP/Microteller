@@ -24,6 +24,13 @@
     <button type="submit">Vote</button>
   </form>
   {{/if}}
+  {{#if addedFavorites}}
+  <p>This note is in your Favorites</p>
+  {{else}}
+  <form action="/letters/{{letter._id}}/add-favorite" method="POST">
+    <button type="submit">Add to favorites</button>
+  </form>
+  {{/if}}
   {{/if}}
   <h2 class="font-size-5">Comments</h2>
   <div class="cuadro-comments">

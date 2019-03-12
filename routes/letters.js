@@ -386,6 +386,18 @@ router.post('/:id/vote', requireUser, async (req, res, next) => {
   };
 });
 
+router.post('/:id/add-favorite', requireUser, async (req, res, next) => {
+  const {id} = req.params;
+  const {_id} = req.session.currentUser;
+  try {
+    const user = await User.findByIdAndUpdate(_id, {$push:{favorites:id}});
+    await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
+    res.redirect(`/letters/${id}`);
+  } catch (error) {
+    next(error);
+  };
+});
+
 router.post('/:id/comment', requireUser, async (req, res, next) => {
   const {text} = req.body;
   const { id } = req.params;

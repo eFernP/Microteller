@@ -18,6 +18,9 @@ const userSchema = new Schema({
   },
   voted: {
     type: [String]
+  },
+  favorites: {
+    type: [String]
   }
 });
 
