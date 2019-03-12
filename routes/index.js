@@ -122,6 +122,8 @@ router.get('/challenges/my-challenges', requireUser, async (req, res, next) => {
   try {
     let letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null }).populate('challenge');
     let challenges = await Challenge.find({ creator: _id });
+    letters = reverseArray(letters);
+    challenges = reverseArray(challenges);
     res.render('challenges/my-challenges', { letters, challenges });
   } catch (error) {
     next(error);

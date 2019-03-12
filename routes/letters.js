@@ -119,7 +119,13 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     }
   }
 
-  let transporter = emailTransporter();
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'esterfern95@gmail.com',
+      pass: 'proyecto2'
+    }
+  });
   
   try {
     if (!receiver){
@@ -146,7 +152,13 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
         html: `<b>${text}</b>`
       });
     }
-    res.redirect('/letters/my-letters');
+    if(!challenge){
+      res.redirect('/letters/my-letters');
+      return;
+    }else{
+      res.redirect('/challenges/my-challenges');
+    }
+    
   } catch (error) {
     next(error);
   };
@@ -171,6 +183,7 @@ router.get('/favorites', async (req, res, next) => {
       const letter = await Letter.findById(id);
       letters.push(letter);
     });
+    letters = reverseArray(letters);
     res.render('letters/favorites', { letters });
   } catch (error) {
     next(error);
@@ -182,7 +195,8 @@ router.get('/my-letters', async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     // const tortilla = await Tortilla.findById(id).populate('creator');
-    const letters = await Letter.find({ creator: _id, lastLetter: null });
+    let letters = await Letter.find({ creator: _id, lastLetter: null });
+    letters = reverseArray(letters);
     res.render('letters/my-letters', { letters });
   } catch (error) {
     next(error);
@@ -365,7 +379,7 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
           html: `<b>${text}</b>`
         });
       }
-    res.redirect('/letters/my-letters');
+    res.redirect(`/letters/${newLetter.id}`);
   } catch (error) {
     next(error);
   };
