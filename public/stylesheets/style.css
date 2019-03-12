@@ -65,9 +65,11 @@ nav #menu-toggle {
 #menu a
 {
   text-decoration: none;
-  color: #232323;
+  color: #FA6C8D;
   text-align: center;
   transition: color 0.3s ease;
+  font-weight: bold;
+
 }
 
 #menu a:hover
@@ -159,7 +161,7 @@ nav #menu-toggle {
   margin-top: 0;
   margin-left: 0;
   
-  background: #ededed;
+  background: white;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
@@ -339,7 +341,7 @@ nav #menu-toggle {
 }
 
 .field {
-  padding-bottom: 5vh;
+  padding-bottom: 4vh;
 }
 
 /* signup reutilizado de login*/
@@ -382,11 +384,11 @@ nav #menu-toggle {
 
 .text-size-label {
   font-size: 3.7vh;
-  
+  color: white;
 }
 
 .div1-account-edit {
-  padding-top: 6vh; 
+  padding-top: 3vh; 
   text-align: center;
 }
 
@@ -447,6 +449,7 @@ nav #menu-toggle {
   font-weight: 200;
   color:white;
   margin-bottom: 3vh;
+  text-align: center;
 }
 
 .text-align-center {
@@ -469,6 +472,7 @@ nav #menu-toggle {
     flex-direction: column;
     justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 .letters-list a{
@@ -526,6 +530,11 @@ nav #menu-toggle {
 
 .padding-global-myletters {
 padding-top: 9vh;
+}
+
+.padding-h1-myletters{
+  padding-top: 4vh;
+  padding-bottom: 2vh;
 }
 
 /* Details Letters */
@@ -597,4 +606,14 @@ padding-top: 9vh;
 
 .padding-top{
   margin-top: 1vh;
+}
+
+/* Challengues */
+
+.padding-top-list-challengues {
+  padding-top: 4vh;
+}
+
+.padding-top-2 {
+  margin-top: 3vh;
 }

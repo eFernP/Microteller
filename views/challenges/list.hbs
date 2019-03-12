@@ -1,12 +1,12 @@
-<div class="padding-global">
-  <a href="/letters/list">See all notes</a>
-  <h1>Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
-  <form action="/challenges/list/search" method="POST">
-    <input type="text" name="search" placeholder="Challenge title or user name">
-    <button class="size-form letter-form" id="search-button" type="submit">Search</button>
+<div class="padding-global text-align-center">
+  {{!-- <a href="/letters/list">See all notes</a> --}}
+  <h1 class="padding-top-list-challengues h1-list">Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
+  <form class="form-top" action="/challenges/list/search" method="POST">
+    <input class="size-form" type="text" name="search" placeholder="Title or user">
+    <button class="size-form-two letter-form" id="search-button" type="submit">Search</button>
   </form>
-  <form action="/challenges/list" method="POST">
-    <select id="filter-select" name="filter">
+  <form class="form-top" action="/challenges/list" method="POST">
+    <select class="size-form letter-form" id="filter-select" name="filter">
       <option value="All">All</option>
       <option value="Experiences">Experiences</option>
       <option value="Family">Family</option>
@@ -17,12 +17,12 @@
       <option value="Places">Places</option>
       <option value="Others">Others</option>
     </select>
-    <button id="filter-button" type="submit">Filter</button>
+    <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
   </form>
   {{#if challenges}}
   <ul>
     {{#each challenges}}
-    <li>
+    <li class="letters-list">
       <a href="/challenges/{{this.id}}">{{this.objective}}</a>
       {{#if ../filter}}
       {{else}}
