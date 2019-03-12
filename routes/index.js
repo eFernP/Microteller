@@ -120,8 +120,8 @@ router.post('/challenges/new', requireUser, async (req, res, next) => {
 router.get('/challenges/my-challenges', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
-    const letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null }).populate('challenge');
-    const challenges = await Challenge.find({ creator: _id });
+    let letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null }).populate('challenge');
+    let challenges = await Challenge.find({ creator: _id });
     res.render('challenges/my-challenges', { letters, challenges });
   } catch (error) {
     next(error);
@@ -139,11 +139,14 @@ router.post('/challenges/my-challenges', (req, res, next) => {
 
 router.get('/challenges/my-challenges/:filter', async (req, res, next) => {
   const{filter} = req.params;
+  const { _id } = req.session.currentUser;
+  
   try {
-    let challenges = await Challenge.find({ambit: filter});
+    let letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null, ambit:filter }).populate('challenge');
+    let challenges = await Challenge.find({ creator: _id });
     console.log(challenges);
     challenges = reverseArray(challenges);
-    res.render('challenges/my-challenges', { challenges, filter });
+    res.render('challenges/my-challenges', { challenges, letters, filter });
   } catch (error) {
     next(error);
   }
