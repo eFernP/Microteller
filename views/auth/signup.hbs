@@ -1,6 +1,7 @@
-<div class="global-div-login padding-global">
-  <h1 class="h1-login">Sign up</h1>
-<div class="div1-login">
+<div class="global-div-login padding-global-signup">
+  <h1 class="h1-signup">Sign up</h1>
+  <div class="border-white"></div>
+<div class="div1-signup">
   <form method="POST" action="/auth/signup">
 
     <div class="field">
@@ -19,13 +20,13 @@
       <input class="input-size" type="password" name="confirmedPassword" placeholder="Confirm password" />
     </div>
 
-    <div class="field submit">
+    <div class="field">
       <button class="button-login" type="submit">Sign up</button>
     </div>
   </form>
   </div>
   {{> flash}}
   <footer class="footer-login">
-    <a class="none-decoration" href="/">Back</a>
+    <a class="none-decoration size-a-login" href="/">Back</a>
   </footer>
 </div>
