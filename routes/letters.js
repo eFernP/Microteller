@@ -258,7 +258,7 @@ router.get('/:id/continue', requireUser, async (req, res, next) => {
 });
 
 router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, next) => {
-  const { text, receiver, set, receiverEmail } = req.body;
+  const { text, receiver, set, email } = req.body;
   const { id } = req.params;
   const { _id } = req.session.currentUser;
 
@@ -270,13 +270,21 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
     }
   }
 
-  if(receiverEmail){
-    if(receiverEmail.length > 50){
+  if(email){
+    if(email.length > 50){
       req.flash('validation', 'Email too long.');
       res.redirect(`/letters/${id}/continue`);
       return
     }
   }
+
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'esterfern95@gmail.com',
+      pass: 'proyecto2'
+    }
+  });
 
   try {
       const letterParent = await Letter.findById(id); 
@@ -285,17 +293,27 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
         text,
         ambit : letterParent.ambit,
         receiver,
-        receiverEmail,
+        receiverEmail: email,
         set : letterParent.set,
         lastLetter: lastLetter.id, 
+        publicCreator: letterParent.publicCreator
       };
-      letter.creator = req.session.currentUser._id;
+      letter.creator = _id;
       if(letterParent.challenge){
         letter.challenge = letterParent.challenge;
         letter.votes = 0;
       }
       const newLetter = await Letter.create(letter);
       await Letter.findByIdAndUpdate(lastLetter.id, {nextLetter: newLetter.id});
+      if(email){
+        await transporter.sendMail({
+          from: '"Ester" <esterfern95@gmail.com>',
+          to: email, 
+          subject: 'Tienes una carta', 
+          text,
+          html: `<b>${text}</b>`
+        });
+      }
     res.redirect('/letters/my-letters');
   } catch (error) {
     next(error);
