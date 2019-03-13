@@ -1,6 +1,7 @@
 <div class="text-align-center padding-global-myletters">
   <div>
     <h1 class="h1-list padding-h1-myletters">My Notes</h1>
+    <a href="/letters/new"> Create a note</a>
     {{#if letters}}
     <form class="form-top" action="/letters/my-letters" method="POST">
             <select class="size-form letter-form" id="filter-select" name="filter">
@@ -26,7 +27,6 @@
     </ul>
     {{else}}
     <p>You don't have any note yet</p>
-    <a href="/letters/new"> Create a note</a>
     {{/if}}
   </div>
 </div>

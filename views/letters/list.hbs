@@ -1,17 +1,17 @@
 <div class="padding-global-list text-align-center">
   <div class="margin-top-list"></div>
   {{#if challenge}}
-  <h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
-      <h5>Created by: {{challenge.creator.username}}<h5>
+  <h5>{{challenge.ambit}}</h5>
+  <h5>Created by: {{challenge.creator.username}}</h5>
+  <h4>{{challenge.objective}}<h4>
           <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
-          {{else}}
-          <a href="/letters/new">Create note</a>
           {{/if}}
           <h1 class="h1-list">Notes {{#if filter}} - {{filter}} {{/if}}</h1>
           {{#if challenges}}
           {{else}}
           {{#if challenge}}
           {{else}}
+          <a href="/letters/new">Create note</a>
           <form class="form-top" action="/letters/list/search" method="POST">
             <input class="size-form" type="text" name="search" placeholder="Title or user">
             <button class="size-form-two letter-form" id="search-button" type="submit">Search</button>

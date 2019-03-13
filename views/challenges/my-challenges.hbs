@@ -15,6 +15,7 @@
     <button id="filter-button" type="submit">Filter</button>
   </form>
   <h2>Participated</h2>
+  <a href="/challenges/list"> Search challenges</a>
   {{#if letters}}
   <ul>
     {{#each letters}}
@@ -27,10 +28,10 @@
   </ul>
   {{else}}
   <p>You don't have any note</p>
-  <a href="/challenges/list"> Search challenges</a>
   {{/if}}
 
   <h2>Created</h2>
+  <a href="/challenges/new"> Create challenge</a>
   {{#if challenges}}
   <ul>
     {{#each challenges}}
@@ -41,6 +42,5 @@
   </ul>
   {{else}}
   <p>You don't have created any challenge</p>
-  <a href="/challenges/new"> Create challenge</a>
   {{/if}}
 </div>
