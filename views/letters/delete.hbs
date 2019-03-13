@@ -1,7 +1,10 @@
-<div class="padding-global">
-<h1>Are you sure you want to delete this note?</h1>
-<form action="/letters/{{id}}/delete" method="POST">
-<button type="submit">Yes</button>
-</form>
-<a href="/letters/{{id}}">No</a>
+<div class="padding-global text-align-center">
+    <h1 class="padding-bottom-2 h1-list padding-top-3">Are you sure you want to delete this note?</h1>
+    <div class="container-flex-2">
+        <form action="/letters/{{id}}/delete" method="POST">
+            <button class="sizebuttondelete button-login" type="submit">Yes</button>
+        </form>
+        <div class="whitespace"></div>
+        <a class="sizebuttondelete button-login" href="/letters/{{id}}">No</a>
+    </div>
 </div>
