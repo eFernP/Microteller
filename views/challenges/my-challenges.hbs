@@ -1,7 +1,7 @@
 <div class="padding-global">
-  <h1>My Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
-  <form action="/challenges/my-challenges" method="POST">
-    <select id="filter-select" name="filter">
+  <h1 class="h1-login">My Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
+  <form class="form-top" action="/challenges/my-challenges" method="POST">
+    <select class="size-form letter-form" id="filter-select" name="filter">
       <option value="All">All</option>
       <option value="Experiences">Experiences</option>
       <option value="Family">Family</option>
@@ -12,17 +12,22 @@
       <option value="Places">Places</option>
       <option value="Others">Others</option>
     </select>
-    <button id="filter-button" type="submit">Filter</button>
+    <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
   </form>
-  <h2>Participated</h2>
-  <a href="/challenges/list"> Search challenges</a>
+  <h2 class="h2-mychallengues">Participated</h2>
+  <a class="a-mychallengues" href="/challenges/list"> Search challenges</a>
   {{#if letters}}
   <ul>
     {{#each letters}}
 
-    <li>
-      {{this.challenge.objective}} - {{this.ambit}}:
-      <a href="/letters/{{this.id}}">{{this.receiver}}</a> - Votes: {{this.votes}}
+    <li class="size-over letters-list widthandheight">
+      <a id="challengesid2" href="/letters/{{this.id}}">{{this.receiver}}</a> 
+      {{!-- <div class="padding-bottom-mychallenges"></div> --}}
+      <p class="sizeletters">Goal: {{this.challenge.objective}}</p>
+      <div class="padding-bottom-mychallenges"></div>
+      <p class="sizeletters">{{this.ambit}}</p>
+      <div class="padding-bottom-mychallenges"></div>
+      <p class="sizeletters">Votes: {{this.votes}}</p>
     </li>
     {{/each}}
   </ul>
@@ -30,13 +35,14 @@
   <p>You don't have any note</p>
   {{/if}}
 
-  <h2>Created</h2>
-  <a href="/challenges/new"> Create challenge</a>
+  <h2 class="h2-mychallengues">Created</h2>
+  <a class="a-mychallengues" href="/challenges/new"> Create challenge</a>
   {{#if challenges}}
   <ul>
     {{#each challenges}}
-    <li>
-      <a href="/challenges/{{this.id}}">{{this.objective}}</a> - {{this.ambit}}
+    <li class="letters-list widthandheight">
+      <a id="challengesid3" href="/challenges/{{this.id}}">{{this.objective}}</a>
+      <p class="sizeletters">{{this.ambit}}</p>
     </li>
     {{/each}}
   </ul>

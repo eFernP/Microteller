@@ -1,20 +1,22 @@
 <div class="padding-global">
-<h2>Edit note</h2>
+  <h1 class="h1-login">Edit note</h1>
 
-<form action="/letters/{{letter._id}}/edit" method="POST">
+  <form action="/letters/{{letter._id}}/edit" method="POST">
 
-  <div>
-    <label for="">Text</label>
-    <input type="text" name="text" value="{{letter.text}}" maxlength="150">
-  </div>
+    <div class="padding-text text-align-center">
+      <label class="text-size-label" for="">Text</label><br>
+      <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
+    </div>
 
-  <input type="hidden" name="receiverEmail" value="{{letter.receiverEmail}}">
-  <button type="submit">Edit</button>
-</form>
+    <input type="hidden" name="receiverEmail" value="{{letter.receiverEmail}}">
+    <div class="padding-boton">
+      <button class=" padding-text button-login text-size-label" type="submit">Edit</button>
+    </div>
+  </form>
 
-{{#if data.messages.length}}
-<ul class="validation">
-  {{#each data.messages}}<li>{{this}}</li>{{/each}}
-</ul>
-{{/if}}
+  {{#if data.messages.length}}
+  <ul class="validation">
+    {{#each data.messages}}<li>{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
 </div>

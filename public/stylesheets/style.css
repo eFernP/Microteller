@@ -741,6 +741,7 @@ padding-top: 9vh;
   font-size: 1vh;
   text-align: left;
   padding-left: 2vh;
+  padding-right: 2vh;
 }
 
 .sizeletters{
@@ -907,4 +908,57 @@ padding-top: 9vh;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* Continue */
+
+.font-size-2{
+  font-size: 5vh;
+}
+
+.padding-boton{
+  text-align:center;
+  margin-bottom: 5vh;
+  margin-top: 2vh;
+}
+
+.padding-x{
+  padding-top: 3vh;
+}
+
+/* My challenges */
+
+#challengesid2{
+  font-size: 3vh;
+  padding-bottom: 1vh;
+}
+
+#challengesid3{
+  font-size: 3.3vh;
+  padding-bottom: 1vh;
+}
+
+.h2-mychallengues{
+  color: white;
+  margin-top: 3vh;
+  margin-left: 4vh;
+  margin-bottom: 2vh;
+  font-size: 5vh;
+}
+
+.a-mychallengues {
+  color: white;
+  margin-top: 3vh;
+  margin-left: 4vh;
+  margin-bottom: 2vh;
+  font-size: 3.5vh;
+  text-decoration: underline;
+}
+
+.size-over {
+  height: 21vh;
+}
+
+.padding-bottom-mychallenges{
+  margin-bottom: 1vh;
 }
