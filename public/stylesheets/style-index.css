@@ -18,19 +18,19 @@
  margin: 50px 0;
 }
 
-.button-login {
+.button-login{
   padding: 12px;
-      width: 200px;
-      border: none;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: url(/images/fondo-boton.png);
-      background-size: cover;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      font-size: 4Vh;
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
+  width: 200px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 4Vh;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 .title-index{
@@ -66,6 +66,11 @@
  
 }
 
+.padding-info{
+  padding: 25px;
+  padding-top: 50px;
+}
+
 .ul-info{
   padding-left: 20px;
 }
@@ -74,16 +79,72 @@
   list-style: disc;
   color: white;
   margin: 20px 0;
+  font-size: 3.5vh;
 }
 
 .text-info{
   text-align: left;
   color: white;
   margin-top: 30px;
+  font-size: 3.5vh;
 }
 
 .button-info{
   margin-top: 50px;
   display: flex;
   justify-content: center;
+}
+
+
+.home{
+  color: white;
+}
+
+.home h1{
+  font-weight: 200;
+  margin-top: 20px;
+}
+
+.home h4{
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: 200;
+  font-size: 3.5vh;
+}
+
+.home-section{
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  height: 150px;
+  text-align: left;
+  font-size: 3vh;
+  padding: 15px;
+  margin: 50px 25px;
+  margin-top: 25px;
+}
+
+.home-button{
+  padding: 12px;
+  width: 150px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 3Vh;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-home-div{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-home-div a{
+  margin-top: 20px;
 }
