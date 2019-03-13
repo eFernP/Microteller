@@ -3,7 +3,7 @@
   <div>
     <div>
       {{#if letter.challenge}}
-      <p class="sizeandcolor">This note is for this <a class="sizeandcolor"
+      <p class="sizeandcolor">This note is for this <a class="sizeandcolor color-white"
           href="/challenges/{{challenge.id}}">challenge</a></p>
       {{/if}}
     </div>
@@ -13,70 +13,80 @@
       <p class="sizeandcolor">Created by {{letter.creator.username}}</p>
       {{/if}}
     </div>
-
-    <div>
-      {{#if letter.challenge}}
-      <p class="sizeandcolor">Votes: {{letter.votes}}</p>
+    <div class="flex-box-details">
+      <div>
+        {{#if letter.challenge}}
+        <p class="sizeandcolor">Votes: {{letter.votes}}</p>
+        {{/if}}
+      </div>
+      {{#if isFavorite}}
+      {{else}}
+      <div class="padding-top">
+        <form action="/letters/{{letter._id}}/add-favorite" method="POST">
+          <button class="remove-background position-absolute-details" type="submit"><img class="button-size"
+              src="/images/favorite-heart-button.png" alt=""></button>
+        </form>
+      </div>
       {{/if}}
     </div>
-  </div>
-  <div class="letter-detail">
-    <p class="p-limit">{{letter.text}}</p>
-    {{#if isFavorite}}
-    {{else}}
-    <form action="/letters/{{letter._id}}/add-favorite" method="POST">
-      <button class="remove-background position-absolute-details" type="submit"><img class="button-size" src="/images/favorite-heart-button.png"
-          alt=""></button>
-    </form>
-    {{/if}}
-  </div>
+    <div class="letter-detail">
+      <p class="p-limit">{{letter.text}}</p>
+    </div>
 
-  <div class="text-align-center padding-top-3 container-flex">
-    {{#if letter.lastLetter}}
-    <a class="sizeandcolor x" href="/letters/{{letter.lastLetter}}"><img class="size-imagen"
-        src="/images/left-arrow.png" alt=""></a>
-    {{/if}}
-    {{#if letter.nextLetter}}
-    <a class="sizeandcolor" href="/letters/{{letter.nextLetter}}"><img class="size-imagen" src="/images/right-arrow.png"
-        alt=""></a>
-    {{/if}}
-  </div>
+    <div class="text-align-center padding-top-3 container-flex">
+      {{#if letter.lastLetter}}
+      <a class="sizeandcolor x" href="/letters/{{letter.lastLetter}}"><img class="size-imagen"
+          src="/images/left-arrow.png" alt=""></a>
+      {{/if}}
+      {{#if letter.nextLetter}}
+      <a class="sizeandcolor" href="/letters/{{letter.nextLetter}}"><img class="size-imagen"
+          src="/images/right-arrow.png" alt=""></a>
+      {{/if}}
+    </div>
 
-  <div class="container-flex-details">
-    {{#if letter.challenge}}
-    {{#if hasVoted}}
-    {{else}}
-    <form action="/letters/{{letter._id}}/vote" method="POST">
-      <button class="padding-top button-details" type="submit">Vote</button>
+    <div class="container-flex-details">
+      {{#if letter.challenge}}
+      {{#if hasVoted}}
+      {{else}}
+      <form action="/letters/{{letter._id}}/vote" method="POST">
+        <button class="padding-top button-details" type="submit">Vote</button>
+      </form>
+      {{/if}}
+      {{/if}}
+    </div>
+    <h2 class="font-size-5">Comments</h2>
+    <div class="cuadro-comments">
+      {{#each comments}}
+      <p class="font-size-4vh">{{this.creator.username}} : {{this.text}}</p>
+      {{/each}}
+    </div>
+    <form action="/letters/{{letter._id}}/comment" method="POST">
+      <input class="input-size-details" type="text" name="text" maxlength="100">
+      <div class="text-align-right">
+        <button class="padding-top button-login" type="submit">Add comment</button>
+      </div>
     </form>
+    {{#if isCreator}}
+    <div class="padding-topandbottom">
+      <a class="color-white font-size-4vh" href="/letters/{{letter._id}}/continue">Add another note for the same person
+        or topic</a>
+    </div>
+    <div class="float-details">
+      <div>
+        <a class="font-size-4vh" href="/letters/{{letter._id}}/edit"><img class="size-image-details"
+            src="/images/edit.png" alt=""></a>
+      </div>
+      <div class="padding-div-white-details"></div>
+      <div>
+        <a class="font-size-4vh" href="/letters/{{letter._id}}/delete"><img class="size-image-details"
+            src="/images/delete.png" alt=""></a>
+      </div>
+    </div>
     {{/if}}
+    {{#if data.messages.length}}
+    <ul class="validation">
+      {{#each data.messages}}<li>{{this}}</li>{{/each}}
+    </ul>
     {{/if}}
+    {{!-- {{> flash}} --}}
   </div>
-  <h2 class="font-size-5">Comments</h2>
-  <div class="cuadro-comments">
-    {{#each comments}}
-    <p class="font-size-4vh">{{this.creator.username}} : {{this.text}}</p>
-    {{/each}}
-  </div>
-  <form action="/letters/{{letter._id}}/comment" method="POST">
-    <input class="input-size-details" type="text" name="text" maxlength="100">
-    <button class="padding-top button-login" type="submit">Add comment</button>
-  </form>
-  {{#if isCreator}}
-  <div class="padding-topandbottom">
-    <a class="font-size-4vh" href="/letters/{{letter._id}}/continue">Add another note for the same person or topic</a>
-  </div>
-  <div>
-    <a class="font-size-4vh" href="/letters/{{letter._id}}/edit">Edit</a>
-  </div>
-  <div>
-    <a class="font-size-4vh" href="/letters/{{letter._id}}/delete">Delete</a>
-  </div>
-  {{/if}}
-  {{#if data.messages.length}}
-  <ul class="validation">
-    {{#each data.messages}}<li>{{this}}</li>{{/each}}
-  </ul>
-  {{/if}}
-  {{!-- {{> flash}} --}}
-</div>
