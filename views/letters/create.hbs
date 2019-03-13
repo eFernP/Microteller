@@ -3,7 +3,7 @@
   <form action="/letters/new" method="POST">
     <div>
       <label class="text-size-label" for="">For whom is your note or what is the note about?</label><br>
-      <input class="input-size" type="text" name="receiver">
+      <input class="input-size" type="text" name="receiver" maxlength="18">
     </div><br>
     {{#if challenge}}
     Ambit : {{challenge.ambit}}

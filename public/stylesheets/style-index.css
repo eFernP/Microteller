@@ -1,0 +1,47 @@
+.index{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/landing-image.jpg');
+  background-size: cover;
+}
+
+.padding-index{
+  padding: 25px;
+}
+
+.div-login{
+ display: flex;
+ justify-content: center;
+ margin: 50px 0;
+}
+
+.button-login {
+  padding: 12px;
+      width: 200px;
+      border: none;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-image: url(/images/fondo-boton.png);
+      background-size: cover;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 4Vh;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+}
+
+.title-index{
+  font-weight: 200;
+  color: white;
+}
+
+.text-index{
+  color:white;
+}
+
+.text-index-div{
+  
+}
