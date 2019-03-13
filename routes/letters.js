@@ -10,7 +10,7 @@ const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require
 
 /* GET home page. */
 
-router.get('/list', async (req, res, next) => {
+router.get('/list', requireUser, async (req, res, next) => {
   try {
     let letters = await Letter.find({ lastLetter: null });
     letters = reverseArray(letters);
@@ -29,7 +29,7 @@ router.post('/list', (req, res, next) => {
   res.redirect(`/letters/list/${filter}`);
 });
 
-router.post('/list/search', (req, res, next) => {
+router.post('/list/search', requireUser, (req, res, next) => {
   const {search} = req.body;
   console.log(search);
   if(!search){
@@ -39,7 +39,7 @@ router.post('/list/search', (req, res, next) => {
   res.redirect(`/letters/list/search/${search}`);
 });
 
-router.get('/list/search/:search', async (req, res, next) => {
+router.get('/list/search/:search', requireUser, async (req, res, next) => {
   const{search} = req.params;
   let letters = [];
   try {
@@ -68,7 +68,7 @@ router.get('/list/search/:search', async (req, res, next) => {
   }
 });
 
-router.get('/list/:filter', async (req, res, next) => {
+router.get('/list/:filter', requireUser, async (req, res, next) => {
   const{filter} = req.params;
   try {
     let letters = await Letter.find({ lastLetter: null, ambit: filter});
@@ -94,30 +94,6 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
     receiver,
     receiverEmail : email,
   };
-
-  if(text){
-    if(text.length > 150){
-      req.flash('validation', 'Note too long.');
-      res.redirect('/letters/new');
-      return
-    }
-  }
-
-  if(receiver){
-    if(receiver.length > 50){
-      req.flash('validation', 'The subject/person field is too long');
-      res.redirect('/letters/new');
-      return
-    }
-  }
-
-  if(email){
-    if(email.length > 50){
-      req.flash('validation', 'Email too long.');
-      res.redirect('/letters/new');
-      return
-    }
-  }
 
   let transporter = emailTransporter();
 
@@ -159,7 +135,7 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
   };
 });
 
-router.get('/ranking', async (req, res, next) => {
+router.get('/ranking', requireUser, async (req, res, next) => {
   try {
     let letters = await Letter.find({challenge: { $ne: null }, votes:{$ne: 0}}).sort({votes:-1}).limit(5);
     console.log(letters);
@@ -169,7 +145,7 @@ router.get('/ranking', async (req, res, next) => {
   }
 });
 
-router.get('/favorites', async (req, res, next) => {
+router.get('/favorites', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     const user = await User.findById(_id);
@@ -188,7 +164,7 @@ router.get('/favorites', async (req, res, next) => {
 });
 
 
-router.get('/my-letters', async (req, res, next) => {
+router.get('/my-letters', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     // const tortilla = await Tortilla.findById(id).populate('creator');
@@ -200,7 +176,7 @@ router.get('/my-letters', async (req, res, next) => {
   }
 });
 
-router.post('/my-letters', (req, res, next) => {
+router.post('/my-letters', requireUser, (req, res, next) => {
   const {filter} = req.body;
   if(filter === 'All'){
     res.redirect(`/letters/my-letters`);
@@ -209,7 +185,7 @@ router.post('/my-letters', (req, res, next) => {
   res.redirect(`/letters/my-letters/${filter}`);
 });
 
-router.get('/my-letters/:filter', async (req, res, next) => {
+router.get('/my-letters/:filter', requireUser, async (req, res, next) => {
   const{filter} = req.params;
   try {
     let letters = await Letter.find({ lastLetter: null, ambit: filter});
@@ -284,13 +260,7 @@ router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next
   const {text} = req.body;
   const {id} = req.params;
   const { _id } = req.session.currentUser;
-  if(text){
-    if(text.length > 150){
-      req.flash('validation', 'Note too long.');
-      res.redirect(`/letters/${id}/edit`);
-      return
-    }
-  }
+
   try {
     const letter = await Letter.findById(id);
     if (!letter.creator.equals(_id)) {
@@ -326,22 +296,6 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
   const { text, receiver, set, email } = req.body;
   const { id } = req.params;
   const { _id } = req.session.currentUser;
-
-  if(text){
-    if(text.length > 150){
-      req.flash('validation', 'Note too long.');
-      res.redirect(`/letters/${id}/continue`);
-      return
-    }
-  }
-
-  if(email){
-    if(email.length > 50){
-      req.flash('validation', 'Email too long.');
-      res.redirect(`/letters/${id}/continue`);
-      return
-    }
-  }
 
   try {
       const letterParent = await Letter.findById(id); 
@@ -442,14 +396,6 @@ router.post('/:id/comment', requireUser, async (req, res, next) => {
   const {text} = req.body;
   const { id } = req.params;
   const comment = {text};
-
-  if(text){
-    if(text.length > 100){
-      req.flash('validation', 'Comment too long');
-      res.redirect(`/letters/${id}`);
-      return
-    }
-  }
 
   try {
     if(!text){

@@ -13,7 +13,7 @@ router.get('/', requireAnon, (req, res, next) => {
   res.render('index');
 });
 
-router.get('/home', async (req, res, next) => {
+router.get('/home', requireUser, async (req, res, next) => {
   const {_id} = req.session.currentUser;
   try {
     let user = await User.findById(_id);
@@ -24,7 +24,7 @@ router.get('/home', async (req, res, next) => {
   
 });
 
-router.get('/challenges/list', async (req, res, next) => {
+router.get('/challenges/list', requireUser, async (req, res, next) => {
   try {
     let challenges = await Challenge.find();
     challenges = reverseArray(challenges);
@@ -34,7 +34,7 @@ router.get('/challenges/list', async (req, res, next) => {
   }
 });
 
-router.post('/challenges/list', (req, res, next) => {
+router.post('/challenges/list', requireUser, (req, res, next) => {
   const { filter } = req.body;
   if (filter === 'All') {
     res.redirect(`/challenges/list`);
@@ -44,7 +44,7 @@ router.post('/challenges/list', (req, res, next) => {
 });
 
 
-router.post('/challenges/list/search', async (req, res, next) => {
+router.post('/challenges/list/search', requireUser, async (req, res, next) => {
   const{search} = req.body;
   if (search){
     res.redirect(`/challenges/list/search/${search}`);
@@ -54,7 +54,7 @@ router.post('/challenges/list/search', async (req, res, next) => {
   }
 });
 
-router.get('/challenges/list/search/:search', async (req, res, next) => {
+router.get('/challenges/list/search/:search', requireUser, async (req, res, next) => {
   const{search} = req.params;
   let challenges = [];
   try {
@@ -83,7 +83,7 @@ router.get('/challenges/list/search/:search', async (req, res, next) => {
   }
 });
 
-router.get('/challenges/list/:filter', async (req, res, next) => {
+router.get('/challenges/list/:filter', requireUser, async (req, res, next) => {
   const { filter } = req.params;
   try {
     let challenges = await Challenge.find({ ambit: filter });
@@ -107,13 +107,7 @@ router.post('/challenges/new', requireUser, async (req, res, next) => {
     ambit,
     objective
   };
-  if (objective) {
-    if (objective.length > 50) {
-      req.flash('validation', 'Challenge goal too long');
-      res.redirect('/challenges/new');
-      return;
-    }
-  }
+
   try {
     if (!objective) {
       req.flash('validation', 'Fill the field');
@@ -141,7 +135,7 @@ router.get('/challenges/my-challenges', requireUser, async (req, res, next) => {
   }
 });
 
-router.post('/challenges/my-challenges', (req, res, next) => {
+router.post('/challenges/my-challenges', requireUser, (req, res, next) => {
   const {filter} = req.body;
   if(filter === 'All'){
     res.redirect(`/challenges/my-challenges`);
@@ -150,7 +144,7 @@ router.post('/challenges/my-challenges', (req, res, next) => {
   res.redirect(`/challenges/my-challenges/${filter}`);
 });
 
-router.get('/challenges/my-challenges/:filter', async (req, res, next) => {
+router.get('/challenges/my-challenges/:filter', requireUser, async (req, res, next) => {
   const{filter} = req.params;
   const { _id } = req.session.currentUser;
 
@@ -199,28 +193,7 @@ router.get('/account/edit', requireUser, async (req, res, next) => {
 router.post('/account/edit', requireUser, requireUserEditFields, async (req, res, next) => {
   let { username, email, password, confirmedPassword } = req.body;
   const { _id } = req.session.currentUser;
-  if (username) {
-    if (username.length > 30) {
-      req.flash('validation', 'User name too long.');
-      res.redirect(`/account/edit`);
-      return;
-    }
-  }
-  if (email) {
-    if (email.length > 50) {
-      req.flash('validation', 'Email too long.');
-      res.redirect(`/account/edit`);
-      return;
-    }
-  }
 
-  if (password) {
-    if (password.length > 50) {
-      req.flash('validation', 'Password too long.');
-      res.redirect(`/account/edit`);
-      return;
-    }
-  }
   try {
     const resultName = await User.findOne({ username });
     if (resultName && (resultName.id !== _id)) {

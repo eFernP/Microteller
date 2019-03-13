@@ -59,7 +59,7 @@
     {{/each}}
   </div>
   <form action="/letters/{{letter._id}}/comment" method="POST">
-    <input class="input-size-details" type="text" name="text">
+    <input class="input-size-details" type="text" name="text" maxlength="100">
     <button class="padding-top button-login" type="submit">Add comment</button>
   </form>
   {{#if isCreator}}
