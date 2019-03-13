@@ -20,13 +20,13 @@
     <ul class="center-ul">
       {{#each letters}}
       <li class="letters-list">
-        <a href="/letters/{{this.id}}">{{this.receiver}}</a> <br> {{this.ambit}}
+        <a href="/letters/{{this.id}}" class="note-type">{{this.receiver}}</a> <br> {{this.ambit}}
         {{#if this.challenge}} - Votes: {{this.votes}} {{/if}}
       </li>
       {{/each}}
     </ul>
     {{else}}
-    <p>You don't have any note yet</p>
+    <p class="no-notes">You don't have any note yet</p>
     {{/if}}
   </div>
 </div>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+
 .index{
   position: absolute;
   top: 0;
@@ -205,4 +208,26 @@
   font-weight: 200;
   margin:50px;
   color: white;
+}
+
+
+.note-type{
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(88, 64, 69);
+}
+
+.delete-menu{
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-buttons{
+  display: grid;
+  align-items: center;
+  height: 10vh;
+  align-self: center;
+}
+
+.short-button{
+  width: 15vh;
 }

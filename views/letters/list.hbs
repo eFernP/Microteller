@@ -39,7 +39,7 @@
   <ul class="center-ul">
     {{#each letters}}
     <li class="letters-list">
-      <a href="/letters/{{this.id}}">{{this.receiver}}</a>
+      <a href="/letters/{{this.id}}" class="note-type">{{this.receiver}}</a>
       {{#if ../filter}}
       {{else}}
       {{this.ambit}}
