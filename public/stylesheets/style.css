@@ -750,3 +750,40 @@ padding-top: 9vh;
   height: 7.4vh;
   border-radius: 7px;
 }
+
+.text-align-left{
+  text-align: left;
+  color: white;
+}
+
+.size-label-create{
+  width: 52vh;
+  height: 7vh;
+  border-radius: 3px;
+  border:none;
+  font-size: 3vh;
+  padding-left: 2vh;
+}
+
+.padding-left-create{
+  padding-left: 2vh;
+  padding-top: 3.5vh;
+}
+
+.padding-top-create{
+  padding-top: 3vh;
+}
+
+.padding-white-create {
+  padding-top: 3vh;
+}
+
+.size-button-loggin {
+  margin-top: 6vh;
+  width: 20vh;
+  font-size: 3vh;
+}
+
+.padding-top-create-1{
+  padding-top: 3vh;
+}

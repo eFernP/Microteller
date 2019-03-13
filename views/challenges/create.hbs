@@ -1,28 +1,32 @@
 <div class="padding-global text-align-center">
-  <h1 class="h1-list">Create challengue</h1>
+  <h1 class="h1-list padding-top-create-1">Create challengue</h1>
   <form action="/challenges/new" method="POST">
-    <div class="prueba">
-      <label class=" letter-size-create size-form letter-form " for="">Ambit:</label>
-      <select class="letter-size-create-2 size-form-two letter-form" id="size-select" name="ambit">
-        <option value="Experiences">Experiences</option>
-        <option value="Family">Family</option>
-        <option value="Friends">Friends</option>
-        <option value="Lovers">Lovers</option>
-        <option value="Me">Me</option>
-        <option value="Objects">Objects</option>
-        <option value="Places">Places</option>
-        <option value="Others">Others</option>
-      </select>
+    <div class="padding-top-create">
+      <div class="prueba">
+        <label class=" letter-size-create size-form letter-form " for="">Ambit:</label>
+        <select class="letter-size-create-2 size-form-two letter-form" id="size-select" name="ambit">
+          <option value="Experiences">Experiences</option>
+          <option value="Family">Family</option>
+          <option value="Friends">Friends</option>
+          <option value="Lovers">Lovers</option>
+          <option value="Me">Me</option>
+          <option value="Objects">Objects</option>
+          <option value="Places">Places</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
     </div>
+    <div class="padding-left-create">
+      <div class="text-align-left">
+        <label for="">Explain what has to be expressed in the notes:</label>
+        <div class="padding-white-create"></div>
+        <div class="">
+          <input class="size-label-create" type="text" name="objective" maxlength="60">
+        </div>
+      </div>
 
-    <div>
-      <label for="">Explain what has to be expressed in the notes:</label>
-      <input type="text" name="objective" maxlength="60">
-    </div>
-
-  {{> flash}}
-    <button type="submit" >Create challenge</button>
+      {{> flash}}
+      <button class="button-login size-button-loggin" type="submit">Create</button>
   </form>
-
-
+</div>
 </div>
