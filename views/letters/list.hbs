@@ -4,6 +4,8 @@
   <h4>{{challenge.objective}} - {{challenge.ambit}}<h4>
       <h5>Created by: {{challenge.creator.username}}<h5>
           <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
+          {{else}}
+          <a href="/letters/new">Create note</a>
           {{/if}}
           <h1 class="h1-list">Notes {{#if filter}} - {{filter}} {{/if}}</h1>
           {{#if challenges}}
@@ -31,7 +33,6 @@
           {{/if}}
           {{/if}}
           {{#if letters}}
-          
           <ul class="center-ul">
             {{#each letters}}
             <li class="letters-list">
@@ -48,9 +49,5 @@
           </ul>
           {{else}}
           <p>No notes yet</p>
-          {{#if challenge}}
-          {{else}}
-          <a href="/letters/new">Create note</a>
-          {{/if}}
           {{/if}}
 </div>

@@ -13,6 +13,17 @@ router.get('/', requireAnon, (req, res, next) => {
   res.render('index');
 });
 
+router.get('/home', async (req, res, next) => {
+  const {_id} = req.session.currentUser;
+  try {
+    let user = await User.findById(_id);
+    res.render('home', {user});
+  } catch (error) {
+    next(error);
+  }
+  
+});
+
 router.get('/challenges/list', async (req, res, next) => {
   try {
     let challenges = await Challenge.find();
