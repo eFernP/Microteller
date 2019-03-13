@@ -24,6 +24,10 @@ router.get('/home', requireUser, async (req, res, next) => {
   
 });
 
+router.get('/info', (req, res, next) => {
+  res.render('info');
+});
+
 router.get('/challenges/list', requireUser, async (req, res, next) => {
   try {
     let challenges = await Challenge.find();
