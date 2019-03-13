@@ -9,10 +9,9 @@
     Ambit : {{challenge.ambit}}
     <input type="text" name="ambit" value="{{challenge.ambit}}" hidden>
     {{else}}
-    <div class="padding-text2">
-      <label class="text-size-label" for="">Ambit:</label>
-      <select class="text-size-label" id="size-select" name="ambit">
-        <option value="Others">Others</option>
+    <div class="prueba">
+      <label class=" letter-size-create size-form letter-form " for="">Ambit:</label>
+      <select class="letter-size-create-2 size-form-two letter-form" id="size-select" name="ambit">
         <option value="Experiences">Experiences</option>
         <option value="Family">Family</option>
         <option value="Friends">Friends</option>
@@ -20,6 +19,7 @@
         <option value="Me">Me</option>
         <option value="Objects">Objects</option>
         <option value="Places">Places</option>
+        <option value="Others">Others</option>
       </select>
     </div>
     {{/if}}
@@ -33,7 +33,12 @@
       <input class="input-size" type="text" name="email" placeholder="Email" maxlength="50">
     </div>
     <div class="padding-text">
-      <label><input type="checkbox" value="true" name="publicUser"> Publish the note showing my user name</label><br>
+      <label class="color-white-create container">
+        <input class="color-boton-ole" type="checkbox" value="true" name="publicUser">
+        <span class="checkmark"></span>
+      </label>
+      <p class="color-white-create">Publish the note showing my user name</p>
+      <br>
     </div>
     <div class="padding-bottom">
       <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
