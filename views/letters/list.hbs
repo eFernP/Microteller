@@ -1,53 +1,55 @@
 <div class="padding-global-list text-align-center">
   <div class="margin-top-list"></div>
   {{#if challenge}}
-  <h5>{{challenge.ambit}}</h5>
-  <h5>Created by: {{challenge.creator.username}}</h5>
-  <h4>{{challenge.objective}}<h4>
-          <a href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
-          {{/if}}
-          <h1 class="h1-list">Notes {{#if filter}} - {{filter}} {{/if}}</h1>
-          {{#if challenges}}
-          {{else}}
-          {{#if challenge}}
-          {{else}}
-          <a href="/letters/new">Create note</a>
-          <form class="form-top" action="/letters/list/search" method="POST">
-            <input class="size-form" type="text" name="search" placeholder="Title or user">
-            <button class="size-form-two letter-form" id="search-button" type="submit">Search</button>
-          </form>
-          <form class="form-top" action="/letters/list" method="POST">
-            <select class="size-form letter-form" id="filter-select" name="filter">
-              <option value="All">All</option>
-              <option value="Experiences">Experiences</option>
-              <option value="Family">Family</option>
-              <option value="Friends">Friends</option>
-              <option value="Lovers">Lovers</option>
-              <option value="Me">Me</option>
-              <option value="Objects">Objects</option>
-              <option value="Places">Places</option>
-              <option value="Others">Others</option>
-            </select>
-            <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
-          </form>
-          {{/if}}
-          {{/if}}
-          {{#if letters}}
-          <ul class="center-ul">
-            {{#each letters}}
-            <li class="letters-list">
-              <a href="/letters/{{this.id}}">{{this.receiver}}</a>
-              {{#if ../filter}}
-              {{else}}
-              {{this.ambit}}
-              {{/if}}
-              {{#if challenge}}
-              - Votes : {{this.votes}}
-              {{/if}}
-            </li>
-            {{/each}}
-          </ul>
-          {{else}}
-          <p>No notes yet</p>
-          {{/if}}
+  <div class="padding-left-list text-align-left">
+    <p>{{challenge.ambit}}</p>
+    <p class="tittle-bold">{{challenge.objective}}</p>
+  </div>
+    <p class="color-white-no-underline">Created by: {{challenge.creator.username}}</p>
+    <a class="color-white" href="/challenges/{{challenge.id}}/new">Create a note for this challenge</a>
+  {{/if}}
+  <h1 class="h1-list padding-4">Notes {{#if filter}} - {{filter}} {{/if}}</h1>
+  {{#if challenges}}
+  {{else}}
+  {{#if challenge}}
+  {{else}}
+  <a href="/letters/new">Create note</a>
+  <form class="form-top" action="/letters/list/search" method="POST">
+    <input class="size-form" type="text" name="search" placeholder="Title or user">
+    <button class="size-form-two letter-form" id="search-button" type="submit">Search</button>
+  </form>
+  <form class="form-top" action="/letters/list" method="POST">
+    <select class="size-form letter-form" id="filter-select" name="filter">
+      <option value="All">All</option>
+      <option value="Experiences">Experiences</option>
+      <option value="Family">Family</option>
+      <option value="Friends">Friends</option>
+      <option value="Lovers">Lovers</option>
+      <option value="Me">Me</option>
+      <option value="Objects">Objects</option>
+      <option value="Places">Places</option>
+      <option value="Others">Others</option>
+    </select>
+    <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
+  </form>
+  {{/if}}
+  {{/if}}
+  {{#if letters}}
+  <ul class="center-ul">
+    {{#each letters}}
+    <li class="letters-list">
+      <a href="/letters/{{this.id}}">{{this.receiver}}</a>
+      {{#if ../filter}}
+      {{else}}
+      {{this.ambit}}
+      {{/if}}
+      {{#if challenge}}
+      - Votes : {{this.votes}}
+      {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <p>No notes yet</p>
+  {{/if}}
 </div>

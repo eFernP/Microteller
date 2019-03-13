@@ -962,3 +962,29 @@ padding-top: 9vh;
 .padding-bottom-mychallenges{
   margin-bottom: 1vh;
 }
+
+/* Challenges details */
+
+.padding-left-list{
+  padding-left: 6vh;
+  padding-top: 3vh;
+}
+
+.tittle-bold{
+  font-weight: bold;
+  font-size: 4.5vh;
+  padding-bottom: 5vh;
+}
+
+.color-white-no-underline{
+  color: white;
+  padding-bottom: 2vh;
+}
+
+.padding-4{
+  padding-top: 3vh;
+}
+
+.color-white-especial {
+  color: white;
+}
