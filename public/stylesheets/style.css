@@ -727,3 +727,26 @@ padding-top: 9vh;
 .padding-bottom-2{
   padding-bottom: 5vh;
 }
+
+/*Create challengue */
+
+.letter-size-create {
+  margin-right: -0.7vh;
+  padding: 1.2vh 2vh 1.6vh;
+  border: none;
+}
+
+.letter-size-create-2 {
+  width: 24vh;
+  padding-left: 2vh;
+  border: none;
+  border-left: solid 2px #fff;
+}
+
+.prueba {
+  border: solid 2px #fff;
+  width: 39vh;
+  margin: 0 auto 25px;
+  height: 7.4vh;
+  border-radius: 7px;
+}

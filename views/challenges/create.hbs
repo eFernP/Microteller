@@ -1,22 +1,23 @@
 <div class="padding-global text-align-center">
-  <h1>Create challengue</h1>
+  <h1 class="h1-list">Create challengue</h1>
   <form action="/challenges/new" method="POST">
-
-    <label for="">Ambit:</label>
-    <select class="size-form letter-form" id="size-select" name="ambit">
-      <option value="Experiences">Experiences</option>
-      <option value="Family">Family</option>
-      <option value="Friends">Friends</option>
-      <option value="Lovers">Lovers</option>
-      <option value="Me">Me</option>
-      <option value="Objects">Objects</option>
-      <option value="Places">Places</option>
-      <option value="Others">Others</option>
-    </select>
+    <div class="prueba">
+      <label class=" letter-size-create size-form letter-form " for="">Ambit:</label>
+      <select class="letter-size-create-2 size-form-two letter-form" id="size-select" name="ambit">
+        <option value="Experiences">Experiences</option>
+        <option value="Family">Family</option>
+        <option value="Friends">Friends</option>
+        <option value="Lovers">Lovers</option>
+        <option value="Me">Me</option>
+        <option value="Objects">Objects</option>
+        <option value="Places">Places</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
 
     <div>
       <label for="">Explain what has to be expressed in the notes:</label>
-      <input type="text" name="objective">
+      <input type="text" name="objective" maxlength="60">
     </div>
 
   {{> flash}}
