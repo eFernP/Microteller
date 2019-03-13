@@ -65,7 +65,7 @@ router.get('/challenges/list/search/:search', requireUser, async (req, res, next
     const user = await User.find({username: {"$regex": search, "$options": 'i'}});
     challenges = await Challenge.find({objective: {"$regex": search, "$options": 'i'}});
     if(user){
-      user.forEach(async e=>{
+      for (e of user){
         let challengesUserFound =  await Challenge.find({creator:e.id});
         challengesUserFound.forEach(e=>{
           let inChallenges =false;
@@ -78,7 +78,7 @@ router.get('/challenges/list/search/:search', requireUser, async (req, res, next
             challenges.push(e);
           }
         });
-      })
+      }
     }
     challenges = reverseArray(challenges);
     res.render('challenges/list', {challenges});

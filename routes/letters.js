@@ -46,7 +46,7 @@ router.get('/list/search/:search', requireUser, async (req, res, next) => {
     const user = await User.find({username: {"$regex": search, "$options": 'i'}});
     letters = await Letter.find({receiver: {"$regex": search, "$options": 'i'}, lastLetter:null});
     if(user){
-      user.forEach(async e=>{
+      for(e of user){
         let lettersUserFound =  await Letter.find({creator:e.id, publicCreator: 'true', lastLetter:null});
         lettersUserFound.forEach(e=>{
           let inLetters =false;
@@ -59,7 +59,7 @@ router.get('/list/search/:search', requireUser, async (req, res, next) => {
             letters.push(e);
           }
         });
-      })
+      }
     }
     letters = reverseArray(letters);
     res.render('letters/list', { letters});
@@ -150,12 +150,12 @@ router.get('/favorites', requireUser, async (req, res, next) => {
   try {
     const user = await User.findById(_id);
     let letters = [];
-    user.favorites.forEach(async(id)=>{
-      const letter = await Letter.findById(id);
+    for(favorite of user.favorites){
+      const letter = await Letter.findById(favorite);
       if(letter){
         letters.push(letter);
       }
-    });
+    } 
     letters = reverseArray(letters);
     res.render('letters/favorites', { letters });
   } catch (error) {
@@ -385,8 +385,10 @@ router.post('/:id/add-favorite', requireUser, async (req, res, next) => {
   const {id} = req.params;
   const {_id} = req.session.currentUser;
   try {
-    await User.findByIdAndUpdate(_id, {$push:{favorites:id}});
+    const userUpdated = await User.findByIdAndUpdate(_id, {$push:{favorites:id}}, {new:true});
+    req.session.currentUser = userUpdated;
     res.redirect(`/letters/${id}`);
+
   } catch (error) {
     next(error);
   };
