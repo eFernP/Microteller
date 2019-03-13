@@ -1,24 +1,24 @@
 <div class="padding-global">
-<h2>A note for: {{letter.receiver}} - {{letter.ambit}}</h2>
-<form action="/letters/{{letter._id}}/continue" method="POST">
-  <div>
-  <label for="">Text</label>
-  <input type="text" name="text" maxlength="150">
-  </div>
+  <h1 class="h1-login">A note for: {{letter.receiver}} - {{letter.ambit}}</h1>
+  <form action="/letters/{{letter._id}}/continue" method="POST">
+    <div class="padding-text text-align-center">
+      <label class="text-size-label" for="">Text</label><br>
+      <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
+    </div>
+    <input type="text" name="receiver" value="{{letter.receiver}}" hidden>
+    <input type="text" name="set" value="{{letter.set}}" hidden>
+    <div class="padding-x padding-text text-align-center">
+      <label class="text-size-label" for="">Do you want to send your note to somebody?</label>
+      <input class="input-size" type="text" name="email" placeholder="Email" maxlength="50">
+    </div>
+    <div class="padding-boton">
+      <button class=" padding-text button-login text-size-label" type="submit">Create note</button>
+    </div>
+  </form>
 
-<input type="text" name="receiver" value="{{letter.receiver}}" hidden>
-<input type="text" name="set" value="{{letter.set}}" hidden>
-  <div>
-  <label for="">Do you want to send your note to somebody?</label>
-  <input type="text" name="email" placeholder="Email" maxlength="50">
-  </div>
-
-  <button type="submit">Create note</button>
-</form>
-
-{{#if data.messages.length}}
-<ul class="validation">
-  {{#each data.messages}}<li>{{this}}</li>{{/each}}
-</ul>
-{{/if}}
+  {{#if data.messages.length}}
+  <ul class="validation">
+    {{#each data.messages}}<li>{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
 </div>
