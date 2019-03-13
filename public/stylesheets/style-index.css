@@ -157,3 +157,52 @@
 .button-home-div a{
   margin-top: 20px;
 }
+
+.call-action{
+  position: fixed;
+  top: 12vh;
+  right: 1vh;
+  padding: 7px 20px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 6vh;
+  font-weight: bold; 
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+
+}
+
+.mc{
+  top: 35vh;
+}
+
+.no-notes{
+  text-align: center;
+  color:white;
+}
+
+.button-create{
+  margin: 20px;
+  border: none;
+  padding: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 3vh;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.errors-text{
+  font-weight: 200;
+  margin:50px;
+  color: white;
+}

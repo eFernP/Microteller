@@ -1,7 +1,7 @@
 <div class="padding-global text-align-center">
   {{!-- <a href="/letters/list">See all notes</a> --}}
   <h1 class="padding-top-list-challengues h1-list">Challenges {{#if filter}} - {{filter}} {{/if}}</h1>
-   <a href="/challenges/new">Create challenge</a>
+   <a href="/challenges/new" class="call-action">+</a>
   <form class="form-top" action="/challenges/list/search" method="POST">
     <input class="size-form" type="text" name="search" placeholder="Title or user">
     <button class="size-form-two letter-form" id="search-button" type="submit">Search</button>
@@ -33,6 +33,6 @@
     {{/each}}
   </ul>
   {{else}}
-  <p>No challenges yet</p>
+  <p class="no-notes">No challenges yet</p>
   {{/if}}
 </div>
