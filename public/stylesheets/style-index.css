@@ -40,8 +40,23 @@
 
 .text-index{
   color:white;
+  text-align: center;
 }
 
-.text-index-div{
-  
+.text-index-div a{
+  text-align: center;
+}
+
+.text-index-div a{
+  text-align: center;
+}
+
+
+.signup-link{
+  display: flex;
+  justify-content: center;
+}
+
+.info-link{
+  padding-top: 200px;
 }
