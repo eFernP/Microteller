@@ -23,6 +23,15 @@
         <a href="/letters/{{this.id}}" class="note-type">{{this.receiver}}</a> <br> {{this.ambit}}
         {{#if this.challenge}} - Votes: {{this.votes}} {{/if}}
       </li>
+      <div class="visits-favs-list">
+        <p>
+          <img class="button-size" src="/images/view-dark.png" alt="views">
+          : {{this.visits}}
+        </p>
+        <p>
+          <img class="button-size" id="heart-img" src="/images/heart-dark.png" alt="heart">
+          :{{this.favorites}}</p>
+      </div>
       {{/each}}
     </ul>
     {{else}}
