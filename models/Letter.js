@@ -14,7 +14,8 @@ const letterSchema = new Schema({
     enum: ['Experiences', 'Family', 'Friends', 'Lovers', 'Me', 'Objects', 'Places', 'Others']
   },
   receiver: {
-    type: String
+    type: String,
+    required: true
   },
   receiverEmail: {
     type: String

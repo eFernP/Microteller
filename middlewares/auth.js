@@ -25,9 +25,15 @@ module.exports = {
   },
 
   requireFieldsLetter (req, res, next) {
-    const {text} = req.body;
+    const {receiver, text} = req.body;
     if (!text) {
       req.flash('validation', 'You have to write a letter');
+      res.redirect(`/letters${req.path}`);
+      return;
+    }
+
+    if(!receiver){
+      req.flash('validation', 'Fill the first field');
       res.redirect(`/letters${req.path}`);
       return;
     }
