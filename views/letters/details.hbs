@@ -4,7 +4,7 @@
     <div class="visits-favs">
       <p class="visits">
         <img class="button-size" src="/images/view.png" alt="views">
-        : {{letter.visits}}
+        {{letter.visits}}
       </p>
       <div id="ajax-form">
         <input type="text" class="ajax-id" id={{letter.id}} hidden></input>
@@ -13,7 +13,7 @@
           {{else}}
           <p id="empty-heart"><img class="button-size" id="heart-img" src="/images/empty-heart.png" alt="heart">
             {{/if}}
-            : <span id="fav-number">{{letter.favorites}}</span></p>
+            <span id="fav-number">{{letter.favorites}}</span></p>
       </div>
     </div>
     <div>
