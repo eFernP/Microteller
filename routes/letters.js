@@ -98,9 +98,6 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
   let transporter = emailTransporter();
 
   try {
-    if (!receiver){
-      letter.receiver = "Unknown";
-    }
     if(challenge){
       letter.challenge = challenge;
       letter.votes = 0;
