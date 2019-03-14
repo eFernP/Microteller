@@ -4,34 +4,34 @@
     <a href="/letters/new" class="call-action">+</a>
     {{#if letters}}
     <form class="form-top" action="/letters/my-letters" method="POST">
-            <select class="size-form letter-form" id="filter-select" name="filter">
-              <option value="All">All</option>
-              <option value="Experiences">Experiences</option>
-              <option value="Family">Family</option>
-              <option value="Friends">Friends</option>
-              <option value="Lovers">Lovers</option>
-              <option value="Me">Me</option>
-              <option value="Objects">Objects</option>
-              <option value="Places">Places</option>
-              <option value="Others">Others</option>
-            </select>
-            <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
-          </form>
+      <select class="size-form letter-form" id="filter-select" name="filter">
+        <option value="All">All</option>
+        <option value="Experiences">Experiences</option>
+        <option value="Family">Family</option>
+        <option value="Friends">Friends</option>
+        <option value="Lovers">Lovers</option>
+        <option value="Me">Me</option>
+        <option value="Objects">Objects</option>
+        <option value="Places">Places</option>
+        <option value="Others">Others</option>
+      </select>
+      <button class="size-form-two letter-form" id="filter-button" type="submit">Filter</button>
+    </form>
     <ul class="center-ul">
       {{#each letters}}
       <li class="letters-list">
         <a href="/letters/{{this.id}}" class="note-type">{{this.receiver}}</a> <br> {{this.ambit}}
         {{#if this.challenge}} - Votes: {{this.votes}} {{/if}}
+        <div class="visits-favs-list">
+          <p>
+            <img class="button-size" src="/images/view-dark.png" alt="views">
+            {{this.visits}}
+          </p>
+          <p>
+            <img class="button-size" id="heart-img" src="/images/heart-dark.png" alt="heart">
+            {{this.favorites}}</p>
+        </div>
       </li>
-      <div class="visits-favs-list">
-        <p>
-          <img class="button-size" src="/images/view-dark.png" alt="views">
-          : {{this.visits}}
-        </p>
-        <p>
-          <img class="button-size" id="heart-img" src="/images/heart-dark.png" alt="heart">
-          :{{this.favorites}}</p>
-      </div>
       {{/each}}
     </ul>
     {{else}}
