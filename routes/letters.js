@@ -139,9 +139,9 @@ router.post('/new', requireUser, async (req, res, next) => {
       await transporter.sendMail({
         from: '"Just Say It" <app.justsayit@gmail.com>',
         to: email, 
-        subject: 'Tienes una carta', 
+        subject: 'Tienes una nota', 
         text,
-        html: `Alguien te ha enviado un mensaje desde Just Say It: "${text}"`
+        html: `Alguien te ha escrito una nota desde Just Say It:<br>"${text}"`
       });
     }
     if(!challenge){
@@ -417,9 +417,9 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
         await transporter.sendMail({
           from: '"Just Say It" <app.justsayit@gmail.com>',
           to: email, 
-          subject: 'Tienes una carta', 
+          subject: 'Tienes una nota', 
           text,
-          html: `Alguien te ha enviado un mensaje desde Just Say It: "${text}"`
+          html: `Alguien te ha escrito una nota desde Just Say It:<br>"${text}"`
         });
       }
     res.redirect(`/letters/${newLetter.id}`);
