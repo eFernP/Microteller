@@ -137,11 +137,11 @@ router.post('/new', requireUser, async (req, res, next) => {
     let reg = /\S+@\S+\.\S+/;
     if(email && reg.test(email)){
       await transporter.sendMail({
-        from: '"Ester" <esterfern95@gmail.com>',
+        from: '"Just Say It" <app.justsayit@gmail.com>',
         to: email, 
         subject: 'Tienes una carta', 
         text,
-        html: `<b>${text}</b>`
+        html: `Alguien te ha enviado un mensaje desde Just Say It: "${text}"`
       });
     }
     if(!challenge){
@@ -415,11 +415,11 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
       if(email && reg.test(email)){
         let transporter = emailTransporter();
         await transporter.sendMail({
-          from: '"Ester" <esterfern95@gmail.com>',
+          from: '"Just Say It" <app.justsayit@gmail.com>',
           to: email, 
           subject: 'Tienes una carta', 
           text,
-          html: `<b>${text}</b>`
+          html: `Alguien te ha enviado un mensaje desde Just Say It: "${text}"`
         });
       }
     res.redirect(`/letters/${newLetter.id}`);
