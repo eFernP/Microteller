@@ -63,7 +63,7 @@
     <form action="/letters/{{letter._id}}/comment" method="POST">
       <input class="input-size-details" type="text" name="text" maxlength="100">
       <div class="text-align-right">
-        <button class="padding-top button-login" type="submit">Add comment</button>
+        <button class="padding-top button-login padding-global-finish" type="submit">Add comment</button>
       </div>
     </form>
     {{#if isCreator}}
@@ -90,4 +90,3 @@
     {{/if}}
     {{!-- {{> flash}} --}}
   </div>
-  <div class="padding-global-finish"></div>
