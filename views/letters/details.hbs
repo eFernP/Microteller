@@ -1,10 +1,24 @@
 <div class="padding-global padding-all-details">
   <p class="titulo-p-details">{{letter.receiver}} - {{letter.ambit}}</p>
   <div>
+    <div class="visits-favs">
+      <p class="visits">
+        <img class="button-size" src="/images/view.png" alt="views">
+        : {{letter.visits}}
+      </p>
+      <div id="ajax-form">
+        <input type="text" class="ajax-id" id={{letter.id}} hidden></input>
+        {{#if isFavorite}}
+        <p id="full-heart"><img class="button-size" id="heart-img" src="/images/full-heart.png" alt="heart">
+          {{else}}
+          <p id="empty-heart"><img class="button-size" id="heart-img" src="/images/empty-heart.png" alt="heart">
+            {{/if}}
+            : <span id="fav-number">{{letter.favorites}}</span></p>
+      </div>
+    </div>
     <div>
       {{#if letter.challenge}}
-      <p class="sizeandcolor">This note is for this <a class="sizeandcolor color-white"
-          href="/challenges/{{challenge.id}}">challenge</a></p>
+      <p class="sizeandcolor">This note is for this <a class="sizeandcolor color-white" href="/challenges/{{challenge.id}}">challenge</a></p>
       {{/if}}
     </div>
 
@@ -19,15 +33,16 @@
         <p class="sizeandcolor">Votes: {{letter.votes}}</p>
         {{/if}}
       </div>
-      {{#if isFavorite}}
-      {{else}}
+
+
       <div class="padding-top">
-        <form action="/letters/{{letter._id}}/add-favorite" method="POST">
-          <button class="remove-background position-absolute-details" type="submit"><img class="button-size"
-              src="/images/favorite-heart-button.png" alt=""></button>
-        </form>
+
+        {{!-- <form action="/letters/{{letter._id}}/add-favorite" method="POST">
+          <button class="remove-background position-absolute-details" type="submit"><img class="button-size" src="/images/favorite-heart-button.png"
+              alt=""></button>
+        </form> --}}
       </div>
-      {{/if}}
+
     </div>
     <div class="letter-detail">
       <p class="p-limit note-type">{{letter.text}}</p>
@@ -35,12 +50,12 @@
 
     <div class="text-align-center padding-top-3 container-flex">
       {{#if letter.lastLetter}}
-      <a class="sizeandcolor x" href="/letters/{{letter.lastLetter}}"><img class="size-imagen"
-          src="/images/left-arrow.png" alt=""></a>
+      <a class="sizeandcolor x" href="/letters/{{letter.lastLetter}}"><img class="size-imagen" src="/images/left-arrow.png"
+          alt=""></a>
       {{/if}}
       {{#if letter.nextLetter}}
-      <a class="sizeandcolor" href="/letters/{{letter.nextLetter}}"><img class="size-imagen"
-          src="/images/right-arrow.png" alt=""></a>
+      <a class="sizeandcolor" href="/letters/{{letter.nextLetter}}"><img class="size-imagen" src="/images/right-arrow.png"
+          alt=""></a>
       {{/if}}
     </div>
 
@@ -73,13 +88,13 @@
     </div>
     <div class="float-details">
       <div>
-        <a class="font-size-4vh" href="/letters/{{letter._id}}/edit"><img class="size-image-details"
-            src="/images/edit.png" alt=""></a>
+        <a class="font-size-4vh" href="/letters/{{letter._id}}/edit"><img class="size-image-details" src="/images/edit.png"
+            alt=""></a>
       </div>
       <div class="padding-div-white-details"></div>
       <div>
-        <a class="font-size-4vh" href="/letters/{{letter._id}}/delete"><img class="size-image-details"
-            src="/images/delete.png" alt=""></a>
+        <a class="font-size-4vh" href="/letters/{{letter._id}}/delete"><img class="size-image-details" src="/images/delete.png"
+            alt=""></a>
       </div>
     </div>
     {{/if}}

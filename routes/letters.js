@@ -6,7 +6,7 @@ const User = require('../models/User');
 const Letter = require('../models/Letter');
 const Comment = require('../models/Comment');
 const Challenge = require('../models/Challenge');
-const { requireAnon, requireUser, requireFields, requireFieldsLetter } = require('../middlewares/auth');
+const { requireAnon, requireUser, requireFields, requireFieldsNewLetter, requireFieldsLetter } = require('../middlewares/auth');
 
 /* GET home page. */
 
@@ -86,7 +86,7 @@ router.get('/new', requireUser, function (req, res, next) {
   res.render('letters/create', {data});
 });
 
-router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => {
+router.post('/new', requireUser, requireFieldsNewLetter, async (req, res, next) => {
   const {text, ambit, receiver, email, challenge, publicUser} = req.body;
   const letter = {
     text,
@@ -103,6 +103,8 @@ router.post('/new', requireUser, requireFieldsLetter, async (req, res, next) => 
       letter.votes = 0;
     }
     letter.creator = req.session.currentUser._id;
+    letter.visits = 0;
+    letter.favorites = 0;
     if(publicUser === 'true'){
       letter.publicCreator = true;
     }else{
@@ -193,6 +195,41 @@ router.get('/my-letters/:filter', requireUser, async (req, res, next) => {
   }
 });
 
+router.post('/add-favorite', requireUser, async (req, res, next) => {
+  const {id} = req.body;
+  const {_id} = req.session.currentUser;
+  try {
+    const userUpdated = await User.findByIdAndUpdate(_id, {$push:{favorites:id}}, {new:true});
+    const letter = await Letter.findById(id);
+    let favorites = letter.favorites;
+    favorites++;
+    await Letter.findByIdAndUpdate(id, {favorites});
+    req.session.currentUser = userUpdated;
+    res.json(userUpdated);
+
+  } catch (error) {
+    next(error);
+  };
+});
+
+router.post('/remove-favorite', requireUser, async (req, res, next) => {
+  const {id} = req.body;
+  const {_id} = req.session.currentUser;
+  try {
+    const userUpdated = await User.findByIdAndUpdate(_id, {$pull:{favorites:id}}, {new:true});
+    const letter = await Letter.findById(id);
+    let favorites = letter.favorites;
+    favorites--;
+    await Letter.findByIdAndUpdate(id, {favorites});
+    req.session.currentUser = userUpdated;
+    res.json(userUpdated);
+
+  } catch (error) {
+    next(error);
+  };
+});
+
+
 router.get('/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
@@ -203,6 +240,9 @@ router.get('/:id', requireUser, async (req, res, next) => {
     const letter = await Letter.findById(id).populate('creator');
     const comments = await Comment.find({letter: id}).populate('creator');
     const challenge = await Challenge.findById(letter.challenge);
+    let visits = letter.visits;
+    visits++;
+    await Letter.findByIdAndUpdate(id, {visits});
     let isCreator = false;
     let hasVoted = false;
     let isFavorite = false;
@@ -311,6 +351,8 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
         publicCreator: letterParent.publicCreator
       };
       letter.creator = _id;
+      letter.visits = 0;
+      letter.favorites = 0;
       if(letterParent.challenge){
         letter.challenge = letterParent.challenge;
         letter.votes = 0;
@@ -378,18 +420,20 @@ router.post('/:id/vote', requireUser, async (req, res, next) => {
   };
 });
 
-router.post('/:id/add-favorite', requireUser, async (req, res, next) => {
-  const {id} = req.params;
-  const {_id} = req.session.currentUser;
-  try {
-    const userUpdated = await User.findByIdAndUpdate(_id, {$push:{favorites:id}}, {new:true});
-    req.session.currentUser = userUpdated;
-    res.redirect(`/letters/${id}`);
 
-  } catch (error) {
-    next(error);
-  };
-});
+
+// router.post('/:id/add-favorite', requireUser, async (req, res, next) => {
+//   const {id} = req.params;
+//   const {_id} = req.session.currentUser;
+//   try {
+//     const userUpdated = await User.findByIdAndUpdate(_id, {$push:{favorites:id}}, {new:true});
+//     req.session.currentUser = userUpdated;
+//     res.redirect(`/letters/${id}`);
+
+//   } catch (error) {
+//     next(error);
+//   };
+// });
 
 router.post('/:id/comment', requireUser, async (req, res, next) => {
   const {text} = req.body;

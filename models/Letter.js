@@ -45,9 +45,18 @@ const letterSchema = new Schema({
     type: ObjectId,
     ref: 'Challenge'
   },
+  visits: {
+    type: Number,
+    required: true
+  },
+  favorites: {
+    type: Number,
+    required:true
+  },
   votes: {
     type: Number,
   }
+
 });
 
 const Letter = mongoose.model('Letter', letterSchema);

@@ -227,3 +227,40 @@
 .short-button{
   width: 15vh;
 }
+
+.visits-favs{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5vh;
+}
+
+.visits-favs img{
+  width: 1.5em;
+}
+
+.visits-favs p{
+  color: white;
+  font-size: 3vh;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+
+.visits-favs-list{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 10px;
+  margin-top:10px;
+  
+}
+
+.visits-favs-list img{
+  width: 1.3em;
+}
+
+.visits-favs-list p{
+  color: #5a3f45;
+  font-size: 2.5vh;
+  font-weight: bold;
+  margin-right: 10px;
+}
