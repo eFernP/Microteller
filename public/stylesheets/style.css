@@ -444,9 +444,9 @@ nav #menu-toggle {
 /* Create note */
 
 .tamanno-imput-create {
-  width: 42vh;
+  width: 300px;
   height: 20vh;
-  max-width: 42vh;
+  max-width: 300px;
   max-height: 20vh;
   padding: 5px;
       border: 1px solid white;

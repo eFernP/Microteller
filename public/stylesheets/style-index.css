@@ -163,14 +163,14 @@
 
 .call-action{
   position: fixed;
-  top: 12vh;
-  right: 1vh;
-  padding: 7px 20px;
+  bottom: 1.5vh;
+  right: 1.5vh;
+  padding: 5px 16px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-image: url(/images/fondo-boton.png);
   background-size: cover;
-  border-radius: 8px;
+  border-radius: 50%;
   color: white;
   cursor: pointer;
   font-size: 6vh;
@@ -178,10 +178,6 @@
   font-family: 'Roboto', sans-serif;
   text-align: center;
 
-}
-
-.mc{
-  top: 35vh;
 }
 
 .no-notes{
