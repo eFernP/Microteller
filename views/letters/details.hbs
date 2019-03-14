@@ -30,7 +30,7 @@
     <div class="flex-box-details">
       <div>
         {{#if letter.challenge}}
-        <p class="sizeandcolor">Votes: {{letter.votes}}</p>
+        <p class="sizeandcolor">Votes: <span id ="votes-number">{{letter.votes}}</span></p>
         {{/if}}
       </div>
 
@@ -63,9 +63,13 @@
       {{#if letter.challenge}}
       {{#if hasVoted}}
       {{else}}
-      <form action="/letters/{{letter._id}}/vote" method="POST">
+      <div id="vote-form">
+        <input type="text" class="vote-id" id={{letter.id}} hidden></input>
+        <p id="vote-button" class="button-login">Vote</p>
+      </div>
+      {{!-- <form action="/letters/{{letter._id}}/vote" method="POST">
         <button class="padding-top button-details" type="submit">Vote</button>
-      </form>
+      </form> --}}
       {{/if}}
       {{/if}}
     </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
+const ObjectId = require('mongoose').Types.ObjectId;
 const router = express.Router();
 
 const User = require('../models/User');
@@ -86,7 +87,7 @@ router.get('/new', requireUser, function (req, res, next) {
   res.render('letters/create', {data});
 });
 
-router.post('/new', requireUser, requireFieldsNewLetter, async (req, res, next) => {
+router.post('/new', requireUser, async (req, res, next) => {
   const {text, ambit, receiver, email, challenge, publicUser} = req.body;
   const letter = {
     text,
@@ -98,6 +99,27 @@ router.post('/new', requireUser, requireFieldsNewLetter, async (req, res, next) 
   let transporter = emailTransporter();
 
   try {
+
+    if(!receiver){
+      req.flash('validation', 'Fill the first field');
+      if(challenge){
+        res.redirect(`/challenges/${challenge}/new`);
+      }else{
+        res.redirect(`/letters/new`);
+      }
+      return;
+    }
+
+    if(!text){
+      req.flash('validation', 'Fill the text field');
+      if(challenge){
+        res.redirect(`/challenges/${challenge}/new`);
+      }else{
+        res.redirect(`/letters/new`);
+      }
+      return;
+    }
+
     if(challenge){
       letter.challenge = challenge;
       letter.votes = 0;
@@ -212,6 +234,21 @@ router.post('/add-favorite', requireUser, async (req, res, next) => {
   };
 });
 
+router.post('/add-vote', requireUser, async (req, res, next) => {
+  const {id} = req.body;
+  const {_id} = req.session.currentUser;
+  try {
+    let letter = await Letter.findById(id);
+    const user = await User.findByIdAndUpdate(_id, {$push:{voted:id}});
+    let votes = letter.votes;
+    votes++;
+    letter = await Letter.findByIdAndUpdate(id, {votes});
+    res.json(votes);
+  } catch (error) {
+    next(error);
+  };
+});
+
 router.post('/remove-favorite', requireUser, async (req, res, next) => {
   const {id} = req.body;
   const {_id} = req.session.currentUser;
@@ -236,6 +273,9 @@ router.get('/:id', requireUser, async (req, res, next) => {
   const data = {
     messages: req.flash('validation')
   };
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     const letter = await Letter.findById(id).populate('creator');
     const comments = await Comment.find({letter: id}).populate('creator');
@@ -281,6 +321,9 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
   const data = {
     messages: req.flash('validation')
   };
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     const letter = await Letter.findById(id);
     if (!letter.creator.equals(_id)) {
@@ -297,7 +340,9 @@ router.post('/:id/edit', requireUser, requireFieldsLetter, async (req, res, next
   const {text} = req.body;
   const {id} = req.params;
   const { _id } = req.session.currentUser;
-
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     const letter = await Letter.findById(id);
     if (!letter.creator.equals(_id)) {
@@ -317,6 +362,9 @@ router.get('/:id/continue', requireUser, async (req, res, next) => {
   const data = {
     messages: req.flash('validation')
   };
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     const letter = await Letter.findById(id);
     if (!letter.creator.equals(_id)) {
@@ -333,7 +381,9 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
   const { text, receiver, set, email } = req.body;
   const { id } = req.params;
   const { _id } = req.session.currentUser;
-
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
       const letterParent = await Letter.findById(id); 
       const lastLetter = await Letter.findOne({set, nextLetter: null});
@@ -377,6 +427,9 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
 });
 
 router.get('/:id/delete', requireUser, async (req, res, next) => {
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   const { id } = req.params;
   res.render('letters/delete', { id });
 });
@@ -384,6 +437,9 @@ router.get('/:id/delete', requireUser, async (req, res, next) => {
 router.post('/:id/delete', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     const letter = await Letter.findById(id);
     if (!letter.creator.equals(_id)) {
@@ -407,18 +463,18 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
   };
 });
 
-router.post('/:id/vote', requireUser, async (req, res, next) => {
-  const {id} = req.params;
-  const {_id} = req.session.currentUser;
-  try {
-    const letter = await Letter.findById(id);
-    const user = await User.findByIdAndUpdate(_id, {$push:{voted:id}});
-    await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
-    res.redirect(`/letters/${id}`);
-  } catch (error) {
-    next(error);
-  };
-});
+// router.post('/:id/vote', requireUser, async (req, res, next) => {
+//   const {id} = req.params;
+//   const {_id} = req.session.currentUser;
+//   try {
+//     const letter = await Letter.findById(id);
+//     const user = await User.findByIdAndUpdate(_id, {$push:{voted:id}});
+//     await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
+//     res.redirect(`/letters/${id}`);
+//   } catch (error) {
+//     next(error);
+//   };
+// });
 
 
 
@@ -440,6 +496,9 @@ router.post('/:id/comment', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const comment = {text};
 
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     if(!text){
       res.redirect(`/letters/${id}`);

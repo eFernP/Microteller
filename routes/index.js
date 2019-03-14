@@ -166,6 +166,9 @@ router.get('/challenges/my-challenges/:filter', requireUser, async (req, res, ne
 
 router.get('/challenges/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   try {
     const challenge = await Challenge.findById(id).populate('creator');
     const letters = await Letter.find({ challenge: id, lastLetter: null });
@@ -176,9 +179,15 @@ router.get('/challenges/:id', requireUser, async (req, res, next) => {
 });
 
 router.get('/challenges/:id/new', requireUser, async (req, res, next) => {
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   const { id } = req.params;
   const challenge = await Challenge.findById(id);
-  res.render('letters/create', { challenge });
+  const data = {
+    messages: req.flash('validation')
+  };
+  res.render('letters/create', { challenge, data });
 });
 
 router.get('/account/edit', requireUser, async (req, res, next) => {
