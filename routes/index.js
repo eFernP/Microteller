@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const ObjectId = require('mongoose').Types.ObjectId;
 const router = express.Router();
 const { requireAnon, requireUser, requireFields, requireUserEditFields } = require('../middlewares/auth');
 const User = require('../models/User');
@@ -179,14 +180,14 @@ router.get('/challenges/:id', requireUser, async (req, res, next) => {
 });
 
 router.get('/challenges/:id/new', requireUser, async (req, res, next) => {
-  if(!ObjectId.isValid(id)){
-    return next();
-  }
   const { id } = req.params;
   const challenge = await Challenge.findById(id);
   const data = {
     messages: req.flash('validation')
   };
+  if(!ObjectId.isValid(id)){
+    return next();
+  }
   res.render('letters/create', { challenge, data });
 });
 

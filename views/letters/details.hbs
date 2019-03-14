@@ -30,7 +30,7 @@
     <div class="flex-box-details">
       <div>
         {{#if letter.challenge}}
-        <p class="sizeandcolor">Votes: <span id ="votes-number">{{letter.votes}}</span></p>
+        <p class="sizeandcolor">Votes: <span id="votes-number">{{letter.votes}}</span></p>
         {{/if}}
       </div>
 
@@ -64,7 +64,6 @@
       {{#if hasVoted}}
       {{else}}
       <div id="vote-form">
-        <input type="text" class="vote-id" id={{letter.id}} hidden></input>
         <p id="vote-button" class="button-login">Vote</p>
       </div>
       {{!-- <form action="/letters/{{letter._id}}/vote" method="POST">
@@ -78,13 +77,18 @@
       {{#each comments}}
       <p class="font-size-4vh">{{this.creator.username}} : {{this.text}}</p>
       {{/each}}
+      <p class="font-size-4vh" id="ajax-comments"></p>
     </div>
-    <form action="/letters/{{letter._id}}/comment" method="POST">
+    <input class="input-size-details" id="comment-text" type="text" name="text" maxlength="100">
+    <div id="comment-form" class="button-comment">
+      <p id="comment-button" class="button-login">Add comment</p>
+    </div>
+    {{!-- <form action="/letters/{{letter._id}}/comment" method="POST">
       <input class="input-size-details" type="text" name="text" maxlength="100">
       <div class="text-align-right">
         <button class="padding-top button-login padding-global-finish" type="submit">Add comment</button>
       </div>
-    </form>
+    </form> --}}
     {{#if isCreator}}
     <div class="padding-topandbottom">
       <a class="color-white font-size-4vh" href="/letters/{{letter._id}}/continue">Add another note for the same person

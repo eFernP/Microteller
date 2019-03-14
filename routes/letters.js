@@ -267,6 +267,8 @@ router.post('/remove-favorite', requireUser, async (req, res, next) => {
 });
 
 
+
+
 router.get('/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
@@ -427,10 +429,10 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
 });
 
 router.get('/:id/delete', requireUser, async (req, res, next) => {
+  const { id } = req.params;
   if(!ObjectId.isValid(id)){
     return next();
   }
-  const { id } = req.params;
   res.render('letters/delete', { id });
 });
 
@@ -463,52 +465,22 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
   };
 });
 
-// router.post('/:id/vote', requireUser, async (req, res, next) => {
-//   const {id} = req.params;
-//   const {_id} = req.session.currentUser;
-//   try {
-//     const letter = await Letter.findById(id);
-//     const user = await User.findByIdAndUpdate(_id, {$push:{voted:id}});
-//     await Letter.findByIdAndUpdate(id, {votes: letter.votes+1});
-//     res.redirect(`/letters/${id}`);
-//   } catch (error) {
-//     next(error);
-//   };
-// });
-
-
-
-// router.post('/:id/add-favorite', requireUser, async (req, res, next) => {
-//   const {id} = req.params;
-//   const {_id} = req.session.currentUser;
-//   try {
-//     const userUpdated = await User.findByIdAndUpdate(_id, {$push:{favorites:id}}, {new:true});
-//     req.session.currentUser = userUpdated;
-//     res.redirect(`/letters/${id}`);
-
-//   } catch (error) {
-//     next(error);
-//   };
-// });
-
 router.post('/:id/comment', requireUser, async (req, res, next) => {
+  const {id} = req.params;
   const {text} = req.body;
-  const { id } = req.params;
   const comment = {text};
+  const {_id} = req.session.currentUser;
 
   if(!ObjectId.isValid(id)){
     return next();
   }
   try {
-    if(!text){
-      res.redirect(`/letters/${id}`);
-      return;
-    }
-
-    comment.creator = req.session.currentUser._id;
-    comment.letter = id
-    await Comment.create(comment);
-    res.redirect(`/letters/${id}`);
+    comment.creator = _id;
+    comment.letter = id;
+    const commentWritten = await Comment.create(comment);
+    const user = await User.findById(_id);
+    const infoResponse = [user.username, commentWritten.text];
+    res.json(infoResponse);
   } catch (error) {
     next(error);
   };

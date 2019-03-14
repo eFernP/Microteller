@@ -270,3 +270,14 @@
   font-weight: bold;
   padding-right: 10px;
 }
+
+.button-comment{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+#comment-button{
+  font-size: 3vh;
+  padding: 12px 6px;
+}
