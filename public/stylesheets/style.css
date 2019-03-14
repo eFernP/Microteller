@@ -992,3 +992,7 @@ padding-top: 9vh;
 .padding-global-finish {
   margin-bottom: 5vh;
 }
+
+option {
+  color:black;
+}
