@@ -501,8 +501,8 @@ function emailTransporter(){
   let transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'esterfern95@gmail.com',
-      pass: 'proyecto2'
+      user: 'app.justsayit@gmail.com',
+      pass: 'ironproyecto2'
     }
   });
 
