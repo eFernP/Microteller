@@ -996,3 +996,14 @@ padding-top: 9vh;
 option {
   color:black;
 }
+
+.validation{
+  text-align: center;
+  padding:2vh;
+
+}
+
+.message-validator{
+  color:rgb(255, 36, 109);
+  font-family: 'Roboto', sans-serif;
+}
