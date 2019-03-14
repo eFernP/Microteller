@@ -664,8 +664,9 @@ padding-top: 9vh;
 }
 
 .container-flex {
-  display: flex;
-  justify-content:space-between;
+  display: grid;
+  grid-template-areas: "left right";
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .container-flex-details {
@@ -679,6 +680,13 @@ padding-top: 9vh;
 
 .x {
   text-align: right;
+  grid-area: left;
+  justify-self: start;
+}
+
+.y {
+  grid-area: right;
+  justify-self: end;
 }
 
 .input-size-details {
