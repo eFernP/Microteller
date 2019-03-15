@@ -94,14 +94,12 @@ router.post('/new', requireUser, parser.single('image'), async (req, res, next) 
     text,
     ambit,
     receiver,
-    receiverEmail : email,
-    image:req.file.url
+    receiverEmail : email
   };
 
   let transporter = emailTransporter();
 
   try {
-
     if(!receiver){
       req.flash('validation', 'Fill the first field');
       if(challenge){
@@ -121,7 +119,9 @@ router.post('/new', requireUser, parser.single('image'), async (req, res, next) 
       }
       return;
     }
-
+    if(req.file){
+      letter.image = req.file.url;
+    }
     if(challenge){
       letter.challenge = challenge;
       letter.votes = 0;
@@ -402,8 +402,12 @@ router.post('/:id/continue', requireUser, parser.single('image'), requireFieldsL
         set : letterParent.set,
         lastLetter: lastLetter.id, 
         publicCreator: letterParent.publicCreator,
-        image: req.file.url
+        
       };
+
+      if(req.file){
+        letter.image = req.file.url;
+      }
       letter.creator = _id;
       letter.visits = 0;
       letter.favorites = 0;
