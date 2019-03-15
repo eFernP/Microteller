@@ -27,10 +27,11 @@
           <label class="text-size-label" for="">Text</label><br>
           <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
         </div>
-        <div>
-          <label class="text-size-label">Upload an image for your note background:</label>
-          <input type="file" name="image" class="image-input">
+        <div class="text-align-center display-fex-continue input-file-container">
+          <input class="input-file" id="my-file" type="file" name="image">
+          <label tabindex="0" for="my-file" class="input-file-trigger">Upload a background image</label>
         </div>
+        <p class="file-return"></p>
         <div class="padding-text">
           <label class="text-size-label" for="">Do you want to send your note to somebody?</label><br>
           <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">

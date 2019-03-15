@@ -1015,3 +1015,84 @@ option {
   color:rgb(255, 36, 109);
   font-family: 'Roboto', sans-serif;
 }
+
+.padding-top-continue{
+  margin-top:4vh;
+  margin-bottom: 2vh;
+}
+
+.imput-continue{
+  width: 40vh;
+  background: transparent;
+  margin-top: 3vh;
+}
+
+.input-file-container {
+  position: relative;
+} 
+.js .input-file-trigger {
+  border-radius: 20px;
+  display: block;
+  padding: 14px 45px;
+  background: none;
+  border: 1px solid white;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  margin-top: 4vh;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: none;
+  color: white;
+}
+
+.file-return {
+  margin: 0;
+  color:white;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.txtcenter {
+  margin-top: 4em;
+  font-size: .9em;
+  text-align: center;
+  color: #aaa;
+}
+.copy {
+  margin-top: 2em;
+}
+.copy a {
+  text-decoration: none;
+  color: #1ABC9C;
+}
+
+.display-fex-continue{
+  display: flex;
+  justify-content: center;
+}
