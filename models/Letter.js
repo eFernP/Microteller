@@ -55,6 +55,9 @@ const letterSchema = new Schema({
   },
   votes: {
     type: Number,
+  },
+  image: {
+    type: String
   }
 
 });

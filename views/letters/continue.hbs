@@ -1,12 +1,16 @@
 <div class="padding-global">
   <h1 class="h1-login">A note for: {{letter.receiver}} - {{letter.ambit}}</h1>
-  <form action="/letters/{{letter._id}}/continue" method="POST">
+  <form action="/letters/{{letter._id}}/continue" method="POST" enctype="multipart/form-data">
     <div class="padding-text text-align-center">
       <label class="text-size-label" for="">Text</label><br>
       <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
     </div>
     <input type="text" name="receiver" value="{{letter.receiver}}" hidden>
     <input type="text" name="set" value="{{letter.set}}" hidden>
+    <div>
+      <label class="text-size-label">Upload an image for your note background:</label>
+      <input type="file" name="image" class="image-input">
+    </div>
     <div class="padding-x padding-text text-align-center">
       <label class="text-size-label" for="">Do you want to send your note to somebody?</label>
       <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">

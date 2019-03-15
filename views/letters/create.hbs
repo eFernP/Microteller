@@ -1,49 +1,52 @@
 <h1 class="h1-login padding-global">Create note</h1>
 <div class="div1-create">
-  <form action="/letters/new" method="POST">
+  <form action="/letters/new" method="POST" enctype="multipart/form-data">
     <div>
       <label class="text-size-label" for="">For whom is your note or what is the note about?</label><br>
       <input class="input-size" type="text" name="receiver" maxlength="18">
     </div><br>
     {{#if challenge}}
     <p class="color-white-especial">Ambit : {{challenge.ambit}}<p>
-    <input type="text" name="ambit" value="{{challenge.ambit}}" hidden>
-    {{else}}
-    <div class="prueba">
-      <label class=" letter-size-create size-form letter-form " for="">Ambit:</label>
-      <select class="letter-size-create-2 size-form-two letter-form" id="size-select" name="ambit">
-        <option value="Experiences">Experiences</option>
-        <option value="Family">Family</option>
-        <option value="Friends">Friends</option>
-        <option value="Lovers">Lovers</option>
-        <option value="Me">Me</option>
-        <option value="Objects">Objects</option>
-        <option value="Places">Places</option>
-        <option value="Others">Others</option>
-      </select>
-    </div>
-    {{/if}}
-    <div class="padding-text">
-      <label class="text-size-label" for="">Text</label><br>
-      <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
-    </div>
-
-    <div class="padding-text">
-      <label class="text-size-label" for="">Do you want to send your note to somebody?</label><br>
-      <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">
-    </div>
-    <div class="padding-text">
-      <label class="color-white-create container">
-        <input class="color-boton-ole" type="checkbox" value="true" name="publicUser">
-        <span class="checkmark"></span>
-      </label>
-      <p class="color-white-create">Publish the note showing my user name</p>
-      <br>
-    </div>
-    <div class="padding-bottom">
-      <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
-      <button class=" padding-text button-login text-size-label" type="submit">Create note</button>
-    </div>
+        <input type="text" name="ambit" value="{{challenge.ambit}}" hidden>
+        {{else}}
+        <div class="prueba">
+          <label class=" letter-size-create size-form letter-form " for="">Ambit:</label>
+          <select class="letter-size-create-2 size-form-two letter-form" id="size-select" name="ambit">
+            <option value="Experiences">Experiences</option>
+            <option value="Family">Family</option>
+            <option value="Friends">Friends</option>
+            <option value="Lovers">Lovers</option>
+            <option value="Me">Me</option>
+            <option value="Objects">Objects</option>
+            <option value="Places">Places</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+        {{/if}}
+        <div class="padding-text">
+          <label class="text-size-label" for="">Text</label><br>
+          <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
+        </div>
+        <div>
+          <label class="text-size-label">Upload an image for your note background:</label>
+          <input type="file" name="image" class="image-input">
+        </div>
+        <div class="padding-text">
+          <label class="text-size-label" for="">Do you want to send your note to somebody?</label><br>
+          <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">
+        </div>
+        <div class="padding-text">
+          <label class="color-white-create container">
+            <input class="color-boton-ole" type="checkbox" value="true" name="publicUser">
+            <span class="checkmark"></span>
+          </label>
+          <p class="color-white-create">Publish the note showing my user name</p>
+          <br>
+        </div>
+        <div class="padding-bottom">
+          <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
+          <button class=" padding-text button-login text-size-label" type="submit">Create note</button>
+        </div>
   </form>
 
   {{#if data.messages.length}}

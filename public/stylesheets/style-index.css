@@ -10,6 +10,18 @@
   background-size: cover;
 }
 
+.background-note{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+
+}
+
 .padding-index{
   padding: 25px;
   padding-top: 100px;
@@ -280,4 +292,10 @@
 #comment-button{
   font-size: 3vh;
   padding: 12px 6px;
+}
+
+.image-input{
+  background-color: none;
+  color: white;
+  font-family: Roboto, sans-serif;
 }

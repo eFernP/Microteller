@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.4",
+    "cloudinary": "^1.13.2",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.3",
     "cookie-parser": "~1.4.3",
@@ -26,6 +27,8 @@
     "mongo": "^0.1.0",
     "mongoose": "^5.4.17",
     "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "multer-storage-cloudinary": "^2.2.1",
     "nodemailer": "^5.1.1",
     "nor-mailer": "^1.0.0"
   },

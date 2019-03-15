@@ -3,6 +3,8 @@ const nodemailer = require('nodemailer');
 const ObjectId = require('mongoose').Types.ObjectId;
 const router = express.Router();
 
+const parser = require('../helpers/file-upload');
+
 const User = require('../models/User');
 const Letter = require('../models/Letter');
 const Comment = require('../models/Comment');
@@ -87,13 +89,14 @@ router.get('/new', requireUser, function (req, res, next) {
   res.render('letters/create', {data});
 });
 
-router.post('/new', requireUser, async (req, res, next) => {
+router.post('/new', requireUser, parser.single('image'), async (req, res, next) => {
   const {text, ambit, receiver, email, challenge, publicUser} = req.body;
   const letter = {
     text,
     ambit,
     receiver,
     receiverEmail : email,
+    image:req.file.url
   };
 
   let transporter = emailTransporter();
@@ -269,7 +272,7 @@ router.post('/remove-favorite', requireUser, async (req, res, next) => {
 
 
 
-router.get('/:id', requireUser, async (req, res, next) => {
+router.get('/:id', requireUser, parser.single('image'), async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
   const data = {
@@ -379,7 +382,7 @@ router.get('/:id/continue', requireUser, async (req, res, next) => {
   };
 });
 
-router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, next) => {
+router.post('/:id/continue', requireUser, parser.single('image'), requireFieldsLetter, async (req, res, next) => {
   const { text, receiver, set, email } = req.body;
   const { id } = req.params;
   const { _id } = req.session.currentUser;
@@ -387,6 +390,7 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
     return next();
   }
   try {
+      console.log('TEXT'+text);
       const letterParent = await Letter.findById(id); 
       const lastLetter = await Letter.findOne({set, nextLetter: null});
       if (!(letterParent.creator.equals(_id))) {
@@ -400,7 +404,8 @@ router.post('/:id/continue', requireUser, requireFieldsLetter, async (req, res, 
         receiverEmail: email,
         set : letterParent.set,
         lastLetter: lastLetter.id, 
-        publicCreator: letterParent.publicCreator
+        publicCreator: letterParent.publicCreator,
+        image: req.file.url
       };
       letter.creator = _id;
       letter.visits = 0;
