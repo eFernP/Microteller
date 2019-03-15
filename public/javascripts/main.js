@@ -32,7 +32,7 @@ const main = () => {
             number.innerText = intNumber;
             axios.post('https://project2ed.herokuapp.com/letters/remove-favorite', { id })
                 .then(response => {
-                    console.log("You just created this character: ", response.data);
+                    //console.log("You just created this character: ", response.data);
 
                 })
                 .catch(error => {
@@ -48,7 +48,7 @@ const main = () => {
             number.innerText = intNumber;
             axios.post('https://project2ed.herokuapp.com/letters/add-favorite', { id })
                 .then(response => {
-                    console.log("You just created this character: ", response.data);
+                    //console.log("You just created this character: ", response.data);
 
                 })
                 .catch(error => {
@@ -84,7 +84,6 @@ const main = () => {
 
         axios.post(`https://project2ed.herokuapp.com/letters/${id}/comment`, {text})
             .then(response => {
-                console.log('Data '+ response.data);
                 let comments = document.getElementById('ajax-comments');
                 let commentText = document.createElement('p');
                 commentText.innerText = response.data[0] + ' : ' + response.data[1];

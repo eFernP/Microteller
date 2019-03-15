@@ -27,7 +27,7 @@ module.exports = {
   requireFieldsNewLetter (req, res, next) {
     const {receiver, text} = req.body;
     if (!text) {
-      req.flash('validation', 'You have to write a letter');
+      req.flash('validation', 'You have to write a note');
       res.redirect(`/letters${req.path}`);
       return;
     }
@@ -43,7 +43,7 @@ module.exports = {
   requireFieldsLetter (req, res, next) {
     const {text} = req.body;
     if (!text) {
-      req.flash('validation', 'You have to write a letter');
+      req.flash('validation', 'You have to write a note');
       res.redirect(`/letters${req.path}`);
       return;
     }

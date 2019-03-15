@@ -156,7 +156,6 @@ router.get('/challenges/my-challenges/:filter', requireUser, async (req, res, ne
   try {
     let letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null, ambit:filter }).populate('challenge');
     let challenges = await Challenge.find({ creator: _id, ambit:filter });
-    console.log(challenges);
     challenges = reverseArray(challenges);
     letters = reverseArray(letters);
     res.render('challenges/my-challenges', { challenges, letters, filter });

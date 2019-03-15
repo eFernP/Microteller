@@ -34,7 +34,6 @@ router.post('/list', (req, res, next) => {
 
 router.post('/list/search', requireUser, (req, res, next) => {
   const {search} = req.body;
-  console.log(search);
   if(!search){
     res.redirect(`/letters/list`);
     return;
@@ -114,7 +113,7 @@ router.post('/new', requireUser, parser.single('image'), async (req, res, next) 
     }
 
     if(!text){
-      req.flash('validation', 'Fill the text field');
+      req.flash('validation', 'You have to write a note');
       if(challenge){
         res.redirect(`/challenges/${challenge}/new`);
       }else{
@@ -162,7 +161,6 @@ router.post('/new', requireUser, parser.single('image'), async (req, res, next) 
 router.get('/ranking', requireUser, async (req, res, next) => {
   try {
     let letters = await Letter.find({challenge: { $ne: null }, votes:{$ne: 0}}).sort({votes:-1}).limit(5);
-    console.log(letters);
     res.render('letters/ranking', { letters });
   } catch (error) {
     next(error);
@@ -390,7 +388,6 @@ router.post('/:id/continue', requireUser, parser.single('image'), requireFieldsL
     return next();
   }
   try {
-      console.log('TEXT'+text);
       const letterParent = await Letter.findById(id); 
       const lastLetter = await Letter.findOne({set, nextLetter: null});
       if (!(letterParent.creator.equals(_id))) {
