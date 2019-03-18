@@ -1,0 +1,60 @@
+<h1 class="h1-login padding-global">Create story</h1>
+<div class="div1-create">
+  <form action="/stories/new" method="POST" enctype="multipart/form-data">
+    <div>
+      <label class="text-size-label" for="">Title:</label><br>
+      <input class="input-size" type="text" name="title" maxlength="18">
+    </div><br>
+    {{#if challenge}}
+    <p class="color-white-especial">Genre : {{challenge.genre}}<p>
+        <input type="text" name="genre" value="{{challenge.genre}}" hidden>
+        {{else}}
+        <div class="prueba">
+          <label class=" story-size-create size-form story-form " for="">Genre:</label>
+          <select class="story-size-create-2 size-form-two story-form" id="size-select" name="genre">
+            <option value="Realistic">Realistic</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Science-Fiction">Science-Fiction</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+        {{/if}}
+        <div class="padding-text">
+          <label class="text-size-label" for="">Microstory:</label><br>
+          <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
+        </div>
+        <div class="text-align-center display-fex-continue input-file-container">
+          <input class="input-file" id="my-file" type="file" name="image">
+          <label tabindex="0" for="my-file" class="input-file-trigger">Upload a background image</label>
+        </div>
+        <p class="file-return"></p>
+        {{!-- <div class="padding-text">
+          <label class="text-size-label" for="">Do you want to send your story to somebody?</label><br>
+          <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">
+        </div>
+        <div class="padding-text">
+          <label class="color-white-create container">
+            <input class="color-boton-ole" type="checkbox" value="true" name="publicUser">
+            <span class="checkmark"></span>
+          </label>
+          <p class="color-white-create">Publish the story showing my user name</p>
+          <br>
+        </div> --}}
+        <div class="padding-bottom">
+          <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
+          <button class=" padding-text button-login text-size-label" type="submit">Create story</button>
+        </div>
+  </form>
+
+  {{#if data.messages.length}}
+  <ul class="validation">
+    {{#each data.messages}}<li class="message-validator">{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
+
+  </form>
+
+  <script src="/javascripts/image-input.js"></script>

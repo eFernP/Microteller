@@ -1,0 +1,37 @@
+<div class="global-div-login padding-global">
+  <h1 class="h1-list padding-top-2">Edit account</h1>
+<div class="div1-account-edit">
+  <form method="POST" action="/account/edit">
+
+    <div class="field">
+      <label class="text-size-label">Username</label><br>
+      <input class="input-size" type="text" name="username" value="{{user.username}}" maxlength="20"/>
+    </div>
+
+    <div class="field">
+      <label class="text-size-label">Email</label><br>
+      <input class="input-size" type="text" name="email" value="{{user.email}}" maxlength="50"/>
+    </div>
+
+    <div class="field"><br>
+      <label class="text-size-label">New password</label><br>
+      <input class="input-size" type="password" name="password" maxlength="20"/>
+    </div>
+
+    <div class="field">
+      <label class="text-size-label">Confirm password</label><br>
+      <input class="input-size" type="password" name="confirmedPassword" maxlength="20"/>
+    </div>
+
+    <div class="field submit">
+      <button class="text-size-label button-login" type="submit">Edit</button>
+    </div>
+  </form>
+</div>
+  {{#if data.messages.length}}
+  <ul class="validation">
+    {{#each data.messages}}<li class="message-validator">{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
+
+</div>

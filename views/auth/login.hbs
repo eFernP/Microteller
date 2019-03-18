@@ -1,0 +1,24 @@
+<div class="global-div-login padding-global">
+  <h1 class="h1-login">Log in</h1>
+    <div class="border-white"></div>
+  <div class="div1-login">
+    <form method="POST" action="/auth/login">
+
+      <div class="field">
+        <input class="input-size" type="text" name="username" placeholder="Username or E-mail" />
+      </div>
+
+      <div class="field">
+        <input class="input-size" type="password" name="password" placeholder="Password" />
+      </div>
+
+      <div class="field submit">
+        <button class="button-login" type="submit">LOG IN</button>
+      </div>
+    </form>
+  </div>
+  {{> flash}}
+  <footer class="footer-login">
+    <a class="none-decoration size-a-login" href="/">Back</a>
+  </footer>
+</div>

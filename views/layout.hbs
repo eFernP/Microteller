@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <link rel="stylesheet" class="story-menu" href="/stylesheets/style.css">
+  <link rel="stylesheet" class="story-menu" href="/stylesheets/style-index.css">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+  <title>Microteller</title>
+</head>
+
+<body>
+  {{#if currentUser}}
+  <nav class="nav" role="navigation">
+    <div id="menu-toggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menu">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/stories/favorites">Favorite stories</a></li>
+        <li><a href="/stories/ranking">Best Stories</a></li>
+        <li><a href="/stories/my-stories">My stories</a></li>
+        <li><a href="/challenges/my-challenges">My challenges</a></li>
+        <li><a href="/account/edit">My account</a></li>
+        <li>
+          <form action="/auth/logout" method="POST"><button type="submit">Log out</button></form>
+        </li>
+      </ul>
+  </nav>
+  {{/if}}
+  {{{body}}}
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

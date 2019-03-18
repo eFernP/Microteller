@@ -1,0 +1,32 @@
+<div class="global-div-login padding-global-signup">
+  <h1 class="h1-signup">Sign up</h1>
+  <div class="border-white"></div>
+<div class="div1-signup">
+  <form method="POST" action="/auth/signup">
+
+    <div class="field">
+      <input class="input-size" type="text" name="username" placeholder="Username" maxlength="20"/>
+    </div>
+
+    <div class="field">
+      <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50"/>
+    </div>
+
+    <div class="field">
+      <input class="input-size" type="password" name="password" placeholder="Password" maxlength="20"/>
+    </div>
+
+    <div class="field">
+      <input class="input-size" type="password" name="confirmedPassword" placeholder="Confirm password" maxlength="20"/>
+    </div>
+
+    <div class="field">
+      <button class="button-login" type="submit">Sign up</button>
+    </div>
+  </form>
+  </div>
+  {{> flash}}
+  <footer class="footer-login">
+    <a class="none-decoration size-a-login" href="/">Back</a>
+  </footer>
+</div>

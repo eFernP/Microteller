@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
+
+.index{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+}
+
+.background-story{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+
+}
+
+.padding-index{
+  padding: 25px;
+  padding-top: 100px;
+  height: 100%;
+  /* background-image: url("/images/microteller-bg.jpeg"); */
+  /* filter: blur(4px); */
+  background-size: cover;
+}
+
+.div-login{
+ display: flex;
+ justify-content: center;
+ margin: 50px 0;
+}
+
+.button-login{
+  padding: 12px;
+  width: 200px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 4Vh;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.title-index{
+  font-weight: 200;
+  color: white;
+}
+
+.text-index{
+  color:white;
+  text-align: center;
+  font-size: 3.5vh;
+  font-weight: bold;
+}
+
+.text-index-div a{
+  text-align: center;
+}
+
+#signup-link{
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+
+.signup-link{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.index-footer{
+  position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 9vh;
+   color: black;
+   font-size: 3.2vh;
+}
+
+.index a img{
+  width: 2em;
+  margin-left: 5%;
+ 
+}
+
+.padding-info{
+  padding: 25px;
+  padding-top: 50px;
+}
+
+.ul-info{
+  padding-left: 20px;
+}
+
+.ul-info li{
+  list-style: disc;
+  color: white;
+  margin: 20px 0;
+  font-size: 3.5vh;
+}
+
+.text-info{
+  text-align: left;
+  color: white;
+  margin-top: 30px;
+  font-size: 3.5vh;
+}
+
+.button-info{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.home{
+  color: white;
+}
+
+.home h1{
+  font-weight: 200;
+  margin-top: 20px;
+}
+
+.home h4{
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: 200;
+  font-size: 3.5vh;
+}
+
+.home-section{
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  height: 150px;
+  text-align: left;
+  font-size: 3vh;
+  padding: 15px;
+  margin: 50px 25px;
+  margin-top: 25px;
+}
+
+.home-button{
+  padding: 12px;
+  width: 150px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 3Vh;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-home-div{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-home-div a{
+  margin-top: 20px;
+}
+
+.call-action{
+  position: fixed;
+  bottom: 1.5vh;
+  right: 1.5vh;
+  padding: 5px 16px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 6vh;
+  font-weight: bold; 
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+
+}
+
+.no-stories{
+  text-align: center;
+  color:white;
+}
+
+.button-create{
+  margin: 20px;
+  border: none;
+  padding: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url(/images/fondo-boton.png);
+  background-size: cover;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 3vh;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.errors-text{
+  font-weight: 200;
+  margin:50px;
+  color: white;
+}
+
+
+.story-type{
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(88, 64, 69);
+}
+
+.delete-menu{
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-buttons{
+  display: grid;
+  align-items: center;
+  height: 10vh;
+  align-self: center;
+}
+
+.short-button{
+  width: 15vh;
+}
+
+.visits-favs{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5vh;
+}
+
+.visits-favs img{
+  width: 1.5em;
+}
+
+.visits-favs p{
+  color: white;
+  font-size: 3vh;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+
+.visits-favs-list{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  padding-top:10px;
+  
+}
+
+.visits-favs-list img{
+  width: 1.3em;
+}
+
+.visits-favs-list p{
+  color: #5a3f45;
+  font-size: 2.5vh;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.button-comment{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+#comment-button{
+  font-size: 3vh;
+  padding: 12px 6px;
+}
+
+.image-input{
+  background-color: none;
+  color: white;
+  font-family: Roboto, sans-serif;
+}

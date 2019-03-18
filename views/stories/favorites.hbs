@@ -1,0 +1,31 @@
+<div class="padding-global">
+  <h1 class="h1-list padding-top-3">My favorite stories</h1>
+  {{#if stories}}
+  <ul class="center-ul">
+    {{#each stories}}
+    <li class="stories-list">
+      <a href="/stories/{{this.id}}" class="story-type">{{this.title}}</a>
+      {{#if ../filter}}
+      {{else}}
+      {{this.genre}}
+      {{/if}}
+      {{#if challenge}}
+      - Votes : {{this.votes}}
+      {{/if}}
+      <div class="visits-favs-list">
+        <p>
+          <img class="button-size" src="/images/view-dark.png" alt="views">
+          {{this.visits}}
+        </p>
+        <p>
+          <img class="button-size" id="heart-img" src="/images/heart-dark.png" alt="heart">
+          {{this.favorites}}</p>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <p class="no-stories">No favorite stories yet</p>
+  {{/if}}
+</div>
+<div class="padding-global-finish"></div>

@@ -1,0 +1,32 @@
+<div class="padding-global text-align-center">
+  <h1 class="h1-list padding-top-create-1">Create challengue</h1>
+  <form action="/challenges/new" method="POST">
+    <div class="padding-top-create">
+      <div class="prueba">
+        <label class=" story-size-create size-form story-form " for="">Genre:</label>
+        <select class="story-size-create-2 size-form-two story-form" id="size-select" name="genre">
+          <option value="Realistic">Realistic</option>
+          <option value="Suspense">Suspense</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Science-Fiction">Science-fiction</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+    </div>
+    <div class="padding-left-create">
+      <div class="text-align-left">
+        <label for="">Explain what has to be expressed in the stories:</label>
+        <div class="padding-white-create"></div>
+        <div class="">
+          <input class="size-label-create" type="text" name="objective" maxlength="60">
+        </div>
+      </div>
+
+      {{> flash}}
+      <button class="button-login size-button-loggin" type="submit">Create</button>
+  </form>
+</div>
+<div class="padding-global-finish"></div>
+</div>
