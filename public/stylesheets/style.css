@@ -2,6 +2,8 @@
 
 html {
   box-sizing: border-box;
+  background: linear-gradient(135deg, #ffb758 10%, rgb(255, 120, 79) 100%) no-repeat fixed;
+  background-size: cover;
   
 }
 *, *:before, *:after {

@@ -26,8 +26,7 @@
   padding: 25px;
   padding-top: 100px;
   height: 100%;
-  /* background-image: url("/images/microteller-bg.jpeg"); */
-  /* filter: blur(4px); */
+  background: linear-gradient(135deg, #ffb758 10%, rgb(255, 120, 79) 100%) no-repeat fixed;
   background-size: cover;
 }
 
