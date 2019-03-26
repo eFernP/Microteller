@@ -2,6 +2,7 @@
 
 html {
   box-sizing: border-box;
+  
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -36,7 +37,9 @@ body
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 3vh;
-  background: url('/images/backgroundimage.png') no-repeat fixed;
+  /* background: url('/images/backgroundimage.png') no-repeat fixed;
+  background-size: cover; */
+  background: linear-gradient(135deg, #ffb758 10%, rgb(255, 120, 79) 100%) no-repeat fixed;
   background-size: cover;
   font-weight: 200;
 }
@@ -65,7 +68,7 @@ nav #menu-toggle {
 #menu a
 {
   text-decoration: none;
-  color: #FA6C8D;
+  color: rgb(255, 120, 57);
   text-align: center;
   transition: color 0.3s ease;
   font-weight: bold;
@@ -330,7 +333,7 @@ nav #menu-toggle {
       width: 200px;
       border: none;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: url(/images/fondo-boton.png);
+      background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
       background-size: cover;
       border-radius: 8px;
       color: white;
@@ -345,7 +348,7 @@ nav #menu-toggle {
       width: 180px;
       border: none;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: url(/images/fondo-boton.png);
+      background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
       background-size: cover;
       border-radius: 8px;
       color: white;

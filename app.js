@@ -32,11 +32,14 @@ app.use(session({
 
 app.use(flash());
 
+
+//MONGODB_URI=mongodb+srv://admin:admin@cluster0-tyltx.mongodb.net/test?retryWrites=true
+
 mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
-});
+}).then(() => { console.log("connected")});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

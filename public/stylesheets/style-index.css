@@ -42,7 +42,7 @@
   width: 200px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -159,7 +159,7 @@
   width: 150px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -186,7 +186,7 @@
   padding: 5px 16px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
   background-size: cover;
   border-radius: 50%;
   color: white;
@@ -208,7 +208,7 @@
   border: none;
   padding: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
   background-size: cover;
   border-radius: 8px;
   color: white;
