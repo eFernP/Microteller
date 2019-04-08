@@ -41,7 +41,7 @@
  margin: 50px 0;
 }
 
-.button-login{
+.button-default{
   padding: 12px;
   width: 200px;
   border: none;
@@ -138,7 +138,7 @@
 
 .home h1{
   font-weight: 200;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .home h4{

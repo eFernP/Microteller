@@ -45,7 +45,7 @@ body
 
 nav {
   min-height: 50px;
-  display: flex
+  display: flex;
 }
 
 nav #menu-toggle {
@@ -113,7 +113,7 @@ nav #menu-toggle {
   margin-bottom: 5px;
   position: relative;
   
-  background: #cdcdcd;
+  background: #ffffff;
   border-radius: 3px;
   
   z-index: 12;
@@ -325,7 +325,7 @@ nav #menu-toggle {
       font-family: 'Roboto', sans-serif;
 }
 
-.button-login {
+.button-default {
   padding: 12px;
       width: 200px;
       border: none;
@@ -400,7 +400,6 @@ nav #menu-toggle {
 /* layout */
 
 .nav {
-  background-color: white;
   height: 60px;
   position: fixed;
   width: 100%;
@@ -436,25 +435,20 @@ nav #menu-toggle {
   margin-top: 6vh;
 }
 
-.color-boton-ole {
-  background-color: white;
-
-}
-
 /* Create story */
 
-.tamanno-imput-create {
+.textarea-input{
   width: 300px;
   height: 20vh;
   max-width: 300px;
   max-height: 20vh;
   padding: 5px;
-      border: 1px solid white;
-      background-color: white;
-      border-radius: 5px;
-      color: #333;
-      margin-top: 1.5vh;
-      font-size: 3vh;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 5px;
+  color: #333;
+  margin-top: 1.5vh;
+  font-size: 3vh;
 }
 
 .div1-create {
@@ -495,6 +489,8 @@ nav #menu-toggle {
 .h1-list {
   font-weight: 200;
   color:white;
+  margin-left: 4vw;
+  margin-right: 4vw;
   margin-bottom: 3vh;
   text-align: center;
 }
@@ -580,7 +576,6 @@ padding-top: 9vh;
 }
 
 .padding-h1-myletters{
-  padding-top: 4vh;
   padding-bottom: 2vh;
 }
 
@@ -998,7 +993,7 @@ padding-top: 9vh;
 }
 
 .padding-4{
-  padding-top: 3vh;
+  padding-top: 1vh;
 }
 
 .color-white-especial {
@@ -1097,7 +1092,7 @@ option {
 }
 .copy a {
   text-decoration: none;
-  color: #1ABC9C;
+  color: rgb(221, 69, 42);
 }
 
 .display-fex-continue{

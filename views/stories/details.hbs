@@ -63,7 +63,7 @@
       {{#if hasVoted}}
       {{else}}
       <div id="vote-form">
-        <p id="vote-button" class="button-login">Vote</p>
+        <p id="vote-button" class="button-default">Vote</p>
       </div>
       {{!-- <form action="/stories/{{story._id}}/vote" method="POST">
         <button class="padding-top button-details" type="submit">Vote</button>
@@ -80,12 +80,12 @@
     </div>
     <input class="input-size-details" id="comment-text" type="text" name="text" maxlength="100">
     <div id="comment-form" class="button-comment">
-      <p id="comment-button" class="button-login">Add comment</p>
+      <p id="comment-button" class="button-default">Add comment</p>
     </div>
     {{!-- <form action="/stories/{{story._id}}/comment" method="POST">
       <input class="input-size-details" type="text" name="text" maxlength="100">
       <div class="text-align-right">
-        <button class="padding-top button-login padding-global-finish" type="submit">Add comment</button>
+        <button class="padding-top button-default padding-global-finish" type="submit">Add comment</button>
       </div>
     </form> --}}
     {{#if isCreator}}

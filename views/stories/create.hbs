@@ -24,28 +24,16 @@
         {{/if}}
         <div class="padding-text">
           <label class="text-size-label" for="">Microstory:</label><br>
-          <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
+          <textarea class="textarea-input" name="text" maxlength="150"></textarea>
         </div>
         <div class="text-align-center display-fex-continue input-file-container">
           <input class="input-file" id="my-file" type="file" name="image">
           <label tabindex="0" for="my-file" class="input-file-trigger">Upload a background image</label>
         </div>
         <p class="file-return"></p>
-        {{!-- <div class="padding-text">
-          <label class="text-size-label" for="">Do you want to send your story to somebody?</label><br>
-          <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">
-        </div>
-        <div class="padding-text">
-          <label class="color-white-create container">
-            <input class="color-boton-ole" type="checkbox" value="true" name="publicUser">
-            <span class="checkmark"></span>
-          </label>
-          <p class="color-white-create">Publish the story showing my user name</p>
-          <br>
-        </div> --}}
         <div class="padding-bottom">
           <input class="input-size" type="text" name="challenge" value="{{challenge.id}}" hidden>
-          <button class=" padding-text button-login text-size-label" type="submit">Create story</button>
+          <button class=" padding-text button-default text-size-label" type="submit">Create story</button>
         </div>
   </form>
 

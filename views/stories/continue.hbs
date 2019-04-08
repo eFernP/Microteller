@@ -3,7 +3,7 @@
   <form action="/stories/{{story._id}}/continue" method="POST" enctype="multipart/form-data">
     <div class="padding-text text-align-center">
       <label class="text-size-label" for="">Text</label><br>
-      <textarea class="tamanno-imput-create" name="text" maxlength="150"></textarea>
+      <textarea class="textarea-input" name="text" maxlength="150"></textarea>
     </div>
     <input type="text" name="title" value="{{story.title}}" hidden>
     <input type="text" name="set" value="{{story.set}}" hidden>
@@ -17,7 +17,7 @@
       <input class="input-size" type="email" name="email" placeholder="Email" maxlength="50">
     </div> --}}
     <div class="padding-boton">
-      <button class=" padding-text button-login text-size-label" type="submit">Create story</button>
+      <button class=" padding-text button-default text-size-label" type="submit">Create story</button>
     </div>
   </form>
 
