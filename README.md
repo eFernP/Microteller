@@ -142,23 +142,14 @@ story: ObjectId<User>
 
 ## Links
 
-### Trello
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+### Repository
 
-### Git
+https://github.com/esterFern/Microteller
 
-The url to your repository and to your deployed project
+###Deploy
 
-[Repository Link](http://github.com)
-
-[Deploy Link](http://heroku.com)
-
-### Slides
-
-The url to your presentation slides
-
-[Slides Link](http://slides.com)
+https://microteller.herokuapp.com/
 
 
 
