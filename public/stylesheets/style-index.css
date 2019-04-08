@@ -7,7 +7,10 @@
   left: 0;
   right: 0;
   bottom: 0;
+  background: url('/images/bg-home.jpg') no-repeat fixed;
   background-size: cover;
+  height: 100vh;
+  width: 100vw;
 }
 
 .background-story{
@@ -39,7 +42,7 @@
   width: 200px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
+  background-image: linear-gradient(rgb(155, 241, 201), rgb(104, 184, 141));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -96,8 +99,9 @@
 .padding-info{
   padding: 25px;
   padding-top: 50px;
-  background: linear-gradient(135deg, #ffb758 10%, rgb(255, 120, 79) 100%) no-repeat fixed;
+  background: url('/images/background-image.png') no-repeat fixed;
   background-size: cover;
+  height: 100vh;
 }
 
 .ul-info{
@@ -158,7 +162,7 @@
   width: 150px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
+  background-image: linear-gradient(rgb(155, 241, 201), rgb(104, 184, 141));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -185,7 +189,7 @@
   padding: 5px 16px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
+  background-image: linear-gradient(rgb(155, 241, 201), rgb(104, 184, 141));
   background-size: cover;
   border-radius: 50%;
   color: white;
@@ -207,7 +211,7 @@
   border: none;
   padding: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: linear-gradient(rgb(255, 201, 86), rgb(255, 163, 57));
+  background-image: linear-gradient(rgb(155, 241, 201), rgb(104, 184, 141));
   background-size: cover;
   border-radius: 8px;
   color: white;
