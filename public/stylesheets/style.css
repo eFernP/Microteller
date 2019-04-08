@@ -65,7 +65,7 @@ nav #menu-toggle {
 #menu a
 {
   text-decoration: none;
-  color: rgb(189, 72, 169);
+  color: rgb(223, 83, 59);
   text-align: center;
   transition: color 0.3s ease;
   font-weight: bold;
@@ -299,7 +299,7 @@ nav #menu-toggle {
 
 .size-a-login{
   font-size: 4vh;
-  color: rgb(85, 65, 90);
+  color: rgb(255, 255, 255);
 }
 
 .footer-login > a {
@@ -318,7 +318,7 @@ nav #menu-toggle {
       border: 1px solid white;
       background-color: white;
       border-radius: 5px;
-      color: rgb(85, 65, 90);
+      color: rgb(90, 69, 65);
       cursor: pointer;
       margin-top: 1.5vh;
       font-size: 3vh;
@@ -330,7 +330,7 @@ nav #menu-toggle {
       width: 200px;
       border: none;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: linear-gradient(rgb(155, 241, 201), rgb(104, 184, 141));
+      background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
       background-size: cover;
       border-radius: 8px;
       color: white;
@@ -345,7 +345,7 @@ nav #menu-toggle {
       width: 180px;
       border: none;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: linear-gradient(rgb(155, 241, 201), rgb(104, 184, 141));
+      background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
       background-size: cover;
       border-radius: 8px;
       color: white;
