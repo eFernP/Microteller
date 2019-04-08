@@ -30,7 +30,7 @@ const main = () => {
             let intNumber = parseInt(number.innerText);
             intNumber--;
             number.innerText = intNumber;
-            axios.post('https://project2ed.herokuapp.com/letters/remove-favorite', { id })
+            axios.post('https://microteller.herokuapp.com/stories/remove-favorite', { id })
                 .then(response => {
                     //console.log("You just created this character: ", response.data);
 
@@ -46,7 +46,7 @@ const main = () => {
             let intNumber = parseInt(number.innerText);
             intNumber++;
             number.innerText = intNumber;
-            axios.post('https://project2ed.herokuapp.com/letters/add-favorite', { id })
+            axios.post('https://microteller.herokuapp.com/stories/add-favorite', { id })
                 .then(response => {
                     //console.log("You just created this character: ", response.data);
 
@@ -64,7 +64,7 @@ const main = () => {
         let number = document.getElementById('votes-number');
         const id = idNote.attributes[2].nodeValue;
 
-        axios.post('https://project2ed.herokuapp.com/letters/add-vote', { id })
+        axios.post('https://microteller.herokuapp.com/stories/add-vote', { id })
             .then(response => {
                 number.innerText = response.data;
                 vote.style.visibility = 'hidden';
@@ -82,7 +82,7 @@ const main = () => {
         const text = commentInput.value;
         const id = idNote.attributes[2].nodeValue;
 
-        axios.post(`https://project2ed.herokuapp.com/letters/${id}/comment`, {text})
+        axios.post(`https://microteller.herokuapp.com/stories/${id}/comment`, {text})
             .then(response => {
                 let comments = document.getElementById('ajax-comments');
                 let commentText = document.createElement('p');

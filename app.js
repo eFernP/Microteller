@@ -10,10 +10,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const lettersRouter = require('./routes/letters');
+const storiesRouter = require('./routes/stories');
 const flash = require('connect-flash');
 const hbs = require('hbs');
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 
 const app = express();
 
@@ -32,11 +32,14 @@ app.use(session({
 
 app.use(flash());
 
+
+//MONGODB_URI=mongodb+srv://admin:admin@cluster0-tyltx.mongodb.net/test?retryWrites=true
+
 mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
-});
+}).then(() => { console.log("connected")});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -55,7 +58,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/letters', lettersRouter);
+app.use('/stories', storiesRouter);
 
 app.use((req, res, next) => {
   res.status(404);

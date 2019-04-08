@@ -4,7 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const router = express.Router();
 const { requireAnon, requireUser, requireFields, requireUserEditFields } = require('../middlewares/auth');
 const User = require('../models/User');
-const Letter = require('../models/Letter');
+const Story = require('../models/Story');
 const Challenge = require('../models/Challenge');
 
 const saltRounds = 10;
@@ -91,7 +91,7 @@ router.get('/challenges/list/search/:search', requireUser, async (req, res, next
 router.get('/challenges/list/:filter', requireUser, async (req, res, next) => {
   const { filter } = req.params;
   try {
-    let challenges = await Challenge.find({ ambit: filter });
+    let challenges = await Challenge.find({ genre: filter });
     challenges = reverseArray(challenges);
     res.render('challenges/list', { challenges, filter });
   } catch (error) {
@@ -107,9 +107,9 @@ router.get('/challenges/new', requireUser, function (req, res, next) {
 });
 
 router.post('/challenges/new', requireUser, async (req, res, next) => {
-  const { ambit, objective } = req.body;
+  const { genre, objective } = req.body;
   const challenge = {
-    ambit,
+    genre,
     objective
   };
 
@@ -130,11 +130,11 @@ router.post('/challenges/new', requireUser, async (req, res, next) => {
 router.get('/challenges/my-challenges', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
-    let letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null }).populate('challenge');
+    let stories = await Story.find({ creator: _id, challenge: { $ne: null }, lastStory: null }).populate('challenge');
     let challenges = await Challenge.find({ creator: _id });
-    letters = reverseArray(letters);
+    stories = reverseArray(stories);
     challenges = reverseArray(challenges);
-    res.render('challenges/my-challenges', { letters, challenges });
+    res.render('challenges/my-challenges', { stories, challenges });
   } catch (error) {
     next(error);
   }
@@ -154,11 +154,11 @@ router.get('/challenges/my-challenges/:filter', requireUser, async (req, res, ne
   const { _id } = req.session.currentUser;
 
   try {
-    let letters = await Letter.find({ creator: _id, challenge: { $ne: null }, lastLetter: null, ambit:filter }).populate('challenge');
-    let challenges = await Challenge.find({ creator: _id, ambit:filter });
+    let stories = await Story.find({ creator: _id, challenge: { $ne: null }, lastStory: null, genre:filter }).populate('challenge');
+    let challenges = await Challenge.find({ creator: _id, genre:filter });
     challenges = reverseArray(challenges);
-    letters = reverseArray(letters);
-    res.render('challenges/my-challenges', { challenges, letters, filter });
+    stories = reverseArray(stories);
+    res.render('challenges/my-challenges', { challenges, stories, filter });
   } catch (error) {
     next(error);
   }
@@ -171,8 +171,8 @@ router.get('/challenges/:id', requireUser, async (req, res, next) => {
   }
   try {
     const challenge = await Challenge.findById(id).populate('creator');
-    const letters = await Letter.find({ challenge: id, lastLetter: null });
-    res.render('letters/list', { letters, challenge });
+    const stories = await Story.find({ challenge: id, lastStory: null });
+    res.render('stories/list', { stories, challenge });
   } catch (error) {
     next(error);
   }
@@ -187,7 +187,7 @@ router.get('/challenges/:id/new', requireUser, async (req, res, next) => {
   if(!ObjectId.isValid(id)){
     return next();
   }
-  res.render('letters/create', { challenge, data });
+  res.render('stories/create', { challenge, data });
 });
 
 router.get('/account/edit', requireUser, async (req, res, next) => {

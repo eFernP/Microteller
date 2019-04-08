@@ -1,16 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Mono');
 
 
+.background-home{
+  background: url('/images/bg-home.png') no-repeat fixed;
+  background-size: cover;
+}
+
 .index{
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
+ 
+  height: 100vh;
+  width: 100vw;
 }
 
-.background-note{
+.background-story{
   position: fixed;
   top: 0;
   left: 0;
@@ -26,9 +33,6 @@
   padding: 25px;
   padding-top: 100px;
   height: 100%;
-  background-image: url("/images/notes-colors-blur.jpeg");
-  /* filter: blur(4px); */
-  background-size: cover;
 }
 
 .div-login{
@@ -42,7 +46,7 @@
   width: 200px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -86,7 +90,7 @@
    bottom: 0;
    width: 100%;
    height: 9vh;
-   color: black;
+   color: rgb(27, 19, 19);
    font-size: 3.2vh;
 }
 
@@ -99,6 +103,8 @@
 .padding-info{
   padding: 25px;
   padding-top: 50px;
+  height: 100vh;
+  width: 100vw;
 }
 
 .ul-info{
@@ -159,7 +165,7 @@
   width: 150px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -186,7 +192,7 @@
   padding: 5px 16px;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
   background-size: cover;
   border-radius: 50%;
   color: white;
@@ -198,7 +204,7 @@
 
 }
 
-.no-notes{
+.no-stories{
   text-align: center;
   color:white;
 }
@@ -208,7 +214,7 @@
   border: none;
   padding: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-image: url(/images/fondo-boton.png);
+  background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
   background-size: cover;
   border-radius: 8px;
   color: white;
@@ -225,7 +231,7 @@
 }
 
 
-.note-type{
+.story-type{
   font-family: 'Courier New', Courier, monospace;
   color: rgb(88, 64, 69);
 }
@@ -277,7 +283,7 @@
 }
 
 .visits-favs-list p{
-  color: #5a3f45;
+  color: #5a3f3f;
   font-size: 2.5vh;
   font-weight: bold;
   padding-right: 10px;

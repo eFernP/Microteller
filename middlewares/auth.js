@@ -24,27 +24,27 @@ module.exports = {
     next();
   },
 
-  requireFieldsNewLetter (req, res, next) {
-    const {receiver, text} = req.body;
+  requireFieldsNewStory (req, res, next) {
+    const {title, text} = req.body;
     if (!text) {
-      req.flash('validation', 'You have to write a note');
-      res.redirect(`/letters${req.path}`);
+      req.flash('validation', 'You have to write a story');
+      res.redirect(`/stories${req.path}`);
       return;
     }
 
-    if(!receiver){
+    if(!title){
       req.flash('validation', 'Fill the first field');
-      res.redirect(`/letters${req.path}`);
+      res.redirect(`/stories${req.path}`);
       return;
     }
     next();
   },
 
-  requireFieldsLetter (req, res, next) {
+  requireFieldsStory (req, res, next) {
     const {text} = req.body;
     if (!text) {
-      req.flash('validation', 'You have to write a note');
-      res.redirect(`/letters${req.path}`);
+      req.flash('validation', 'You have to write a story');
+      res.redirect(`/stories${req.path}`);
       return;
     }
     next();

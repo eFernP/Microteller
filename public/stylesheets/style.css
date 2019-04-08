@@ -36,7 +36,7 @@ body
   padding: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 3vh;
-  background: url('/images/backgroundimage.png') no-repeat fixed;
+  background: url('/images/background-image.png') no-repeat fixed;
   background-size: cover;
   font-weight: 200;
 }
@@ -65,7 +65,7 @@ nav #menu-toggle {
 #menu a
 {
   text-decoration: none;
-  color: #FA6C8D;
+  color: rgb(223, 83, 59);
   text-align: center;
   transition: color 0.3s ease;
   font-weight: bold;
@@ -74,7 +74,7 @@ nav #menu-toggle {
 
 #menu a:hover
 {
-  color: tomato;
+  color: rgb(229, 126, 233);
 }
 
 #menu-toggle
@@ -299,7 +299,7 @@ nav #menu-toggle {
 
 .size-a-login{
   font-size: 4vh;
-  color: rgb(90, 65, 73);
+  color: rgb(255, 255, 255);
 }
 
 .footer-login > a {
@@ -318,7 +318,7 @@ nav #menu-toggle {
       border: 1px solid white;
       background-color: white;
       border-radius: 5px;
-      color: rgb(90, 65, 73);
+      color: rgb(90, 69, 65);
       cursor: pointer;
       margin-top: 1.5vh;
       font-size: 3vh;
@@ -330,7 +330,7 @@ nav #menu-toggle {
       width: 200px;
       border: none;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: url(/images/fondo-boton.png);
+      background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
       background-size: cover;
       border-radius: 8px;
       color: white;
@@ -345,7 +345,7 @@ nav #menu-toggle {
       width: 180px;
       border: none;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-image: url(/images/fondo-boton.png);
+      background-image: linear-gradient(rgb(255, 141, 75), rgb(209, 77, 53));
       background-size: cover;
       border-radius: 8px;
       color: white;
@@ -441,7 +441,7 @@ nav #menu-toggle {
 
 }
 
-/* Create note */
+/* Create story */
 
 .tamanno-imput-create {
   width: 300px;
@@ -503,7 +503,7 @@ nav #menu-toggle {
   text-align: center;
 }
 
-.letters-list {
+.stories-list {
   text-align: left;
   margin-top: 3.5vh;
   margin-left: auto;
@@ -522,7 +522,7 @@ nav #menu-toggle {
   border-radius: 5px;
 }
 
-.letters-list a{
+.stories-list a{
   font-size: 4.5vh;
 }
 .center-ul {
@@ -564,7 +564,7 @@ nav #menu-toggle {
   color:white;
 }
 
-.letter-form{
+.story-form{
   font-size: 3vh;
 }
 
@@ -573,7 +573,7 @@ nav #menu-toggle {
     justify-content: center;
 }
 
-/* My letters */
+/* My stories */
 
 .padding-global-myletters {
 padding-top: 9vh;
@@ -584,9 +584,9 @@ padding-top: 9vh;
   padding-bottom: 2vh;
 }
 
-/* Details Letters */
+/* Details Stories */
 
-.letter-detail {
+.story-detail {
   text-align: left;
   margin-top: 2vh;
   margin-left: auto;
@@ -706,6 +706,14 @@ padding-top: 9vh;
   justify-content: center;
 }
 
+.float-details div{
+  align-self: center;
+}
+
+#comment-form{
+  margin-bottom: 2vh;
+}
+
 .padding-div-white-details {
   width: 20vh;
   padding-bottom: 10vh;
@@ -789,13 +797,13 @@ padding-top: 9vh;
 
 /*Create challengue */
 
-.letter-size-create {
+.story-size-create {
   margin-right: -0.7vh;
   padding: 1.2vh 2vh 1.6vh;
   border: none;
 }
 
-.letter-size-create-2 {
+.story-size-create-2 {
   width: 24vh;
   padding-left: 2vh;
   border: none;
@@ -890,7 +898,7 @@ padding-top: 9vh;
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: rgb(255, 138, 138);
+  background-color: rgb(204, 97, 223);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -1012,7 +1020,7 @@ option {
 }
 
 .message-validator{
-  color:rgb(255, 36, 109);
+  color:rgb(255, 255, 255);
   font-family: 'Roboto', sans-serif;
 }
 

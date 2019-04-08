@@ -14,9 +14,9 @@ const commentSchema = new Schema({
     ref: 'User',
     required: true
   },
-  letter: {
+  story: {
     type: ObjectId,
-    ref: 'Letter',
+    ref: 'Story',
     required: true
   }
 });

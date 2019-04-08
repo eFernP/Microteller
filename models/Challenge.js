@@ -9,9 +9,9 @@ const challengeSchema = new Schema({
     type: String,
     required: true
   },
-  ambit: {
+  genre: {
     type: String,
-    enum: ['Experiences', 'Family', 'Friends', 'Lovers', 'Me', 'Objects', 'Places', 'Others']
+    enum: ['Realistic', 'Suspense', 'Fantasy', 'Science-fiction', 'Horror', 'Romance', 'Others']
   },
   creator: {
     type: ObjectId,

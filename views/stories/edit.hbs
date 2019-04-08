@@ -1,0 +1,22 @@
+<div class="padding-global">
+  <h1 class="h1-login">Edit story</h1>
+
+  <form action="/stories/{{story._id}}/edit" method="POST">
+
+    <div class="padding-text text-align-center">
+      <label class="text-size-label" for="">Text</label><br>
+      <textarea class="tamanno-imput-create" name="text" maxlength="150">{{story.text}}</textarea>
+    </div>
+
+    {{!-- <input type="hidden" name="receiverEmail" value="{{story.receiverEmail}}"> --}}
+    <div class="padding-boton">
+      <button class=" padding-text button-login text-size-label" type="submit">Edit</button>
+    </div>
+  </form>
+
+  {{#if data.messages.length}}
+  <ul class="validation">
+    {{#each data.messages}}<li class="message-validator">{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
+</div>
