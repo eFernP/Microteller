@@ -147,7 +147,7 @@ story: ObjectId<User>
 
 https://github.com/esterFern/Microteller
 
-###Deploy
+### Deploy
 
 https://microteller.herokuapp.com/
 
