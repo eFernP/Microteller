@@ -23,11 +23,11 @@ Se trata de una aplicación en la que puedes publicar microhistorias y leer y co
 ## Backlog
 
 - Dos campos para la contraseña para confirmar que el usuario no se equivoca
-- Tener la opción de enviar por correo la microhistoria a quien quieras cuenta la creas.
+- Tener la opción de enviar por correo la microhistoria a quien quieras cuando la creas.
 - Pantalla que confirme si quieres borrar una microhistoria.
 - Botones de "edit" y "delete" ocultos y que se despliguen al tocar al lado de una microhistoria.
 - Clasificar las microhistorias entre recientes, populares...
-- Nuevo tipo de microhistoria en la que escribes una versión que es verdad y otra mentira y así no se puede saber qué versión es qué.
+- Implementación de retos. Los usuarios pueden crear retos en los que se debe escribir una historia sobre una temática en concreto. Los usuarios pueden votar las historias que participan en retos.
 
 ## ROUTES:
 
